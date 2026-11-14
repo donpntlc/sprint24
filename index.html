@@ -2694,7 +2694,7 @@ function settings(){
   <p class="shead">Sprechen & Hören</p>
   ${SRC?`<button class="tile" onclick="toggleMic()"><span class="ic">🎤</span><span>Mikrofon-Modus: ${S.mic===false?"aus":"an"}<small>${S.mic===false?"Du bewertest dich selbst":"App hört zu und bewertet, ob der Satz kam"}</small></span><span class="chev">›</span></button>`
    :`<p class="note" style="margin-bottom:12px">Spracherkennung ist hier nicht verfügbar — sie funktioniert nur, wenn die App auf einer eigenen Adresse läuft (GitHub Pages) und in Safari geöffnet ist.</p>`}
-  <button class="tile" onclick="ttsMenu()"><span class="ic">🎙️</span><span>Echte Stimmen<small>${window.ttsOn&&ttsOn()?"an · "+(S.tts.sex==="m"?"Männerstimme":"Frauenstimme"):"aus · natürliche Stimmen statt Roboter"}</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="ttsMenu()"><span class="ic">🎙️</span><span>Echte Stimmen<small>${(S.tts&&S.tts.aus)?"aus · Handystimme":"an · "+((S.tts&&S.tts.sex==="m")?"Männerstimme":"Frauenstimme")}</small></span><span class="chev">›</span></button>
   <div class="card" id="voicebox"></div>
   <hr class="sep">
   <p class="shead">Daten</p>
