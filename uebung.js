@@ -54,7 +54,7 @@ function uebAufgabe(){
   if(!U) return;
   if(U.i>=U.liste.length) return uebDone();
   var c=U.liste[U.i];
-  U.c=c; U.typ=typFuer(c); U.ri=richtung(); U.fb=null; U.sel=[]; U.bank=null; U.gezeigt=false;
+  U.c=c; U.typ=typFuer(c); U.ri=richtung(); U.fb=null; U.sel=[]; U.bank=null; U.gezeigt=false; U.wahl=null;
   if(U.typ==="hoeren" && hasVoice()) setTimeout(function(){ try{ speak(c.pt); }catch(e){} }, 300);
   uebView();
 }
@@ -87,9 +87,16 @@ function uebView(){
       var falsche=ablenker(c,3).map(function(x){ return U.ri==="de"? x.pt : x.de; });
       U.opt=shuffle([loesungText()].concat(falsche));
     }
+    var fertig=!!U.fb;
     body='<div class="card"><p class="sub">Was passt?</p><p class="prompt">'+frageText()+'</p></div>'+
-      U.opt.map(function(o,k){ return '<button class="tile" onclick="uebWahl('+k+')">'+
-        '<span class="ic">'+String.fromCharCode(65+k)+'</span><span>'+o+'</span></button>'; }).join("");
+      U.opt.map(function(o,k){
+        var richtig=norm(o)===norm(loesungText()), gew=U.wahl===k, st="";
+        if(fertig && richtig) st="border-color:var(--accent);background:rgba(143,214,169,.12)";
+        else if(fertig && gew) st="border-color:var(--bad);background:rgba(235,128,115,.12)";
+        else if(gew) st="border-color:var(--accent)";
+        return '<button class="tile" style="'+st+'" onclick="uebWahl('+k+')">'+
+        '<span class="ic">'+String.fromCharCode(65+k)+'</span><span>'+o+'</span>'+(U.ri==="de"?'<span class="chev">🔊</span>':'')+'</button>'; }).join("")+
+      (fertig ? '' : '<button class="btn" '+(U.wahl==null?'disabled style="opacity:.4"':'')+' onclick="uebWahlCheck()">Prüfen</button>');
   }
   else if(U.typ==="bauen"){
     if(!U.bank){
@@ -145,17 +152,24 @@ function zeigFb(ok, text){
   S.said++; save();
   uebView();
 }
-function uebWeiter(){ if(U.herz<=0) return uebDone(); U.i++; U.opt=null; uebAufgabe(); }
+function uebWeiter(){ if(U.herz<=0) return uebDone(); U.i++; U.opt=null; U.wahl=null; uebAufgabe(); }
 function uebZeig(){ U.gezeigt=true; uebView(); }
 function uebScore(v){
   if(v){ U.ok++; S.box[U.c.id]=Math.min(5,(S.box[U.c.id]||0)+1); if(typeof clearError==="function") clearError(U.c.id); }
   else { U.falsch++; U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
   S.said++; save();
   if(U.herz<=0) return uebDone();
-  U.i++; U.opt=null; uebAufgabe();
+  U.i++; U.opt=null; U.wahl=null; uebAufgabe();
 }
 function uebWahl(k){
-  var gew=U.opt[k], ok=norm(gew)===norm(loesungText());
+  if(U.fb){ if(U.ri==="de") speak(U.opt[k]); return; }
+  U.wahl=k;
+  if(U.ri==="de") speak(U.opt[k]);
+  uebView();
+}
+function uebWahlCheck(){
+  if(U.wahl==null || U.fb) return;
+  var ok=norm(U.opt[U.wahl])===norm(loesungText());
   zeigFb(ok, ok? loesungText() : "Richtig wäre: "+loesungText());
 }
 function uebBau(k, ausSlot){
@@ -213,7 +227,7 @@ function uebDone(){
 }
 
 window.uebMenu=uebMenu; window.uebStart=uebStart; window.uebZeig=uebZeig; window.uebScore=uebScore;
-window.uebWahl=uebWahl; window.uebBau=uebBau; window.uebBauCheck=uebBauCheck; window.uebTippCheck=uebTippCheck;
+window.uebWahl=uebWahl; window.uebWahlCheck=uebWahlCheck; window.uebBau=uebBau; window.uebBauCheck=uebBauCheck; window.uebTippCheck=uebTippCheck;
 window.uebHoerCheck=uebHoerCheck; window.uebMic=uebMic; window.uebWeiter=uebWeiter; window.uebQuit=uebQuit;
 window.U_text=U_text;
 })();
