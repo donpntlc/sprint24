@@ -21,9 +21,18 @@ var AZ={
 };
 var EL={f:"21m00Tcm4TlvDq8ikWAM", m:"pNInz6obpgDQGcFmaJgB"}; // Rachel / Adam, sprechen mit dem Multilingual-Modell jede Sprache
 
-var audio=null, queue=null;
+var audio=null, queue=null, IDX=null;
+try{ fetch("audio/index.json",{cache:"no-cache"}).then(function(r){ return r.ok?r.json():null; }).then(function(j){
+  if(!j) return; IDX={}; Object.keys(j).forEach(function(v){ var m={}; j[v].forEach(function(h){ m[h]=1; }); IDX[v]=m; });
+}).catch(function(){}); }catch(e){}
+function datei(txt, which){
+  if(!IDX) return null;
+  var st=stimme(which), h=hash(speakable(txt||"").trim());
+  return (IDX[st.az]&&IDX[st.az][h]) ? "audio/"+st.az+"/"+h+".mp3" : null;
+}
+function hat(txt, which){ return !!datei(txt, which) || ttsOn(); }
 
-function T(){ S.tts=S.tts||{prov:"azure", key:"", region:"swedencentral", sex:"f", on:false, chars:0, monat:""}; return S.tts; }
+function T(){ S.tts=S.tts||{prov:"azure", key:"", region:"swedencentral", sex:"f", on:false, chars:0, monat:""}; if(S.tts.aus===undefined) S.tts.aus=false; return S.tts; }
 function ttsOn(){ var t=T(); return !!(t.on && t.key); }
 function langCode(which){
   if(which==="de") return "de";
@@ -46,7 +55,10 @@ function zaehle(n){
 }
 function holen(txt, which){
   var t=T(), st=stimme(which);
-  var id=t.prov==="eleven" ? "el/"+st.el : "az/"+st.az+"/"+rateProz();
+  var lokal=datei(txt, which);
+  if(lokal) return fetch(lokal).then(function(r){ if(!r.ok) throw new Error("Datei fehlt"); return r.blob(); });
+  if(!ttsOn()) return Promise.reject(new Error("kein Schlüssel"));
+  var id=t.prov==="eleven" ? "el/"+st.el : "az/"+st.az;
   var url="https://stimmen.local/"+id+"/"+hash(txt)+".mp3";
   var cacheP = (window.caches ? caches.open(CACHE) : Promise.resolve(null));
   return cacheP.then(function(c){
@@ -58,8 +70,7 @@ function holen(txt, which){
           method:"POST", headers:{"xi-api-key":t.key,"Content-Type":"application/json"},
           body:JSON.stringify({text:txt, model_id:"eleven_multilingual_v2"})});
       }else{
-        var r=rateProz();
-        var ssml='<speak version="1.0" xml:lang="'+st.lang+'"><voice name="'+st.az+'"><prosody rate="'+(r>=0?"+":"")+r+'%">'+xml(txt)+'</prosody></voice></speak>';
+        var ssml='<speak version="1.0" xml:lang="'+st.lang+'"><voice name="'+st.az+'">'+xml(txt)+'</voice></speak>';
         req=fetch("https://"+(t.region||"swedencentral").trim()+".tts.speech.microsoft.com/cognitiveservices/v1",{
           method:"POST", headers:{"Ocp-Apim-Subscription-Key":t.key.trim(),"Content-Type":"application/ssml+xml","X-Microsoft-OutputFormat":"audio-24khz-48kbitrate-mono-mp3"},
           body:ssml});
@@ -93,7 +104,7 @@ function ttsSay(txt, which, done){
     var a=player();
     if(a._url) URL.revokeObjectURL(a._url);
     a._url=URL.createObjectURL(b); a.src=a._url;
-    if(T().prov==="eleven") a.playbackRate=(S.rate||0.88)/0.88;
+    a.playbackRate=(S.rate||0.88)/0.88;
     a.onended=function(){ if(queue===mein){ queue=null; done&&done(); } };
     a.onerror=function(){ if(queue===mein){ queue=null; done&&done(); } };
     var p=a.play(); if(p&&p.catch) p.catch(function(){ if(queue===mein){ queue=null; done&&done(); } });
@@ -115,9 +126,10 @@ function fallback(txt, which, done){
 
 // bestehende Funktionen umleiten
 var altSpeak=window.speak, altSex=window.voiceSex, altHas=window.hasVoice;
-window.speak=function(txt){ if(ttsOn()){ try{ speechSynthesis.cancel(); }catch(e){} return ttsSay(txt,"ziel"); } return altSpeak(txt); };
-window.voiceSex=function(){ return ttsOn() ? T().sex : altSex(); };
-window.hasVoice=function(){ return ttsOn() || altHas(); };
+function aktiv(){ return !T().aus && (ttsOn() || (IDX && IDX[stimme("ziel").az])); }
+window.speak=function(txt){ if(!T().aus && hat(txt,"ziel")){ try{ speechSynthesis.cancel(); }catch(e){} return ttsSay(txt,"ziel"); } return altSpeak(txt); };
+window.voiceSex=function(){ return aktiv() ? T().sex : altSex(); };
+window.hasVoice=function(){ return aktiv() || altHas(); };
 
 function stille(){
   var n=800, buf=new ArrayBuffer(44+n), d=new DataView(buf);
@@ -141,6 +153,8 @@ function ttsMenu(){
   var limit=t.prov==="eleven"?10000:500000;
   render('<button class="back" onclick="settings()">‹ zurück</button>'+
   '<h2>Echte Stimmen</h2>'+
+  (IDX? '<div class="card"><p class="sub">Eingebaute Stimmen</p><p class="note" style="margin-bottom:10px">Die Sätze sind als echte Aufnahmen in der App — kein Schlüssel nötig, läuft auch offline.</p><button class="btn ghost sm" style="margin:0" onclick="ttsAus()">'+(T().aus?"Einschalten":"Ausschalten (Handystimme nehmen)")+'</button></div>':'')+
+  '<p class="sub" style="margin-top:6px">Eigener Schlüssel (optional)</p>'+
   '<p class="note" style="margin-bottom:14px">Statt der Roboterstimme des Handys liest eine natürliche Stimme aus dem Internet vor. Jeder Satz wird nur einmal geladen und dann auf dem Gerät gespeichert — beim zweiten Mal kostet er nichts und läuft auch ohne Netz.</p>'+
   '<div class="card">'+
     '<p class="sub">Anbieter</p>'+
@@ -175,6 +189,7 @@ function lesen(){
   if(k) t.key=k.value.trim(); if(r) t.region=r.value.trim().toLowerCase().replace(/\s+/g,"");
 }
 function ttsSet(k,v){ lesen(); T()[k]=v; save(); testStatus=""; ttsMenu(); }
+function ttsAus(){ var t=T(); t.aus=!t.aus; save(); ttsMenu(); }
 function ttsToggle(){ lesen(); var t=T(); t.on=!t.on; save(); ttsMenu(); }
 function ttsSave(test){
   lesen(); var t=T();
@@ -201,6 +216,6 @@ function ttsVorab(){
   })();
 }
 
-window.ttsOn=ttsOn; window.ttsSay=ttsSay; window.ttsStop=ttsStop;
-window.ttsMenu=ttsMenu; window.ttsSet=ttsSet; window.ttsToggle=ttsToggle; window.ttsSave=ttsSave; window.ttsVorab=ttsVorab;
+window.ttsOn=ttsOn; window.ttsHat=function(t,w){ return !T().aus && hat(t,w); }; window.ttsHash=hash; window.ttsAZ=AZ; window.ttsSay=ttsSay; window.ttsStop=ttsStop;
+window.ttsMenu=ttsMenu; window.ttsAus=ttsAus; window.ttsSet=ttsSet; window.ttsToggle=ttsToggle; window.ttsSave=ttsSave; window.ttsVorab=ttsVorab;
 })();
