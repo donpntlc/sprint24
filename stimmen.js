@@ -23,7 +23,7 @@ var EL={f:"21m00Tcm4TlvDq8ikWAM", m:"pNInz6obpgDQGcFmaJgB"}; // Rachel / Adam, s
 
 var audio=null, queue=null;
 
-function T(){ S.tts=S.tts||{prov:"azure", key:"", region:"westeurope", sex:"f", on:false, chars:0, monat:""}; return S.tts; }
+function T(){ S.tts=S.tts||{prov:"azure", key:"", region:"swedencentral", sex:"f", on:false, chars:0, monat:""}; return S.tts; }
 function ttsOn(){ var t=T(); return !!(t.on && t.key); }
 function langCode(which){
   if(which==="de") return "de";
@@ -60,7 +60,7 @@ function holen(txt, which){
       }else{
         var r=rateProz();
         var ssml='<speak version="1.0" xml:lang="'+st.lang+'"><voice name="'+st.az+'"><prosody rate="'+(r>=0?"+":"")+r+'%">'+xml(txt)+'</prosody></voice></speak>';
-        req=fetch("https://"+(t.region||"westeurope").trim()+".tts.speech.microsoft.com/cognitiveservices/v1",{
+        req=fetch("https://"+(t.region||"swedencentral").trim()+".tts.speech.microsoft.com/cognitiveservices/v1",{
           method:"POST", headers:{"Ocp-Apim-Subscription-Key":t.key.trim(),"Content-Type":"application/ssml+xml","X-Microsoft-OutputFormat":"audio-24khz-48kbitrate-mono-mp3"},
           body:ssml});
       }
@@ -154,7 +154,7 @@ function ttsMenu(){
     '<input class="txt" id="ttsKey" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Schlüssel einfügen" value="'+xml(t.key||"")+'">'+
     (t.prov==="azure"
       ? '<p class="sub" style="margin-top:14px">Region <span style="text-transform:none;font-weight:400">(steht neben dem Schlüssel)</span></p>'+
-        '<input class="txt" id="ttsReg" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="z. B. westeurope" value="'+xml(t.region||"")+'">'
+        '<input class="txt" id="ttsReg" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="z. B. swedencentral" value="'+xml(t.region||"")+'">'
       : '')+
     '<p class="note" style="margin-top:8px">Der Schlüssel bleibt nur auf diesem Gerät.</p>'+
   '</div>'+
