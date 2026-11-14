@@ -14,6 +14,7 @@ function deVoice(){
 function hSay(txt, which, done){
   try{
     if(!txt) return done&&done();
+    if(window.ttsOn&&ttsOn()) return ttsSay(txt, which==="de"?"de":"ziel", done);
     var u=new SpeechSynthesisUtterance(speakable(txt));
     var v = which==="de" ? deVoice() : pickVoice();
     if(v){ u.voice=v; u.lang=v.lang; }
@@ -92,6 +93,7 @@ function hoerStop(){
   if(H) H.playing=false;
   clearTimeout(timer);
   try{ window.speechSynthesis.cancel(); }catch(e){}
+  try{ if(window.ttsStop) ttsStop(); }catch(e){}
   releaseAwake();
 };
 function hoerQuit(){ hoerStop(); H=null; home(); };
