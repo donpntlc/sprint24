@@ -75,7 +75,7 @@ function uebView(){
   var c=U.c, body="";
   if(U.typ==="erkennen"){
     body='<div class="card" style="min-height:200px;display:flex;flex-direction:column;justify-content:center">'+
-      '<p class="sub">Erkennen</p><p class="prompt">'+frageText()+'</p>'+
+      '<p class="sub">Erkennen</p>'+(typeof katTag==='function'?katTag(U.c):'')+'<p class="prompt">'+frageText()+'</p>'+
       (U.gezeigt?'<p class="answer">'+loesungText()+'</p>':'<p class="note" style="margin-top:10px">Erst selbst sagen, dann auflösen.</p>')+
       '</div>'+
       (U.gezeigt
@@ -88,7 +88,7 @@ function uebView(){
       U.opt=shuffle([loesungText()].concat(falsche));
     }
     var fertig=!!U.fb;
-    body='<div class="card"><p class="sub">Was passt?</p><p class="prompt">'+frageText()+'</p></div>'+
+    body='<div class="card"><p class="sub">Was passt?</p>'+(typeof katTag==='function'?katTag(U.c):'')+'<p class="prompt">'+frageText()+'</p></div>'+
       U.opt.map(function(o,k){
         var richtig=norm(o)===norm(loesungText()), gew=U.wahl===k, st="";
         if(fertig && richtig) st="border-color:var(--accent);background:rgba(143,214,169,.12)";
@@ -115,7 +115,7 @@ function uebView(){
       '<button class="btn" onclick="uebBauCheck()">Prüfen</button>';
   }
   else if(U.typ==="tippen"){
-    body='<div class="card"><p class="sub">Tippen</p><p class="prompt">'+frageText()+'</p>'+
+    body='<div class="card"><p class="sub">Tippen</p>'+(typeof katTag==='function'?katTag(U.c):'')+'<p class="prompt">'+frageText()+'</p>'+
       '<input class="txt" id="uebin" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="Antwort eintippen">'+
       '</div><button class="btn" onclick="uebTippCheck()">Prüfen</button>';
   }
@@ -127,7 +127,7 @@ function uebView(){
       '</div><button class="btn" onclick="uebHoerCheck()">Prüfen</button>';
   }
   else { /* sprechen */
-    body='<div class="card"><p class="sub">Laut sagen</p><p class="prompt">'+c.de+'</p>'+
+    body='<div class="card"><p class="sub">Laut sagen</p>'+(typeof katTag==='function'?katTag(c):'')+'<p class="prompt">'+c.de+'</p>'+
       '<button class="btn" onclick="uebMic()">🎤 Antworten</button>'+
       '<p class="note" id="micst" style="text-align:center;margin-top:8px">Antippen, dann laut sagen</p>'+
       '<button class="btn ghost sm" onclick="uebZeig()">Kann gerade nicht sprechen</button></div>'+
