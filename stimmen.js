@@ -127,7 +127,8 @@ function fallback(txt, which, done){
 // bestehende Funktionen umleiten
 var altSpeak=window.speak, altSex=window.voiceSex, altHas=window.hasVoice;
 function aktiv(){ return !T().aus && (ttsOn() || (IDX && IDX[stimme("ziel").az])); }
-window.speak=function(txt){ if(!T().aus && hat(txt,"ziel")){ try{ speechSynthesis.cancel(); }catch(e){} return ttsSay(txt,"ziel"); } return altSpeak(txt); };
+function istHinweis(txt){ try{ var t=speakable(txt||"").trim(); return CHUNKS.some(function(c){ return c.scn==="w" && speakable(c.pt).trim()===t; }); }catch(e){ return false; } }
+window.speak=function(txt){ if(istHinweis(txt) && !T().aus){ try{ speechSynthesis.cancel(); }catch(e){} return ttsSay(txt,"de"); } if(!T().aus && hat(txt,"ziel")){ try{ speechSynthesis.cancel(); }catch(e){} return ttsSay(txt,"ziel"); } return altSpeak(txt); };
 window.voiceSex=function(){ return aktiv() ? T().sex : altSex(); };
 window.hasVoice=function(){ return aktiv() || altHas(); };
 

@@ -12,11 +12,12 @@ function kurzGenug(c){ return woerter(c.pt).length<=8; }
 /* welcher Aufgabentyp passt zu diesem Eintrag gerade */
 function typFuer(c){
   var b=S.box[c.id]||0, moeglich=[];
+  if(c.scn==="w") return Math.random()<0.5?"erkennen":"wahl";
   if(b<2){ moeglich=["erkennen","wahl"]; }
-  else if(b<4){ moeglich=istSprache()&&kurzGenug(c) ? ["bauen","tippen","wahl"] : ["tippen","wahl"]; }
-  else { moeglich=["sprechen","wahl"]; }
+  else if(b<4){ moeglich=!istSprache() ? ["wahl","erkennen"] : kurzGenug(c) ? ["bauen","tippen","wahl"] : ["tippen","wahl"]; }
+  else { moeglich=istSprache()? ["sprechen","wahl"] : ["erkennen","wahl"]; }
   if(istSprache() && kurzGenug(c) && hasVoice() && b>=1) moeglich.push("hoeren");
-  if(!micOK()){ moeglich=moeglich.filter(function(t){ return t!=="sprechen"; }); if(!moeglich.length) moeglich=["tippen"]; }
+  if(!micOK()){ moeglich=moeglich.filter(function(t){ return t!=="sprechen"; }); if(!moeglich.length) moeglich=istSprache()?["tippen"]:["erkennen"]; }
   return moeglich[Math.floor(Math.random()*moeglich.length)];
 }
 function richtung(){
@@ -33,7 +34,7 @@ function uebMenu(){
   var pool=focusPool();
   var offen=pool.filter(function(c){ return (S.box[c.id]||0)<3; }).length;
   render('<button class="back" onclick="home()">‹ zurück</button><h2>Übung</h2>'+
-  '<p class="note" style="margin-bottom:14px">Ein Durchgang mit wechselnden Aufgaben: erkennen, auswählen, bauen, tippen, hören, sprechen. Welche Aufgabe kommt, entscheidet die App danach, wie sicher der Eintrag schon sitzt.</p>'+
+  '<p class="note" style="margin-bottom:14px">Ein Durchgang mit wechselnden Aufgaben: '+(istSprache()?'erkennen, auswählen, bauen, tippen, hören, sprechen':'erkennen, auswählen, laut antworten')+'. Welche Aufgabe kommt, entscheidet die App danach, wie sicher der Eintrag schon sitzt.</p>'+
   '<div class="card" style="padding:14px 16px"><p class="sub">Im Fokus</p>'+
   '<p style="margin:6px 0 0;font-weight:700">'+offen+' von '+pool.length+' sitzen noch nicht</p></div>'+
   '<button class="tile" onclick="uebStart(8)"><span class="ic">⚡</span><span>Kurz<small>8 Aufgaben · etwa drei Minuten</small></span><span class="chev">›</span></button>'+

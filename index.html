@@ -167,7 +167,7 @@ const PT_SCN = [
   {id:"s7", name:"Telefon & WhatsApp", icon:"\ud83d\udcf2"},
   {id:"s8", name:"Kennenlernen", icon:"\ud83e\udd1d"},
  {id:"s9", name:"Zahlen & Strukturen", icon:"\ud83d\udd22"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 
 const PT_CHUNKS = [
@@ -284,14 +284,14 @@ const PT_CHUNKS = [
 ["s9", "Wie sagt man 47?", "quarenta e sete"],
 ["s9", "100, 200, 1000", "cem, duzentos, mil — ab 101 heißt hundert cento: cento e um"],
 ["s9", "Wie sagt man 365?", "trezentos e sessenta e cinco"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Warum ist die richtige Betonung so wichtig?", "Die Betonung kann die Bedeutung ändern. Richtig ausgesprochen, aber falsch betont, versteht dich oft niemand."],
+["w", "Warum bleibst du beim brasilianischen Portugiesisch?", "Brasilien und Portugal unterscheiden sich in Aussprache und Wörtern. Wer mischt, klingt unnatürlich — eine Variante wählen und dabei bleiben."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "Que horas são?"],
 ["s9", "Um wie viel Uhr?", "A que horas?"],
 ["s9", "heute / morgen / übermorgen", "hoje / amanhã / depois de amanhã"],
@@ -434,9 +434,9 @@ const PT_FOCI=[
  {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorität, alle acht Szenarien", scn:["s1","s2","s3","s4","s5","s6","s7","s8"]}
 ];
 const PLANS=[
- {id:"12", t:"12-Stunden-Sprint", d:"Morgen geht der Flieger — nur der Kern, höchstens 8 Einträge pro Bereich"},
- {id:"tag", t:"24-Stunden-Sprint", d:"Ein Tag am Stück, alles was da ist"},
- {id:"woche", t:"24h über eine Woche", d:"3-4h am Tag, hängt länger"}
+ {id:"12", t:"12-Stunden-Sprint", d:"Wenig Zeit — nur der Kern, höchstens 8 Einträge pro Bereich"},
+ {id:"tag", t:"24-Stunden-Sprint", d:"Ein Tag am Stück, der ganze Stoff"},
+ {id:"woche", t:"24h über eine Woche", d:"Der ganze Stoff, verteilt auf 3–4 Stunden am Tag"}
 ];
 const RUBRIKEN=[
  {g:"Sprachen", id:"pt", icon:"\ud83c\udde7\ud83c\uddf7", t:"Brasilianisches Portugiesisch", d:"106 S\u00e4tze, 9 Bereiche, 8 Missionen", ready:true},
@@ -541,7 +541,7 @@ const B_SCN=[
  {id:"b10", name:"Mann Gottes", icon:"🛡️"},
  {id:"b12", name:"Frau Gottes", icon:"🌿"},
  {id:"b11", name:"Gewissen", icon:"🧭"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 const B_CHUNKS=[
 ["b1","Was heißt „Kanon“?","Die Liste der Bücher, die in die Bibel gehören. Das griechische Wort heisst „Maßstab“ — also woran die Kirche misst, was Heilige Schrift ist und was nicht."],
@@ -640,20 +640,20 @@ const B_CHUNKS=[
 ["b8", "Woran misst die Tradition ein gutes Gebet?", "An Reue, Aufmerksamkeit und Beständigkeit — nicht an Lautstärke, Dauer oder Gefühl."],
 ["b9", "Wo steht: Trachtet am ersten nach dem Reich Gottes?", "Matthäus 6,33 · Neues Testament"],
 ["b9", "Matthäus 6,33 — was steht dort?", "Trachtet am ersten nach dem Reich Gottes und nach seiner Gerechtigkeit, so wird euch solches alles zufallen."],
-["b9", "Bibelvers gegen Sorge", "Philipper 4,6 — Sorget nichts! sondern in allen Dingen lasset eure Bitten im Gebet und Flehen mit Danksagung vor Gott kund werden."],
-["b9", "Bibelvers gegen Angst", "Josua 1,9 — Siehe, ich habe dir geboten, daß du getrost und freudig seist. Laß dir nicht grauen und entsetze dich nicht; denn der HERR, dein Gott, ist mit dir in allem, was du tun wirst."],
-["b9", "Bibelvers für Arbeit", "Kolosser 3,23 — Alles, was ihr tut, das tut von Herzen als dem HERRN und nicht den Menschen."],
-["b9", "Bibelvers für Versorgung der Familie", "1 Timotheus 5,8 — So aber jemand die Seinen, sonderlich seine Hausgenossen, nicht versorgt, der hat den Glauben verleugnet und ist ärger denn ein Heide."],
-["b9", "Bibelvers für Disziplin", "1 Korinther 9,27 — sondern ich betäube meinen Leib und zähme ihn, daß ich nicht den andern predige, und selbst verwerflich werde."],
-["b9", "Bibelvers in Versuchung", "1 Korinther 10,13 — Es hat euch noch keine denn menschliche Versuchung betreten; aber Gott ist getreu, der euch nicht läßt versuchen über euer Vermögen, sondern macht, daß die Versuchung so ein Ende gewinne, daß ihr's könnet ertragen."],
-["b9", "Bibelvers für Vergebung", "Epheser 4,32 — Seid aber untereinander freundlich, herzlich und vergebet einer dem andern, gleichwie Gott euch auch vergeben hat in Christo."],
-["b9", "Bibelvers gegen Zorn", "Jakobus 1,19 — Darum, liebe Brüder, ein jeglicher Mensch sei schnell, zu hören, langsam aber, zu reden, und langsam zum Zorn."],
-["b9", "Bibelvers für Demut", "1 Petrus 5,5 — Desgleichen, ihr Jüngeren, seid untertan den Ältesten. Allesamt seid untereinander untertan und haltet fest an der Demut. Denn Gott widersteht den Hoffärtigen, aber den Demütigen gibt er Gnade."],
-["b9", "Bibelvers für Beständigkeit", "Galater 6,9 — Lasset uns aber Gutes tun und nicht müde werden; denn zu seiner Zeit werden wir auch ernten ohne Aufhören."],
-["b9", "Bibelvers für Stärke in Schwäche", "2 Korinther 12,9 — Und er hat zu mir gesagt: Laß dir an meiner Gnade genügen; denn meine Kraft ist in den Schwachen mächtig. Darum will ich mich am allerliebsten rühmen meiner Schwachheit, auf daß die Kraft Christi bei mir wohne."],
-["b9", "Bibelvers für Führung", "Sprüche 3,5–6 — Verlaß dich auf den HERRN von ganzem Herzen und verlaß dich nicht auf deinen Verstand; sondern gedenke an ihn in allen deinen Wegen, so wird er dich recht führen."],
-["b9", "Bibelvers für Reinheit", "Psalm 119,9 — Wie wird ein Jüngling seinen Weg unsträflich gehen? Wenn er sich hält nach deinen Worten."],
-["b9", "Bibelvers über das Wort im Herzen", "Psalm 119,11 — Ich behalte dein Wort in meinem Herzen, auf daß ich nicht wieder dich sündige."],
+["b9", "Welcher Bibelvers hilft gegen Sorge?", "Philipper 4,6 — Sorget nichts! sondern in allen Dingen lasset eure Bitten im Gebet und Flehen mit Danksagung vor Gott kund werden."],
+["b9", "Welcher Bibelvers hilft gegen Angst?", "Josua 1,9 — Siehe, ich habe dir geboten, daß du getrost und freudig seist. Laß dir nicht grauen und entsetze dich nicht; denn der HERR, dein Gott, ist mit dir in allem, was du tun wirst."],
+["b9", "Welcher Bibelvers spricht über die Arbeit?", "Kolosser 3,23 — Alles, was ihr tut, das tut von Herzen als dem HERRN und nicht den Menschen."],
+["b9", "Welcher Bibelvers spricht über die Versorgung der Familie?", "1 Timotheus 5,8 — So aber jemand die Seinen, sonderlich seine Hausgenossen, nicht versorgt, der hat den Glauben verleugnet und ist ärger denn ein Heide."],
+["b9", "Welcher Bibelvers spricht über Disziplin?", "1 Korinther 9,27 — sondern ich betäube meinen Leib und zähme ihn, daß ich nicht den andern predige, und selbst verwerflich werde."],
+["b9", "Welcher Bibelvers hilft in der Versuchung?", "1 Korinther 10,13 — Es hat euch noch keine denn menschliche Versuchung betreten; aber Gott ist getreu, der euch nicht läßt versuchen über euer Vermögen, sondern macht, daß die Versuchung so ein Ende gewinne, daß ihr's könnet ertragen."],
+["b9", "Welcher Bibelvers spricht über Vergebung?", "Epheser 4,32 — Seid aber untereinander freundlich, herzlich und vergebet einer dem andern, gleichwie Gott euch auch vergeben hat in Christo."],
+["b9", "Welcher Bibelvers hilft gegen Zorn?", "Jakobus 1,19 — Darum, liebe Brüder, ein jeglicher Mensch sei schnell, zu hören, langsam aber, zu reden, und langsam zum Zorn."],
+["b9", "Welcher Bibelvers spricht über Demut?", "1 Petrus 5,5 — Desgleichen, ihr Jüngeren, seid untertan den Ältesten. Allesamt seid untereinander untertan und haltet fest an der Demut. Denn Gott widersteht den Hoffärtigen, aber den Demütigen gibt er Gnade."],
+["b9", "Welcher Bibelvers spricht über Beständigkeit?", "Galater 6,9 — Lasset uns aber Gutes tun und nicht müde werden; denn zu seiner Zeit werden wir auch ernten ohne Aufhören."],
+["b9", "Welcher Bibelvers spricht über Stärke in der Schwäche?", "2 Korinther 12,9 — Und er hat zu mir gesagt: Laß dir an meiner Gnade genügen; denn meine Kraft ist in den Schwachen mächtig. Darum will ich mich am allerliebsten rühmen meiner Schwachheit, auf daß die Kraft Christi bei mir wohne."],
+["b9", "Welcher Bibelvers spricht über Führung?", "Sprüche 3,5–6 — Verlaß dich auf den HERRN von ganzem Herzen und verlaß dich nicht auf deinen Verstand; sondern gedenke an ihn in allen deinen Wegen, so wird er dich recht führen."],
+["b9", "Welcher Bibelvers spricht über Reinheit?", "Psalm 119,9 — Wie wird ein Jüngling seinen Weg unsträflich gehen? Wenn er sich hält nach deinen Worten."],
+["b9", "Welcher Bibelvers spricht davon, Gottes Wort im Herzen zu behalten?", "Psalm 119,11 — Ich behalte dein Wort in meinem Herzen, auf daß ich nicht wieder dich sündige."],
 ["b10", "Was ist der Kern von 1 Korinther 16,13?", "Wachet, stehet im Glauben, seid männlich und seid stark!"],
 ["b10", "Wo steht: Wachet, stehet im Glauben, seid männlich und seid stark?", "1 Korinther 16,13 · Neues Testament"],
 ["b10", "Was fordert Epheser 5,25 vom Mann?", "Ihr Männer, liebet eure Weiber, gleichwie Christus auch geliebt hat die Gemeinde und hat sich selbst für sie gegeben."],
@@ -688,15 +688,15 @@ const B_CHUNKS=[
 ["b11", "Was sagt 1 Petrus 3,16?", "Und das mit Sanftmütigkeit und Furcht; und habt ein gutes Gewissen, auf daß die, so von euch afterreden als von Übeltätern, zu Schanden werden, daß sie geschmäht haben euren guten Wandel in Christo."],
 ["b11", "Was sagt Psalm 119,105?", "Dein Wort ist meine Fußes Leuchte und ein Licht auf meinem Wege."],
 ["b11", "Warum Verse auswendig lernen?", "Hebräer 4,12 — Denn das Wort Gottes ist lebendig und kräftig und schärfer denn kein zweischneidig Schwert, und dringt durch, bis daß es scheidet Seele und Geist, auch Mark und Bein, und ist ein Richter der Gedanken und Sinne des Herzens. Griffbereit ist es nur, wenn man es im Herzen trägt."],
-["w", "Vorsicht: Gesetzlichkeit", "Regeln ohne Barmherzigkeit. Matthäus 23,23 — Weh euch, Schriftgelehrte und Pharisäer, ihr Heuchler, die ihr verzehntet die Minze, Dill und Kümmel, und laßt dahinten das Schwerste im Gesetz, nämlich das Gericht, die Barmherzigkeit und den Glauben! Dies soll man tun und jenes nicht lassen."],
-["w", "Vorsicht: Verse aus dem Zusammenhang", "Ein Vers ohne Kapitel ist ein Zitat, kein Argument. Immer den Abschnitt mitlesen."],
-["w", "Vorsicht: geistlicher Stolz", "1 Korinther 8,1 — Von dem Götzenopfer aber wissen wir; denn wir haben alle das Wissen. Das Wissen bläst auf, aber die Liebe bessert."],
-["w", "Vorsicht: richten", "Matthäus 7,3 — Was siehst du aber den Splitter in deines Bruders Auge, und wirst nicht gewahr des Balkens in deinem Auge?"],
-["w", "Vorsicht: Wissen ohne Tun", "Jakobus 1,22 — Seid aber Täter des Worts und nicht Hörer allein, wodurch ihr euch selbst betrügt. Auswendig gelernte Verse sind noch kein Gehorsam."],
-["w", "Vorsicht: Streitsucht", "2 Timotheus 2,23–24 — Aber der törichten und unnützen Fragen entschlage dich; denn du weißt, daß sie nur Zank gebären. Ein Knecht aber des HERRN soll nicht zänkisch sein, sondern freundlich gegen jedermann, lehrhaft, der die Bösen tragen kann"],
-["w", "Vorsicht: Frömmigkeit zur Schau", "Matthäus 6,1 und 6,16 — Almosen, Gebet und Fasten im Verborgenen."],
-["w", "Vorsicht: Erfahrungen suchen", "Wer geistliche Erlebnisse jagt, läuft in die Täuschung. Massstab sind Früchte, Gehorsam und das Urteil der Kirche."],
-["w", "Vorsicht: den Nächsten vergessen", "Matthäus 22,39 — Das andere aber ist ihm gleich: \"Du sollst deinen Nächsten lieben wie dich selbst.\" Das zweite Gebot steht neben dem ersten, nicht darunter."]
+["w", "Was ist Gesetzlichkeit — und was sagt Matthäus 23,23 dazu?", "Regeln ohne Barmherzigkeit. Matthäus 23,23 — Weh euch, Schriftgelehrte und Pharisäer, ihr Heuchler, die ihr verzehntet die Minze, Dill und Kümmel, und laßt dahinten das Schwerste im Gesetz, nämlich das Gericht, die Barmherzigkeit und den Glauben! Dies soll man tun und jenes nicht lassen."],
+["w", "Warum darf man Bibelverse nicht aus dem Zusammenhang reissen?", "Ein Vers ohne Kapitel ist ein Zitat, kein Argument. Immer den Abschnitt mitlesen."],
+["w", "Wovor warnt 1 Korinther 8,1 beim Wissen?", "1 Korinther 8,1 — Von dem Götzenopfer aber wissen wir; denn wir haben alle das Wissen. Das Wissen bläst auf, aber die Liebe bessert."],
+["w", "Was sagt Jesus in Matthäus 7,3 über das Richten?", "Matthäus 7,3 — Was siehst du aber den Splitter in deines Bruders Auge, und wirst nicht gewahr des Balkens in deinem Auge?"],
+["w", "Was sagt Jakobus 1,22 über Wissen ohne Tun?", "Jakobus 1,22 — Seid aber Täter des Worts und nicht Hörer allein, wodurch ihr euch selbst betrügt. Auswendig gelernte Verse sind noch kein Gehorsam."],
+["w", "Wie soll man nach 2 Timotheus 2,23–24 mit Streitfragen umgehen?", "2 Timotheus 2,23–24 — Aber der törichten und unnützen Fragen entschlage dich; denn du weißt, daß sie nur Zank gebären. Ein Knecht aber des HERRN soll nicht zänkisch sein, sondern freundlich gegen jedermann, lehrhaft, der die Bösen tragen kann"],
+["w", "Was lehrt Jesus in Matthäus 6 über Frömmigkeit vor anderen?", "Matthäus 6,1 und 6,16 — Almosen, Gebet und Fasten im Verborgenen."],
+["w", "Warum soll man geistliche Erlebnisse nicht suchen?", "Wer geistliche Erlebnisse jagt, läuft in die Täuschung. Massstab sind Früchte, Gehorsam und das Urteil der Kirche."],
+["w", "Was ist nach Matthäus 22,39 das zweite Gebot?", "Matthäus 22,39 — Das andere aber ist ihm gleich: \"Du sollst deinen Nächsten lieben wie dich selbst.\" Das zweite Gebot steht neben dem ersten, nicht darunter."]
 ].map((c,i)=>({id:"g"+i, scn:c[0], de:c[1], pt:c[2]}));
 
 const B_FOCI=[
@@ -816,14 +816,14 @@ const ES_CHUNKS=[
 ["s9", "Wie sagt man 47?", "cuarenta y siete"],
 ["s9", "100, 200, 1000", "cien, doscientos, mil — ab 101 heißt es ciento: ciento uno"],
 ["s9", "Wie sagt man 365?", "trescientos sesenta y cinco"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Warum ist die richtige Betonung so wichtig?", "Die Betonung kann die Bedeutung ändern: esta (diese) und está (ist). Falsch betont versteht dich oft niemand."],
+["w", "Warum solltest du dich für eine Variante des Spanischen entscheiden?", "Spanien und Lateinamerika sprechen unterschiedlich, zum Beispiel gibt es vosotros nur in Spanien. Eine Variante wählen und dabei bleiben."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "¿Qué hora es?"],
 ["s9", "Um wie viel Uhr?", "¿A qué hora?"],
 ["s9", "heute / morgen / übermorgen", "hoy / mañana / pasado mañana"],
@@ -878,7 +878,7 @@ const K_SCN=[
  {id:"k1", name:"Schrift & Lesen", icon:"\ud83d\udd24"},
  {id:"k2", name:"Schl\u00fcsselbegriffe", icon:"\ud83d\udd11"},
  {id:"k3", name:"S\u00e4tze aus Schrift & Liturgie", icon:"\ud83d\udcff"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 const K_FOCI=[
  {id:"alles", t:"Alles", d:"Schrift, Begriffe, S\u00e4tze", scn:["k1","k2","k3"]},
@@ -932,14 +932,14 @@ const EN_CHUNKS=[
 ["s9", "Wie sagt man 47?", "forty-seven"],
 ["s9", "100, 200, 1000", "a hundred, two hundred, a thousand — im Englischen mit and: a hundred and one"],
 ["s9", "Wie sagt man 365?", "three hundred and sixty-five"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Was ändert die Betonung im Englischen?", "Oft die Wortart: REcord ist das Nomen, reCORD das Verb. Falsch betont stolpern Zuhörer."],
+["w", "Warum solltest du britisches und amerikanisches Englisch nicht mischen?", "Aussprache und Wörter unterscheiden sich, etwa flat und apartment. Eine Variante wählen und dabei bleiben."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "What time is it?"],
 ["s9", "Um wie viel Uhr?", "At what time?"],
 ["s9", "heute / morgen / übermorgen", "today / tomorrow / the day after tomorrow"],
@@ -994,14 +994,14 @@ const FR_CHUNKS=[
 ["s9", "Wie baut man 21, 31, 41?", "Zehner + et + un: vingt et un, trente et un. Sonst mit Bindestrich: vingt-deux"],
 ["s9", "Wie sagt man 47?", "quarante-sept"],
 ["s9", "100, 200, 1000", "cent, deux cents, mille"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Wo liegt im Französischen die Betonung?", "Fast immer auf der letzten Silbe der Wortgruppe. Wer deutsch betont, klingt sofort fremd."],
+["w", "Sagt man im ganzen französischen Sprachraum dasselbe?", "Nein. In Belgien und der Schweiz heisst 70 septante, in Frankreich soixante-dix. Eine Variante wählen und dabei bleiben."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "Quelle heure est-il ?"],
 ["s9", "Um wie viel Uhr?", "À quelle heure ?"],
 ["s9", "heute / morgen / übermorgen", "aujourd'hui / demain / après-demain"],
@@ -1056,14 +1056,14 @@ const IT_CHUNKS=[
 ["s9", "Wie sagt man 47?", "quarantasette"],
 ["s9", "100, 200, 1000", "cento, duecento, mille"],
 ["s9", "Wie sagt man 365?", "trecentosessantacinque"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Warum ist die richtige Betonung so wichtig?", "Die Betonung kann die Bedeutung ändern: àncora (Anker) und ancòra (noch). Falsch betont versteht dich oft niemand."],
+["w", "Welches Italienisch lernst du am besten?", "Das Standarditalienisch. Die Dialekte sind sehr verschieden, die Standardsprache versteht man überall."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "Che ore sono?"],
 ["s9", "Um wie viel Uhr?", "A che ora?"],
 ["s9", "heute / morgen / übermorgen", "oggi / domani / dopodomani"],
@@ -1116,14 +1116,14 @@ const RU_CHUNKS=[
 ["s9", "Wie baut man 21 bis 99?", "Zehner + Einer, einfach hintereinander: двадцать один · dwadzat odin"],
 ["s9", "Wie sagt man 47?", "сорок семь · sorok sem"],
 ["s9", "100, 200, 1000", "сто, двести, тысяча · sto, dwesti, tyssjatscha"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Warum muss man im Russischen die Betonung mitlernen?", "Sie ist frei, steht in normalen Texten nicht da und verändert die Vokale: unbetontes o klingt wie a. Darum jedes Wort mit Betonung lernen."],
+["w", "Wie klingt im Russischen ein unbetontes o?", "Wie a: молоко spricht man malakó. Wer jedes o als o spricht, klingt sofort fremd."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "Который час? · Kotory tschas?"],
 ["s9", "Um wie viel Uhr?", "Во сколько? · Wo skolko?"],
 ["s9", "heute / morgen / übermorgen", "сегодня / завтра / послезавтра · sewodnja / sawtra / poslesawtra"],
@@ -1176,14 +1176,14 @@ const SR_CHUNKS=[
 ["s9", "Wie baut man 21 bis 99?", "Zehner + Einer: dvadeset jedan, četrdeset sedam"],
 ["s9", "Wie sagt man 47?", "četrdeset sedam"],
 ["s9", "100, 200, 1000", "sto, dvesta, hiljadu"],
-["w", "Vorsicht: lesen statt sprechen", "Wer nur liest, versteht viel und sagt nichts. Jede Einheit endet mit lautem Sprechen."],
-["w", "Vorsicht: Perfektionismus", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
-["w", "Vorsicht: falsche Freunde", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
-["w", "Vorsicht: Betonung", "In romanischen Sprachen trägt die Betonung die Bedeutung. Richtig gesprochen, falsch betont heisst oft: nicht verstanden."],
-["w", "Vorsicht: Varianten mischen", "Brasilien oder Portugal, Spanien oder Lateinamerika — eine Variante wählen und dabei bleiben, sonst klingt es zusammengewürfelt."],
-["w", "Vorsicht: Pausen", "Drei Tage Pause kosten mehr als drei schwache Einheiten. Zehn Minuten täglich schlagen zwei Stunden am Sonntag."],
-["w", "Vorsicht: Übersetzer im Kopf", "Wer jeden Satz erst auf Deutsch baut, bleibt langsam. Deshalb Chunks statt Wort für Wort."],
-["w", "Vorsicht: nur mit der App üben", "Die App ist Training, kein Gespräch. Ohne echte Menschen bleibt es Theorie."],
+["w", "Warum reicht Lesen allein nicht, um eine Sprache zu sprechen?", "Wer nur liest, versteht viel, sagt aber nichts. Sprechen lernt man nur durch lautes Sprechen — deshalb endet jede Einheit damit."],
+["w", "Warum bremst Perfektionismus beim Sprechen?", "Wer auf den perfekten Satz wartet, schweigt. Lieber holprig und verstanden als korrekt und stumm."],
+["w", "Was sind „falsche Freunde“ beim Sprachenlernen?", "Wörter, die vertraut klingen, bedeuten oft etwas anderes — bei jedem Treffer gegenprüfen."],
+["w", "Warum sollte man serbische Wörter mit dem Ohr lernen?", "Betonung und Tonhöhe stehen nicht in der Schrift. Wer nur liest, betont oft falsch — deshalb mit Aufnahme lernen."],
+["w", "In welchen Schriften wird Serbisch geschrieben?", "In Kyrillisch und in Latein. Beide sind normal — lerne beide lesen, schreib in einer."],
+["w", "Was bringt mehr: täglich kurz oder selten lang üben?", "Täglich kurz. Zehn Minuten jeden Tag schlagen zwei Stunden am Sonntag — drei Tage Pause kosten mehr als drei schwache Einheiten."],
+["w", "Warum solltest du nicht jeden Satz erst auf Deutsch bauen?", "Das macht langsam. Besser ganze Wendungen lernen und direkt abrufen statt Wort für Wort übersetzen."],
+["w", "Warum reicht Üben mit einer App allein nicht?", "Die App ist Training. Das Ziel ist Sprechen mit echten Menschen — ohne das bleibt es Theorie."],
 ["s9", "Wie spät ist es?", "Koliko je sati?"],
 ["s9", "Um wie viel Uhr?", "U koliko sati?"],
 ["s9", "heute / morgen / übermorgen", "danas / sutra / prekosutra"],
@@ -1228,11 +1228,11 @@ const GR_CHUNKS=[
 ["k3", "Wahrhaftig auferstanden", "Ἀληθῶς ἀνέστη · Alithos anesti"],
 ["k3", "Im Anfang war das Wort", "Ἐν ἀρχῇ ἦν ὁ λόγος · En arche en ho logos"],
 ["k3", "Ehre sei Gott", "Δόξα τῷ Θεῷ · Doxa to Theo"],
-["w","Vorsicht: Koine ist nicht Neugriechisch","Das Griechisch des Neuen Testaments ist zweitausend Jahre alt. Aussprache und Wortbedeutungen haben sich seither verschoben."],
-["w","Vorsicht: aus einem Wort eine Lehre bauen","Ein einzelnes griechisches Wort trägt keine Lehre. Erst der Zusammenhang im Satz und im ganzen Buch entscheidet, was es bedeutet."],
-["w","Vorsicht: Herkunft eines Wortes als Beweis","Woher ein Wort ursprünglich kommt, sagt nicht, was es im Text bedeutet. „Nett“ kommt von „töricht“ und heisst trotzdem nett."],
-["w","Vorsicht: Wort für Wort übersetzen","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
-["w","Vorsicht: Halbwissen vorzeigen","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
+["w","Warum ist Koine nicht dasselbe wie Neugriechisch?","Das Griechisch des Neuen Testaments ist zweitausend Jahre alt. Aussprache und Wortbedeutungen haben sich seither verschoben."],
+["w","Warum kann man aus einem einzelnen griechischen Wort keine Lehre bauen?","Ein einzelnes griechisches Wort trägt keine Lehre. Erst der Zusammenhang im Satz und im ganzen Buch entscheidet, was es bedeutet."],
+["w","Warum beweist die Herkunft eines Wortes nicht, was es im Text bedeutet?","Woher ein Wort ursprünglich kommt, sagt nicht, was es im Text bedeutet. „Nett“ kommt von „töricht“ und heisst trotzdem nett."],
+["w","Warum ist Wort-für-Wort-Übersetzen gefährlich?","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
+["w","Was gilt, bevor man eine Bibelstelle im Original zitiert?","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
 ].map((c,i)=>({id:"gr"+i, scn:c[0], de:c[1], pt:c[2]}));
 const LA_CHUNKS=[
 ["k1","Wie spricht man c vor e und i im Kirchenlatein?","Wie tsch. Caelis klingt tschelis, nicht kelis."],
@@ -1255,11 +1255,11 @@ const LA_CHUNKS=[
 ["k3", "Lamm Gottes, du nimmst hinweg die Sünde der Welt", "Agnus Dei, qui tollis peccata mundi"],
 ["k3", "Im Namen des Vaters und des Sohnes und des Heiligen Geistes", "In nomine Patris et Filii et Spiritus Sancti"],
 ["k3", "Dank sei Gott", "Deo gratias"],
-["w","Vorsicht: Kirchenlatein ist nicht Cicero","In der Kirche spricht man c vor e und i wie tsch und v wie w. Im klassischen Latein wären es k und u. Beides ist richtig — nur nicht durcheinander."],
-["w","Vorsicht: falsche Freunde","Viele lateinische Wörter sehen vertraut aus und bedeuten etwas anderes. Caritas ist nicht Wohltätigkeit, sondern hingegebene Liebe."],
-["w","Vorsicht: Latein macht eine Aussage nicht wahrer","Ein lateinischer Satz klingt feierlich und verbindlich. Das sagt nichts darüber, ob der Inhalt stimmt."],
-["w","Vorsicht: Wort für Wort übersetzen","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
-["w","Vorsicht: Halbwissen vorzeigen","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
+["w","Wie unterscheidet sich Kirchenlatein vom klassischen Latein in der Aussprache?","In der Kirche spricht man c vor e und i wie tsch und v wie w. Im klassischen Latein wären es k und u. Beides ist richtig — nur nicht durcheinander."],
+["w","Was sind „falsche Freunde“ beim Sprachenlernen?","Viele lateinische Wörter sehen vertraut aus und bedeuten etwas anderes. Caritas ist nicht Wohltätigkeit, sondern hingegebene Liebe."],
+["w","Wird eine Aussage wahrer, weil sie auf Latein gesagt wird?","Ein lateinischer Satz klingt feierlich und verbindlich. Das sagt nichts darüber, ob der Inhalt stimmt."],
+["w","Warum ist Wort-für-Wort-Übersetzen gefährlich?","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
+["w","Was gilt, bevor man eine Bibelstelle im Original zitiert?","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
 ].map((c,i)=>({id:"la"+i, scn:c[0], de:c[1], pt:c[2]}));
 const HE_CHUNKS=[
 ["k1","In welche Richtung wird Hebräisch gelesen?","Von rechts nach links. Auch das Buch blättert man von hinten nach vorn."],
@@ -1280,11 +1280,11 @@ const HE_CHUNKS=[
 ["k3", "Im Anfang — das erste Wort der Bibel", "בראשית · Bereschit"],
 ["k3", "Glücklich der Mensch (Psalm 1,1)", "אשרי האיש · Aschrej ha-isch"],
 ["k3", "Gelobt seist du, HERR", "ברוך אתה יהוה · Baruch ata Adonai"],
-["w","Vorsicht: der Gottesname","Die vier Buchstaben JHWH werden im Judentum nicht ausgesprochen; beim Lesen sagt man „Adonai“, der Herr. Wer laut liest, hält sich daran."],
-["w","Vorsicht: der alte Text hat keine Vokale","Geschrieben wurden nur die Mitlaute. Die Punkte darunter kamen erst im Mittelalter dazu — dieselben Buchstaben können verschiedene Wörter sein."],
-["w","Vorsicht: Wortwurzeln überdehnen","Fast jedes hebräische Wort hat eine Dreierwurzel. Daraus lässt sich vieles zusammenbasteln, was im Text gar nicht steht."],
-["w","Vorsicht: Wort für Wort übersetzen","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
-["w","Vorsicht: Halbwissen vorzeigen","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
+["w","Wie wird der Gottesname JHWH beim Lesen ausgesprochen?","Die vier Buchstaben JHWH werden im Judentum nicht ausgesprochen; beim Lesen sagt man „Adonai“, der Herr. Wer laut liest, hält sich daran."],
+["w","Hatte der alte hebräische Bibeltext Vokale?","Geschrieben wurden nur die Mitlaute. Die Punkte darunter kamen erst im Mittelalter dazu — dieselben Buchstaben können verschiedene Wörter sein."],
+["w","Warum soll man hebräische Wortwurzeln nicht überdehnen?","Fast jedes hebräische Wort hat eine Dreierwurzel. Daraus lässt sich vieles zusammenbasteln, was im Text gar nicht steht."],
+["w","Warum ist Wort-für-Wort-Übersetzen gefährlich?","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
+["w","Was gilt, bevor man eine Bibelstelle im Original zitiert?","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
 ].map((c,i)=>({id:"he"+i, scn:c[0], de:c[1], pt:c[2]}));
 const AR_CHUNKS=[
 ["k1","Welche Sprache sprach Jesus im Alltag?","Aramäisch, mit galiläischem Einschlag. Hebräisch war die Sprache der Schrift, Griechisch die Verkehrssprache der Region."],
@@ -1302,11 +1302,11 @@ const AR_CHUNKS=[
 ["k3", "Mein Gott, mein Gott, warum hast du mich verlassen (Matthäus 27,46)", "Eli, Eli, lema sabachthani"],
 ["k3", "Hilf doch, rette doch", "Hosanna"],
 ["k3", "Der Herr ist auferstanden (syrische Tradition)", "Mschiho qom"],
-["w","Vorsicht: Aramäisch ist nicht eine Sprache","Der Name umfasst viele Dialekte über dreitausend Jahre. Das Galiläische Jesu, das Syrische der Peschitta und heutiges Aramäisch sind nicht dasselbe."],
-["w","Vorsicht: die Peschitta ist nicht Jesu Originalton","Sie ist eine Übersetzung, entstanden Jahrhunderte nach Jesus. Dass sie aramäisch ist, macht sie nicht zum Urtext."],
-["w","Vorsicht: „im Aramäischen heisst das eigentlich …“","Ein beliebter Satz in Predigten und Videos. Meist ist er nicht belegbar — frag nach der Quelle, bevor du ihn weitergibst."],
-["w","Vorsicht: Wort für Wort übersetzen","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
-["w","Vorsicht: Halbwissen vorzeigen","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
+["w","Ist Aramäisch eine einzige Sprache?","Der Name umfasst viele Dialekte über dreitausend Jahre. Das Galiläische Jesu, das Syrische der Peschitta und heutiges Aramäisch sind nicht dasselbe."],
+["w","Gibt die Peschitta Jesu Worte im Originalton wieder?","Sie ist eine Übersetzung, entstanden Jahrhunderte nach Jesus. Dass sie aramäisch ist, macht sie nicht zum Urtext."],
+["w","Was ist von Sätzen wie „im Aramäischen heisst das eigentlich …“ zu halten?","Ein beliebter Satz in Predigten und Videos. Meist ist er nicht belegbar — frag nach der Quelle, bevor du ihn weitergibst."],
+["w","Warum ist Wort-für-Wort-Übersetzen gefährlich?","Sprachen bauen Bedeutung unterschiedlich. Wer Wort für Wort überträgt, trifft den Sinn oft gerade nicht."],
+["w","Was gilt, bevor man eine Bibelstelle im Original zitiert?","Ein paar Vokabeln machen noch keinen Ausleger. Wer eine Stelle im Original zitiert, sollte sie auch prüfen können."]
 ].map((c,i)=>({id:"ar"+i, scn:c[0], de:c[1], pt:c[2]}));
 const T_SCN=[
  {id:"t1", name:"Instrumente & Kosten", icon:"\ud83e\uddfe"},
@@ -1316,7 +1316,7 @@ const T_SCN=[
  {id:"t5", name:"Risiko & Positionsgr\u00f6sse", icon:"\ud83d\udee1\ufe0f"},
  {id:"t6", name:"Psychologie & Regeltreue", icon:"\ud83e\udde0"},
  {id:"t7", name:"Zahlen & Realit\u00e4t", icon:"\ud83d\udd0d"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 const T_CHUNKS=[
 ["t1", "Was ist ein Future?", "Ein standardisierter Terminkontrakt an der Börse: feste Grösse, fester Verfall, Handel auf Margin."],
@@ -1359,7 +1359,7 @@ const T_CHUNKS=[
 ["t4", "Warum ist Stilwechseln nach Verlusten gefährlich?", "Weil du jede Statistik über deinen Ansatz zerstörst, bevor sie aussagekräftig wird."],
 ["t5", "Was ist 1 R?", "Der Betrag, den du bei einem Trade riskierst — jede Bewertung läuft danach in R."],
 ["t5", "Wie lautet die Formel für die Positionsgrösse?", "Risiko in Geld geteilt durch Stopabstand mal Punktwert."],
-["t5", "Beispiel: 500 Franken Risiko, 20 Punkte Stop im MNQ — wie viele Kontrakte?", "20 Punkte × 2 Dollar sind 40 Dollar pro Kontrakt, also rund 12 Kontrakte — aufrunden ist der klassische Fehler."],
+["t5", "Beispiel: 500 Euro Risiko, 20 Punkte Stop im MNQ — wie viele Kontrakte?", "20 Punkte × 2 Dollar sind 40 Dollar pro Kontrakt, also rund 12 Kontrakte — aufrunden ist der klassische Fehler."],
 ["t5", "Was ist das Chance-Risiko-Verhältnis?", "Ziel geteilt durch Risiko — 2R heisst, du gewinnst doppelt so viel, wie du riskierst."],
 ["t5", "Wie rechnet man den Erwartungswert?", "Trefferquote × durchschnittlicher Gewinn minus Gegenwahrscheinlichkeit × durchschnittlicher Verlust."],
 ["t5", "Beispiel: 40 Prozent Trefferquote, 2R Gewinn, 1R Verlust — Erwartungswert?", "0,4 × 2 minus 0,6 × 1 ergibt plus 0,2 R pro Trade."],
@@ -1389,19 +1389,19 @@ const T_CHUNKS=[
 ["t7", "Wie werden Trading-Gewinne versteuert?", "Das regelt jedes Land anders — kläre es vor dem ersten echten Trade mit einer Steuerberatung."],
 ["t7", "Warum täuschen Social-Media-Ergebnisse?", "Weil nur die Gewinner posten — die Verluste verschwinden still aus der Statistik."],
 ["t7", "Was ist der grösste Unterschied zwischen Demo und echt?", "Nicht der Markt, sondern du: dieselbe Regel fühlt sich mit echtem Geld anders an."],
-["w", "Vorsicht: Gier nach einer Gewinnserie", "Drei Gewinne in Folge verführen zur grösseren Position — genau so gibt man die Serie zurück."],
-["w", "Vorsicht: Überheblichkeit", "Gewinne fühlen sich wie Können an. Erst nach hundert Trades weisst du, was Zufall war."],
-["w", "Vorsicht: Stop verschieben", "Der häufigste Selbstbetrug. Ein verschobener Stop ist kein Plan mehr, sondern Hoffnung."],
-["w", "Vorsicht: Verluste nachschiessen", "Geld nachlegen, um einen Verlust zu heilen, verwandelt einen schlechten Tag in ein schlechtes Jahr."],
-["w", "Vorsicht: Strategie wechseln", "Vor hundert Trades mit derselben Regel weisst du nichts über die Regel."],
-["w", "Vorsicht: Trading als Selbstwert", "Wer sich über Trades definiert, kann nicht aussteigen, wenn es nötig ist."],
-["w", "Vorsicht: gebundenes Geld", "Miete, Rücklagen, geliehenes Geld gehören nie ins Risiko. Nur was wirklich weg sein darf."],
-["w", "Vorsicht: Vergleich mit Social Media", "Dort posten nur die Gewinner. Die Verlierer verschwinden still aus der Statistik."],
-["w", "Vorsicht: Ergebnis statt Prozess bewerten", "Ein gewonnener Regelbruch ist ein verlorener Trade — er trainiert genau das Falsche."]
+["w", "Welche Gefahr droht nach drei Gewinnen in Folge?", "Drei Gewinne in Folge verführen zur grösseren Position — genau so gibt man die Serie zurück."],
+["w", "Warum beweisen frühe Gewinne noch kein Können?", "Gewinne fühlen sich wie Können an. Erst nach hundert Trades weisst du, was Zufall war."],
+["w", "Warum darfst du einen Stop nicht verschieben?", "Der häufigste Selbstbetrug. Ein verschobener Stop ist kein Plan mehr, sondern Hoffnung."],
+["w", "Warum kein Geld nachschiessen, um einen Verlust zu heilen?", "Geld nachlegen, um einen Verlust zu heilen, verwandelt einen schlechten Tag in ein schlechtes Jahr."],
+["w", "Warum solltest du die Strategie nicht schnell wechseln?", "Vor hundert Trades mit derselben Regel weisst du nichts über die Regel."],
+["w", "Warum ist es gefährlich, den Selbstwert an Trades zu hängen?", "Wer sich über Trades definiert, kann nicht aussteigen, wenn es nötig ist."],
+["w", "Welches Geld gehört nie ins Trading?", "Miete, Rücklagen, geliehenes Geld gehören nie ins Risiko. Nur was wirklich weg sein darf."],
+["w", "Warum täuscht der Vergleich mit Tradern auf Social Media?", "Dort posten nur die Gewinner. Die Verlierer verschwinden still aus der Statistik."],
+["w", "Warum bewertet man einen Trade am Prozess statt am Ergebnis?", "Ein gewonnener Regelbruch ist ein verlorener Trade — er trainiert genau das Falsche."]
 ].map((c,i)=>({id:"t"+i, scn:c[0], de:c[1], pt:c[2]}));
 const T_MISSIONS={
 t5:{title:"Dein Kollege will anfangen", turns:[
- {who:"Kollege", said:"Ich hab gesehen, man kann mit 500 Franken anfangen. Wie viel kann ich im Monat machen?", task:"Antworte mit dem, was die Daten hergeben, ohne zu predigen.", model:"Realistisch: erstmal nichts. Von den Leuten, die in Brasilien 300 Tage durchgehalten haben, haben 97 Prozent verloren."},
+ {who:"Kollege", said:"Ich hab gesehen, man kann mit 500 Euro anfangen. Wie viel kann ich im Monat machen?", task:"Antworte mit dem, was die Daten hergeben, ohne zu predigen.", model:"Realistisch: erstmal nichts. Von den Leuten, die in Brasilien 300 Tage durchgehalten haben, haben 97 Prozent verloren."},
  {who:"Kollege", said:"Okay, aber mit guter Strategie doch schon.", task:"Erkläre, woran es meist wirklich scheitert.", model:"Die Strategie ist selten das Problem. Es scheitert an Regeltreue und an der Positionsgrösse."},
  {who:"Kollege", said:"Was würdest du zuerst lernen?", task:"Nenne drei Dinge in dieser Reihenfolge.", model:"Risiko pro Trade, Positionsgrössenformel, Tagesverlustlimit. Erst danach Einstiege."},
  {who:"Kollege", said:"Wie viel riskiere ich pro Trade?", task:"Gib eine Zahl und die Begründung.", model:"Höchstens ein Prozent. Nicht wegen der Rendite, sondern damit eine Verlustserie dich nicht aus dem Spiel nimmt."},
@@ -1443,7 +1443,7 @@ const P_SCN=[
  {id:"p6", name:"Timing & Supplemente", icon:"\u23f0"},
  {id:"p7", name:"Regeneration & Schlaf", icon:"\ud83d\ude34"},
  {id:"p8", name:"Coaching & Kunden", icon:"\ud83d\udde3\ufe0f"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 const P_CHUNKS=[
 ["p1", "Was ist progressive Overload?", "Die Belastung muss über die Zeit steigen — mehr Gewicht, mehr Wiederholungen, mehr saubere Sätze."],
@@ -1508,15 +1508,15 @@ const P_CHUNKS=[
 ["p8", "Was ist der häufigste Fehler neuer Kunden?", "Zu schnell zu viel — und dann aufhören, statt zu reduzieren."],
 ["p8", "Wie formuliert man ein Ziel brauchbar?", "Konkret, messbar und mit Frist — und an Verhalten gebunden, nicht nur an ein Ergebnis."],
 ["p8", "Was gehört in ein Check-in?", "Gewichtsverlauf, Trainingsleistung, Schlaf, Hunger, Einhaltung — und eine Anpassung daraus."],
-["w", "Vorsicht: Erholung vernachlässigen", "Der Reiz kommt im Training, der Aufbau in der Erholung. Ohne Schlaf keine Anpassung."],
-["w", "Vorsicht: Schmerz ignorieren", "Muskelkater ist normal, Gelenk- und Nervenschmerz nicht. Unterschied kennen und früh reagieren."],
-["w", "Vorsicht: zu schnelles Defizit", "Über ein Prozent Körpergewicht pro Woche kostet Muskeln, Leistung und Durchhaltevermögen."],
-["w", "Vorsicht: jeder Satz bis zum Versagen", "Kostet Erholung, ohne zusätzlichen Reiz. Ein bis drei Wiederholungen Reserve reichen meistens."],
-["w", "Vorsicht: Plan ständig wechseln", "Ohne vier bis acht Wochen Konstanz weisst du nicht, ob der Plan wirkt."],
-["w", "Vorsicht: Tageswaage", "Wasser und Verdauung schwanken um Kilos. Nur der Wochenschnitt zählt."],
-["w", "Vorsicht: Supplemente vor Grundlagen", "Pulver ersetzt weder Protein über den Tag noch Schlaf noch Progression."],
-["w", "Vorsicht: Vergleich mit anderen", "Genetik, Jahre und Erholung sind verschieden. Verglichen wird mit deiner Leistung von letzter Woche."],
-["w", "Vorsicht: Training trotz Krankheit", "Bei Fieber oder Infekt pausieren. Ein verlorener Monat kostet mehr als drei freie Tage."]
+["w", "Warum ist Erholung so wichtig wie das Training?", "Der Reiz kommt im Training, der Aufbau in der Erholung. Ohne Schlaf keine Anpassung."],
+["w", "Welche Schmerzen darfst du beim Training nicht ignorieren?", "Muskelkater ist normal, Gelenk- und Nervenschmerz nicht. Unterschied kennen und früh reagieren."],
+["w", "Wie schnell darf man höchstens abnehmen?", "Über ein Prozent Körpergewicht pro Woche kostet Muskeln, Leistung und Durchhaltevermögen."],
+["w", "Muss jeder Satz bis zum Muskelversagen gehen?", "Kostet Erholung, ohne zusätzlichen Reiz. Ein bis drei Wiederholungen Reserve reichen meistens."],
+["w", "Warum solltest du den Trainingsplan nicht ständig wechseln?", "Ohne vier bis acht Wochen Konstanz weisst du nicht, ob der Plan wirkt."],
+["w", "Warum sagt das Gewicht von einem einzelnen Tag wenig aus?", "Wasser und Verdauung schwanken um Kilos. Nur der Wochenschnitt zählt."],
+["w", "Sind Supplemente wichtiger als die Grundlagen?", "Pulver ersetzt weder Protein über den Tag noch Schlaf noch Progression."],
+["w", "Mit wem solltest du deinen Fortschritt vergleichen?", "Genetik, Jahre und Erholung sind verschieden. Verglichen wird mit deiner Leistung von letzter Woche."],
+["w", "Solltest du bei Fieber oder Infekt trainieren?", "Bei Fieber oder Infekt pausieren. Ein verlorener Monat kostet mehr als drei freie Tage."]
 ].map((c,i)=>({id:"p"+i, scn:c[0], de:c[1], pt:c[2]}));
 const P_MISSIONS={
 p5:{title:"Kunde will schnell abnehmen", turns:[
@@ -1551,9 +1551,8 @@ const M_SCN=[
  {id:"m3", name:"Noten lesen", icon:"\ud83c\udfbc"},
  {id:"m4", name:"Rhythmus & Metronom", icon:"\ud83e\udd41"},
  {id:"m5", name:"\u00dcbemethode", icon:"\ud83e\udde9"},
- {id:"m6", name:"Pr\u00fcfungen des Sprints", icon:"\ud83c\udfaf"},
  {id:"m7", name:"Geh\u00f6r", icon:"\ud83d\udc42"},
- {id:"w", name:"Vorsicht", icon:"\u26a0\ufe0f"}
+ {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 const M_CHUNKS=[
 ["m1", "Woran erkennst du das C ohne hinzusehen?", "Links neben der Zweiergruppe schwarzer Tasten."],
@@ -1595,28 +1594,20 @@ const M_CHUNKS=[
 ["m5", "Warum verteilt üben statt am Stück?", "Weil Pausen und Schlaf das Gelernte festigen — dieselbe Zeit verteilt bringt mehr."],
 ["m5", "Was gehört in die Fehlerliste?", "Jede Stelle, an der du hängst — und am Ende übst du nur noch die obersten drei."],
 ["m5", "Was ist der Unterschied zwischen üben und spielen?", "Üben heisst, gezielt das zu wiederholen, was noch nicht geht. Spielen ist der Durchlauf."],
-["m5", "Warum langsam mehr bringt als schnell", "Weil du nur das automatisierst, was du sauber spielst — Fehler üben sich genauso ein."],
-["m6", "Was verlangt im Klavier-Sprint Prüfung 1 (Tasten und Griffe)?", "Neun von zehn Tönen blind finden, jeder unter drei Sekunden, dazu Tasten lesen und die Griffe bei 50 BPM."],
-["m6", "Was verlangt im Klavier-Sprint Prüfung 2 (Noten lesen)?", "Zehn von zwölf Noten richtig lesen, im Schnitt unter vier Sekunden, und sieben von acht Griffen."],
-["m6", "Was verlangt im Klavier-Sprint Prüfung 3 (Teil A beidhändig)?", "Teil A beidhändig ab halbem Zieltempo, dreimal ohne Stopp, linke Hand auswendig."],
-["m6", "Was verlangt im Klavier-Sprint Prüfung 4 (ganzer Song)?", "Den ganzen Song ab 60 Prozent Zieltempo, zweimal hintereinander, höchstens drei Stopps."],
-["m6", "Was verlangt im Klavier-Sprint Prüfung 5 (Blattspiel)?", "Blattspiel über vier ungeübte Takte und eine Akkordfolge mit Begleitmuster bei 50 BPM."],
-["m6", "Wie viele Punkte braucht die Abschlussprüfung im Klavier-Sprint?", "Siebzig von hundert gelten als bestanden."],
-["m6", "Was bringt die meisten Punkte?", "Den Song aus dem Gedächtnis ohne Abbruch durchspielen — fünfundzwanzig Punkte."],
-["m6", "Was passiert, wenn eine Prüfung nicht besteht?", "Der Plan wird gekürzt, nicht verlängert — die Zeit geht in die schwache Stelle."],
+["m5", "Warum bringt langsames Üben mehr als schnelles?", "Weil du nur das automatisierst, was du sauber spielst — Fehler üben sich genauso ein."],
 ["m7", "Woran erkennst du Dur im Gehör?", "Am offenen, hellen Klang — die grosse Terz liegt vier Halbtöne über dem Grundton."],
 ["m7", "Woran erkennst du Moll?", "Am dunkleren Klang — die kleine Terz liegt drei Halbtöne über dem Grundton."],
 ["m7", "Wie findest du einen gehörten Ton auf der Tastatur?", "Erst C spielen, dann vergleichen und schrittweise annähern."],
 ["m7", "Warum Gehörbildung im Sprint?", "Weil du Fehler hörst, bevor du sie siehst — das macht das Üben schneller."],
-["w", "Vorsicht: zu schnell üben", "Tempo ist Ergebnis, nicht Methode. Was du schnell und falsch spielst, automatisierst du falsch."],
-["w", "Vorsicht: immer von vorn anfangen", "Der Anfang sitzt dann perfekt und der Rest nie. Übe ab der schwachen Stelle."],
-["w", "Vorsicht: Durchspielen mit Üben verwechseln", "Ein Durchlauf prüft, er verbessert nichts."],
-["w", "Vorsicht: Hände zu früh zusammen", "Wenn eine Hand noch denkt, blockiert sie die andere."],
-["w", "Vorsicht: ohne Metronom", "Ohne Taktgeber wird jede schwierige Stelle automatisch langsamer — und genau das übt sich ein."],
-["w", "Vorsicht: Handgelenk und Schultern", "Schmerz ist kein Fleiss. Verspannung kostet Technik und am Ende Tage Pause."],
-["w", "Vorsicht: ohne Pausen durchziehen", "Motorik festigt sich in den Pausen. Zwölf Stunden am Stück bringen weniger als verteilt."],
-["w", "Vorsicht: Stück zu gross wählen", "Ein Song, der dreimal zu schwer ist, erzeugt in 24 Stunden nur Frust."],
-["w", "Vorsicht: Fehlerliste ignorieren", "Was nicht aufgeschrieben wird, wird beim nächsten Mal genauso falsch gespielt."]
+["w", "Warum solltest du nicht zu schnell üben?", "Tempo ist Ergebnis, nicht Methode. Was du schnell und falsch spielst, automatisierst du falsch."],
+["w", "Warum solltest du nicht immer von vorn anfangen?", "Der Anfang sitzt dann perfekt und der Rest nie. Übe ab der schwachen Stelle."],
+["w", "Was ist der Unterschied zwischen Durchspielen und Üben?", "Ein Durchlauf prüft, er verbessert nichts."],
+["w", "Warum nicht zu früh beide Hände zusammen spielen?", "Wenn eine Hand noch denkt, blockiert sie die andere."],
+["w", "Warum mit Metronom üben?", "Ohne Taktgeber wird jede schwierige Stelle automatisch langsamer — und genau das übt sich ein."],
+["w", "Worauf musst du bei Handgelenk und Schultern achten?", "Schmerz ist kein Fleiss. Verspannung kostet Technik und am Ende Tage Pause."],
+["w", "Warum gehören Pausen zum Üben?", "Motorik festigt sich in den Pausen. Zwölf Stunden am Stück bringen weniger als verteilt."],
+["w", "Was passiert, wenn das Stück zu schwer gewählt ist?", "Ein Song, der dreimal zu schwer ist, erzeugt in 24 Stunden nur Frust."],
+["w", "Warum lohnt sich eine Fehlerliste?", "Was nicht aufgeschrieben wird, wird beim nächsten Mal genauso falsch gespielt."]
 ].map((c,i)=>({id:"m"+i, scn:c[0], de:c[1], pt:c[2]}));
 const M_MISSIONS={
 m5:{title:"Du erkl\u00e4rst deine \u00dcbemethode", turns:[
@@ -1636,9 +1627,8 @@ const M_FOCI=[
  {id:"griffe", t:"Griffe & Klaviatur", d:"Orientierung, vier Griffe, Geh\u00f6r", scn:["m1","m2","m7"]},
  {id:"noten", t:"Noten lesen", d:"Violinschl\u00fcssel, Linien, Hilfslinien", scn:["m3","m1"]},
  {id:"rhythmus", t:"Rhythmus & Tempo", d:"Metronom, Takt, Tempo-Leiter", scn:["m4","m5"]},
- {id:"methode", t:"\u00dcbemethode", d:"Wie man in 24h wirklich vorankommt", scn:["m5","m4","m6"]},
- {id:"pruefung", t:"Pr\u00fcfungsvorbereitung", d:"Was die f\u00fcnf Pr\u00fcfungen verlangen", scn:["m6","m2","m3"]},
- {id:"alles", t:"Alles gleich gewichtet", d:"Kompletter Durchgang", scn:["m1","m2","m3","m4","m5","m6","m7"]}
+ {id:"methode", t:"\u00dcbemethode", d:"Wie man in 24h wirklich vorankommt", scn:["m5","m4"]},
+ {id:"alles", t:"Alles gleich gewichtet", d:"Kompletter Durchgang", scn:["m1","m2","m3","m4","m5","m7"]}
 ];
 const M_TOPICS=[
  {t:"Deine \u00dcbemethode in 4 Minuten", hints:["Stellen","H\u00e4nde einzeln","Tempo-Leiter","Fehlerliste"]},
@@ -1707,11 +1697,11 @@ const EL_CHUNKS=[
 ["s9", "Zweihundert und dreihundert", "διακόσια, τριακόσια · diakósia, triakósia"],
 ["s9", "Tausend", "χίλια · chília"],
 ["s9", "Wie viel Uhr ist es?", "Τι ώρα είναι; · Ti óra íne?"],
-["w", "Die gefährlichste Falle für Deutschsprachige", "ναι heisst JA, nicht nein. Klingt wie „nein“, bedeutet das Gegenteil. · ne"],
+["w", "Was heisst ναι — und warum ist das eine Falle?", "ναι heisst JA, nicht nein. Klingt wie „nein“, bedeutet das Gegenteil. · ne"],
 ["w", "Wie heisst nein?", "όχι — und der Kopf geht dabei nach oben, nicht hin und her. · óchi"],
 ["w", "Warum klingt ein Nicken nach oben unhöflich?", "Tut es nicht — das kurze Kopfheben mit Zungenschnalzen ist einfach das griechische Nein."],
-["w", "Ein Wort, das du nie nachsprichst", "μαλάκα hörst du ständig unter Freunden. Aus deinem Mund ist es eine Beleidigung. Lass es."],
-["w", "παρακαλώ kann dreierlei heissen", "bitte, gern geschehen und wie bitte? — der Ton entscheidet. · parakaló"],
+["w", "Warum solltest du das Wort μαλάκα nicht selbst benutzen?", "μαλάκα hörst du ständig unter Freunden. Aus deinem Mund ist es eine Beleidigung. Lass es."],
+["w", "Welche drei Bedeutungen hat παρακαλώ?", "bitte, gern geschehen und wie bitte? — der Ton entscheidet. · parakaló"],
 ["w", "Siezen oder duzen?", "Fremde und Ältere mit εσείς, nicht mit εσύ. Im Zweifel siezen."]
 ].map((c,i)=>({id:"el"+i, scn:c[0], de:c[1], pt:c[2]}));
 
@@ -1883,26 +1873,7 @@ function langPick(){
   </select>`;
 }
 function voiceHelp(open){
-  return `<details ${open?"open":""} style="margin-top:10px">
-    <summary class="sum">Natürlichere Stimme (iPhone)</summary>
-    <p class="note" style="margin-top:8px"><b>Der Weg, der wirklich funktioniert:</b> Siri-Stimmen und geladene Premium-Stimmen gibt Apple nicht an Web-Apps weiter — die Auswahl oben bleibt deshalb bei den Basis-Stimmen. Nimm stattdessen das iPhone selbst zum Vorlesen:</p>
-    <ol class="steps">
-      <li>Einstellungen → Bedienungshilfen → <b>Lesen & Sprechen</b> → <b>Auswahl sprechen</b> einschalten</li>
-      <li>Dort unter <b>Stimmen</b> → Portugiesisch (Brasilien) → Premium oder Erweitert laden</li>
-      <li>Hier in der App auf den portugiesischen Satz lange drücken, markieren → im Menü <b>Sprechen</b></li>
-    </ol>
-    <p class="note">Noch schneller: im selben Menü <b>Bildschirminhalt sprechen</b> einschalten — dann liest ein Wischen mit zwei Fingern von oben nach unten die ganze Karte vor, ohne Markieren.</p>
-    <p class="note" style="margin-bottom:8px">Das klingt deutlich menschlicher als der Anhören-Button. Der bleibt für schnelles Gegenchecken.</p>
-    <p class="sub">Stimme für den Anhören-Button laden</p>
-    <ol class="steps">
-      <li>Einstellungen → Bedienungshilfen</li>
-      <li><b>Lesen & Sprechen</b> (iOS 26) bzw. <b>Gesprochene Inhalte</b> (iOS 17/18)</li>
-      <li><b>Stimmen</b> → Portugiesisch → Portugiesisch (Brasilien)</li>
-      <li>Auf das <b>Wolkensymbol</b> tippen, Typ <b>Premium</b> oder <b>Erweitert</b> laden (WLAN, ein bis zwei Minuten)</li>
-      <li>Diese Seite neu laden, oben die neue Stimme auswählen</li>
-    </ol>
-    <p class="note">Android: Einstellungen → Sprachausgabe (Text-in-Sprache) → Google TTS → Zahnrad → Sprachdaten → Português (Brasil).</p>
-  </details>`;
+  return `<p class="note" style="margin-top:10px">Diese Auswahl gilt nur für die Handystimme. Die App spielt normalerweise eingebaute echte Aufnahmen ab — umschalten unter <b>Echte Stimmen</b>.</p>`;
 }
 
 /* ---------------- Spracherkennung ---------------- */
@@ -2504,20 +2475,20 @@ function scnDone(id){
 function steps(){
   const order=[...SCN].filter(s=>CHUNKS.some(c=>c.scn===s.id)).sort((a,b)=>(inFocus(b.id)?1:0)-(inFocus(a.id)?1:0));
   const L=[
-   {t:"Startpunkt messen", s:"20 S\u00e4tze ohne Hilfe", run:"levelTest('pre')", done:!!preR()},
+   {t:"Startpunkt messen", s:"20 "+einh()+" ohne Hilfe", run:"levelTest('pre')", done:!!preR()},
   ];
-  if(cfg().lang){
+  if(S.rubrik==="pt"){
     L.push({t:"Lesen: Schrift \u2192 Laut", s:"30 W\u00f6rter vorlesen \u00b7 max. 3 Fehler", run:"lesen()", done:!!(S.tests[1]&&S.tests[1].pass)});
     L.push({t:"Englisch-Hebel", s:"40 W\u00f6rter umrechnen \u00b7 30 richtig", run:"hebel()", done:!!(S.tests[2]&&S.tests[2].pass)});
   }
-  order.forEach(s=>L.push({t:s.name, s:(inFocus(s.id)?"im Fokus \u00b7 ":"")+"70 % der S\u00e4tze sitzen", run:`drillScn('${s.id}')`, done:scnDone(s.id)}));
+  order.forEach(s=>L.push({t:s.name, s:(inFocus(s.id)?"im Fokus \u00b7 ":"")+"70 % der "+einh()+" sitzen", run:`drillScn('${s.id}')`, done:scnDone(s.id)}));
   L.push({t:"Pr\u00fcfung 3 \u00b7 Abruf im Fokus", s:"20 Prompts \u00b7 16 richtig", run:"mix(20,4,3)", done:!!(S.tests[3]&&S.tests[3].pass)});
   if(Object.keys(MISSIONS).length) L.push({t:"Missionen spielen", s:"alle durchspielen", run:"missionList()", done:Object.keys(S.missDone||{}).length>=Object.keys(MISSIONS).length});
   L.push({t:"4/3/2 Monolog", s:"ein Thema, drei Runden", run:"f432List()", done:(S.f432Done||0)>=1});
   L.push({t:"Pr\u00fcfung 5 \u00b7 Mix unter Zeitdruck", s:"30 Prompts \u00b7 24 richtig", run:"mix(30,3,5)", done:!!(S.tests[5]&&S.tests[5].pass)});
   L.push({t:"Fehlerliste leer drillen", s:"nur noch deine Schwachstellen", run:"drillErrors()", done:S.errors.length===0&&!!preR()});
   L.push({t:"Gespr\u00e4ch", s:"frei reden, 10 Minuten", run:"dlgMenu()", done:(S.exams||[]).some(x=>x.rubrik===S.rubrik)});
-  L.push({t:"Endtest", s:"dieselben 20 S\u00e4tze wie am Start", run:"levelTest('post')", done:!!postR()});
+  L.push({t:"Endtest", s:"dieselben 20 "+einh()+" wie am Start", run:"levelTest('post')", done:!!postR()});
   return L;
 }
 function setModeHome(m){ S.mode=m; save(); home(); }
@@ -2561,7 +2532,7 @@ function setup(step){
   } else if(step===2){
     render(`<button class="back" onclick="setup(1)">‹ zurück</button>
     <h2>Wie viel Zeit hast du?</h2>
-    <p class="note" style="margin-bottom:12px">Ändert nur den Stundenplan im Dokument, nicht die App-Inhalte.</p>
+    <p class="note" style="margin-bottom:12px">Bestimmt, wie viel Stoff drankommt. Bei 12 Stunden übst du nur den Kern.</p>
     ${PLANS.map(p=>`<button class="tile" onclick="pickPlan('${p.id}')"><span class="ic">⏱️</span><span>${p.t}<small>${p.d}</small></span><span class="chev">›</span></button>`).join("")}`);
   } else {
     render(`<button class="back" onclick="setup(2)">‹ zurück</button>
@@ -2637,24 +2608,24 @@ function home(){
     <div><b>${S.errors.length}</b><span>Fehlerliste</span></div>
   </div>
   ${S.mode==="streng" ? strictView() : `
-  ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Zuerst: Startpunkt messen<small>20 Sätze ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
+  ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Zuerst: Startpunkt messen<small>20 ${einh()} ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
    :`<div class="card" style="padding:14px 16px"><p class="sub">Startpunkt</p><p style="margin:6px 0 0;font-weight:700">${preR().score}/${preR().of} vorher${postR()?` · ${postR().score}/${postR().of} jetzt`:""}</p>${postR()?`<p class="note">Unterschied: <b style="color:var(--accent)">+${postR().score-preR().score}</b> Sätze</p>`:`<p class="note">Am Ende machst du genau denselben Test nochmal.</p>`}</div>`}
   <h2>Üben</h2>
-  <button class="tile" onclick="uebMenu()" style="border-color:var(--accent)"><span class="ic">🎮</span><span>Durchgang<small>Wechselnde Aufgaben: erkennen, auswählen, bauen, tippen, hören, sprechen</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="go('scn')"><span class="ic">🎯</span><span>Abruf nach Szenario<small>Deutsch rein, du sagst es laut, dann Auflösung</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="uebMenu()" style="border-color:var(--accent)"><span class="ic">🎮</span><span>Durchgang<small>Wechselnde Aufgaben: ${istSpr()?"erkennen, auswählen, bauen, tippen, hören, sprechen":"erkennen, auswählen, laut antworten"}</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="go('scn')"><span class="ic">🎯</span><span>Abruf nach ${istSpr()?"Szenario":"Bereich"}<small>${istSpr()?"Deutsch rein, du sagst es laut, dann Auflösung":"Frage rein, du antwortest laut, dann Auflösung"}</small></span><span class="chev">›</span></button>
   ${Object.keys(MISSIONS).length?`<button class="tile" onclick="go('mission')"><span class="ic">🎭</span><span>Mission spielen<small>Ich bin das Gegenüber, du musst durchkommen</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="hoerMenu()"><span class="ic">🎧</span><span>Hören & Nachsprechen<small>Ohne Hinsehen: hören, nachsprechen, Lösung hören — läuft von allein weiter</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="go('f432')"><span class="ic">⏱️</span><span>4/3/2 Monolog<small>Dasselbe Thema in 4, dann 3, dann 2 Minuten</small></span><span class="chev">›</span></button>
   <h2 style="margin-top:18px">Prüfungen</h2>
-  ${cfg().lang?`<button class="tile" onclick="lesen()"><span class="ic">📖</span><span>1 · Lesen: Schrift → Laut<small>30 Wörter kalt vorlesen · max. 3 Fehler</small>${badge(1)}</span><span class="chev">›</span></button>
+  ${S.rubrik==="pt"?`<button class="tile" onclick="lesen()"><span class="ic">📖</span><span>1 · Lesen: Schrift → Laut<small>30 Wörter kalt vorlesen · max. 3 Fehler</small>${badge(1)}</span><span class="chev">›</span></button>
   <button class="tile" onclick="hebel()"><span class="ic">🔄</span><span>2 · Englisch-Hebel<small>40 Wörter umrechnen, 5 Minuten · 30 richtig</small>${badge(2)}</span><span class="chev">›</span></button>`:""}
-  <button class="tile" onclick="mix(20,4,3)"><span class="ic">⚡</span><span>3 · Abruf im Fokus<small>20 Prompts, je 4 Sekunden · 16 richtig</small>${badge(3)}</span><span class="chev">›</span></button>
-  <button class="tile" onclick="mix(30,3,5)"><span class="ic">🔥</span><span>5 · Mix unter Zeitdruck<small>30 Prompts, 70 % Fokus · je 3 Sekunden · 24 richtig</small>${badge(5)}</span><span class="chev">›</span></button>
+  <button class="tile" onclick="mix(20,4,3)"><span class="ic">⚡</span><span>${S.rubrik==="pt"?"3 · ":""}Abruf im Fokus<small>20 ${einh()}, je ${istSpr()?4:12} Sekunden · 16 richtig</small>${badge(3)}</span><span class="chev">›</span></button>
+  <button class="tile" onclick="mix(30,3,5)"><span class="ic">🔥</span><span>${S.rubrik==="pt"?"4 · ":""}Mix unter Zeitdruck<small>30 ${einh()}, 70 % Fokus · je ${istSpr()?3:9} Sekunden · 24 richtig</small>${badge(5)}</span><span class="chev">›</span></button>
   `}
   <button class="tile" onclick="dlgMenu()" style="border-color:var(--accent2)"><span class="ic">💬</span><span>Gespräch<small>echtes Gespräch mit Nachfragen · findet deine Schwächen</small>${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0]?`<small class="done">zuletzt ${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0].pct}%</small>`:""}</span><span class="chev">›</span></button>
   <h2 style="margin-top:18px">Deine Schwachstellen</h2>
-  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${S.errors.length} Sätze · am Ende nur noch das</small></span><span class="chev">›</span></button>
-  ${preR()?`<button class="tile" onclick="levelTest('post')"><span class="ic">🏁</span><span>Endtest · dieselben 20 Sätze<small>Am Schluss · Vergleich zum Start</small></span><span class="chev">›</span></button>`:""}
+  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${S.errors.length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
+  ${preR()?`<button class="tile" onclick="levelTest('post')"><span class="ic">🏁</span><span>Endtest · dieselben 20 ${einh()}<small>Am Schluss · Vergleich zum Start</small></span><span class="chev">›</span></button>`:""}
   <p class="note" style="margin-top:18px">Regel: erst sagen, dann auflösen. Nie mitlesen und nachsprechen — das fühlt sich gut an und bringt fast nichts.</p>
   `);
 }
@@ -2667,12 +2638,14 @@ function modeMenu(){
 }
 function setModeS(m){ S.mode=m; save(); settings(); }
 function dirMenu(){
-  const d=S.dir||"de";
+  const d=S.dir||"de", sp=istSpr(), n=cfg().name;
+  const t1=sp?`Deutsch → ${n}`:"Frage → Antwort", s1=sp?"Du siehst Deutsch und musst es selbst sagen. Trainiert Sprechen.":"Du siehst die Frage und antwortest selbst. Trainiert Abrufen.";
+  const t2=sp?`${n} → Deutsch`:"Antwort → Frage", s2=sp?"Du siehst die Zielsprache und sagst, was sie heisst. Trainiert Verstehen.":"Du siehst die Antwort und nennst die Frage dazu.";
   render(`<button class="back" onclick="settings()">‹ zurück</button><h2>Richtung</h2>
-  <p class="note" style="margin-bottom:12px">In welche Richtung abgefragt wird. Selbst produzieren ist schwerer und bringt mehr, verstehen geht schneller.</p>
-  <button class="tile" onclick="setDirHome('de')" style="${d==="de"?"border-color:var(--accent)":""}"><span class="ic">🗣️</span><span>Deutsch → ${cfg().name}<small>Du siehst Deutsch und musst es selbst sagen. Trainiert Sprechen.</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="setDirHome('pt')" style="${d==="pt"?"border-color:var(--accent)":""}"><span class="ic">👂</span><span>${cfg().name} → Deutsch<small>Du siehst die Zielsprache und sagst, was sie heisst. Trainiert Verstehen.</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="setDirHome('mix')" style="${d==="mix"?"border-color:var(--accent)":""}"><span class="ic">🔀</span><span>Gemischt<small>Pro Satz zufällig. Näher am echten Gespräch.</small></span><span class="chev">›</span></button>`);
+  <p class="note" style="margin-bottom:12px">${sp?"In welche Richtung abgefragt wird. Selbst produzieren ist schwerer und bringt mehr, verstehen geht schneller.":"Wie abgefragt wird. Selbst antworten ist der Normalfall."}</p>
+  <button class="tile" onclick="setDirHome('de')" style="${d==="de"?"border-color:var(--accent)":""}"><span class="ic">🗣️</span><span>${t1}<small>${s1}</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="setDirHome('pt')" style="${d==="pt"?"border-color:var(--accent)":""}"><span class="ic">👂</span><span>${t2}<small>${s2}</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="setDirHome('mix')" style="${d==="mix"?"border-color:var(--accent)":""}"><span class="ic">🔀</span><span>Gemischt<small>${sp?"Pro Satz zufällig. Näher am echten Gespräch.":"Pro Karte zufällig."}</small></span><span class="chev">›</span></button>`);
 }
 function setDirHome(d){ S.dir=d; save(); settings(); }
 function settings(){
@@ -2689,7 +2662,7 @@ function settings(){
   <p class="shead">Wie du lernst<small>Einmal eingestellt, bleibt es so — auch wenn du die Rubrik wechselst</small></p>
   <button class="tile" onclick="setup(2)"><span class="ic">⏱️</span><span>Länge<small>${planObj().t}</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="modeMenu()"><span class="ic">🧭</span><span>Lernmodus<small>${S.mode==="streng"?"Geführt":"Frei"}</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="dirMenu()"><span class="ic">↔️</span><span>Richtung<small>${(S.dir||"de")==="de"?"Deutsch → Zielsprache":(S.dir==="pt"?"Zielsprache → Deutsch":"gemischt")}</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="dirMenu()"><span class="ic">↔️</span><span>Richtung<small>${dirLbl(S.dir||"de")}</small></span><span class="chev">›</span></button>
   <hr class="sep">
   <p class="shead">Sprechen & Hören</p>
   ${SRC?`<button class="tile" onclick="toggleMic()"><span class="ic">🎤</span><span>Mikrofon-Modus: ${S.mic===false?"aus":"an"}<small>${S.mic===false?"Du bewertest dich selbst":"App hört zu und bewertet, ob der Satz kam"}</small></span><span class="chev">›</span></button>`
@@ -2698,7 +2671,7 @@ function settings(){
   <div class="card" id="voicebox"></div>
   <hr class="sep">
   <p class="shead">Daten</p>
-  <button class="tile" onclick="go('export')"><span class="ic">📋</span><span>Fehlerliste kopieren<small>Für Anki oder zum Schicken an mich</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="go('export')"><span class="ic">📋</span><span>Fehlerliste kopieren<small>Für Anki oder zum Weitergeben</small></span><span class="chev">›</span></button>
   <div class="card">
     <p class="sub">Fortschritt</p>
     ${resetArmed
@@ -2707,7 +2680,7 @@ function settings(){
          <button class="btn ghost sm" style="margin:0" onclick="cancelReset()">Abbrechen</button></div>`
       : `<button class="btn ghost sm" style="margin-top:8px" onclick="armReset()">Alles zurücksetzen</button>`}
     ${bk?`<button class="btn ghost sm" onclick="undoReset()">↶ Stand vom ${stamp(bk.at)} wiederherstellen</button>
-         <p class="note" style="margin-top:8px">Gesichert sind Sätze, Fehlerliste und Prüfungen. Stimme und Richtung bleiben unberührt.</p>`:""}
+         <p class="note" style="margin-top:8px">Gesichert sind Fortschritt, Fehlerliste und Prüfungen. Stimme und Richtung bleiben unberührt.</p>`:""}
     <p class="note" style="margin-top:12px">Auf den Home-Bildschirm: Link in Safari öffnen → Teilen → „Zum Home-Bildschirm". Startet dann ohne Browserleiste. Achtung: der Fortschritt dort ist ein eigener Speicher und beginnt bei null.</p>
   </div>
   `);
@@ -2726,6 +2699,7 @@ function go(where){
 
 /* ---------------- Stufen: lesen -> schreiben -> sprechen ---------------- */
 function stageOf(c){
+  if(!istSpr() || c.scn==="w") return "lesen";
   const b=S.box[c.id]||0;
   if(b<2) return "lesen";
   if(b<4) return "schreiben";
@@ -2737,6 +2711,13 @@ const STAGE_T={lesen:"Stufe 1 \u00b7 lesen", schreiben:"Stufe 2 \u00b7 schreiben
 function testSet(){ return CHUNKS.filter((_,i)=>i%Math.max(1,Math.round(CHUNKS.length/20))===0).slice(0,20); }
 let T=null;
 function preR(){ return (S.preBy||{})[S.rubrik]; }
+function istSpr(){ const r=RUBRIKEN.find(x=>x.id===S.rubrik); return !!(r&&(r.g==="Sprachen"||r.g==="Sprachen der Schrift")); }
+function kurzSpr(){ return S.rubrik.toUpperCase(); }
+function dirLbl(d){ return istSpr() ? (d==="de"?"DE \u2192 "+kurzSpr():d==="pt"?kurzSpr()+" \u2192 DE":"gemischt") : (d==="de"?"Frage \u2192 Antwort":d==="pt"?"Antwort \u2192 Frage":"gemischt"); }
+function dirNote(d){ return istSpr()
+  ? (d==="de"?"Du produzierst \u2014 das trainiert Sprechen.":d==="pt"?"Du verstehst \u2014 das trainiert H\u00f6ren und Lesen.":"Beides gemischt, Richtung pro Satz zuf\u00e4llig.")
+  : (d==="de"?"Du siehst die Frage und antwortest selbst \u2014 das trainiert Abrufen.":d==="pt"?"Du siehst die Antwort und nennst die passende Frage \u2014 festigt von der anderen Seite.":"Beides gemischt, pro Karte zuf\u00e4llig."); }
+function einh(){ return istSpr()?"S\u00e4tze":"Fragen"; }
 function katTag(c){
   try{ const k=(SCN||[]).find(x=>x.id===c.scn); if(!k) return ""; return `<p class="note" style="margin:0 0 6px">${k.icon||""} ${k.name}</p>`; }catch(e){ return ""; }
 }
@@ -2756,8 +2737,8 @@ function testCard(){
     <div class="bar" id="bar"><i></i></div>
     <button class="btn" onclick="testReveal()">Aufl\u00f6sen</button>
   </div>
-  <p class="note">Beim ersten Mal wirst du vieles nicht k\u00f6nnen \u2014 das ist der Sinn. Genau diese 20 S\u00e4tze kommen am Ende nochmal.</p>`);
-  countdown(5000);
+  <p class="note">Beim ersten Mal wirst du vieles nicht k\u00f6nnen \u2014 das ist der Sinn. Genau diese 20 ${einh()} kommen am Ende nochmal.</p>`);
+  countdown(istSpr()?5000:12000);
 }
 function testReveal(){
   clearInterval(timer);
@@ -2785,7 +2766,7 @@ function testDone(){
   render(`<div class="card"><h2>${T.kind==="pre"?"Dein Startpunkt":"Geschafft"}</h2>
   <p class="big">${T.ok}/${T.q.length}</p>
   ${T.kind==="pre"
-    ? `<p class="note">Das ist deine Messlatte. Dieselben 20 S\u00e4tze kommen am Ende der 24 Stunden nochmal \u2014 der Unterschied ist dein Ergebnis.</p>`
+    ? `<p class="note">Das ist deine Messlatte. Dieselben 20 ${einh()} kommen am Ende nochmal \u2014 der Unterschied ist dein Ergebnis.</p>`
     : `<p class="note" style="text-align:center">Vorher ${pre?pre.score+"/"+pre.of:"\u2013"} \u00b7 jetzt ${post.score}/${post.of}${pre?` \u00b7 <b style="color:var(--accent)">+${post.score-pre.score}</b>`:""}</p>`}
   <button class="btn ghost" onclick="home()">Zur\u00fcck</button></div>`);
 }
@@ -2793,16 +2774,16 @@ function testDone(){
 /* ---------------- Abruf-Drill ---------------- */
 function scnList(){
   const d=S.dir||"de";
-  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>Abruf nach Szenario</h2>
+  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>Abruf nach ${istSpr()?"Szenario":"Bereich"}</h2>
   <div class="card">
     <p class="sub">Richtung</p>
     <div class="row" style="margin-top:8px">
-      ${[["de","DE \u2192 PT"],["pt","PT \u2192 DE"],["mix","gemischt"]].map(o=>
+      ${[["de",dirLbl("de")],["pt",dirLbl("pt")],["mix","gemischt"]].map(o=>
         `<button class="btn ghost sm" style="margin:0;${d===o[0]?"border-color:var(--accent);color:var(--accent)":""}" onclick="setDir('${o[0]}')">${o[1]}</button>`).join("")}
     </div>
-    <p class="note" style="margin-top:10px">${d==="de"?"Du produzierst \u2014 das trainiert Sprechen.":d==="pt"?"Du verstehst \u2014 das trainiert H\u00f6ren und Lesen.":"Beides gemischt, Richtung pro Satz zuf\u00e4llig."}</p>
+    <p class="note" style="margin-top:10px">${dirNote(d)}</p>
   </div>
-  <button class="tile" onclick="drillScn('focus')"><span class="ic">\u2b50</span><span>Nur Fokus-Szenarien<small>${focusObj().t} \u00b7 gemischt</small></span><span class="chev">\u203a</span></button>
+  <button class="tile" onclick="drillScn('focus')"><span class="ic">\u2b50</span><span>Nur Fokus-${istSpr()?"Szenarien":"Bereiche"}<small>${focusObj().t} \u00b7 gemischt</small></span><span class="chev">\u203a</span></button>
   <button class="tile" onclick="drillScn('all')"><span class="ic">\ud83c\udf00</span><span>Alles gemischt<small>Interleaved \u2014 \u00fcbertr\u00e4gt am besten</small></span><span class="chev">\u203a</span></button>
   ${[...SCN].filter(s=>CHUNKS.some(c=>c.scn===s.id)).sort((a,b)=>(inFocus(b.id)?1:0)-(inFocus(a.id)?1:0)).map(s=>{
     const items=CHUNKS.filter(c=>c.scn===s.id);
@@ -2831,7 +2812,7 @@ function drill(ids, label){
   if(!pool.length){ render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><div class="card"><h2>Noch nichts drin</h2><p class="note">Die Fehlerliste f\u00fcllt sich automatisch, sobald du in einem Drill stockst.</p></div>`); return; }
   const sorted=shuffle(pool).sort((a,b)=>(S.box[a.id]||0)-(S.box[b.id]||0));
   const q=sorted.slice(0,14);
-  D={q, i:0, label, ok:0, mid:0, no:0, dirs:q.map(dirFor)};
+  D={q, i:0, label, ok:0, mid:0, no:0, dirs:q.map(c=>c.scn==="w"?"de":dirFor(c))};
   drillCard();
 }
 function drillCard(){
@@ -2840,7 +2821,7 @@ function drillCard(){
   const st = toPt ? stageOf(c) : "lesen";
   let body;
   if(st==="schreiben"){
-    body = `<input class="txt" id="ans" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="${cfg().lang?'auf Portugiesisch tippen':'Antwort tippen'}">
+    body = `<input class="txt" id="ans" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="${istSpr()?'in der Zielsprache tippen':'Antwort tippen'}">
       <button class="btn" onclick="drillCheck()">Pr\u00fcfen</button>`;
   } else if(st==="sprechen"){
     body = `<button class="btn" onclick="micDrill()">\ud83c\udfa4 Antwort sprechen</button>
@@ -2850,9 +2831,9 @@ function drillCard(){
     body = `<button class="btn" onclick="drillReveal()">Gesagt \u2014 aufl\u00f6sen</button>`;
   }
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
-  <div class="meta"><span>${D.label} \u00b7 ${toPt?"DE \u2192 PT":"PT \u2192 DE"}</span><span>${D.i+1} / ${D.q.length}</span></div>
+  <div class="meta"><span>${D.label} \u00b7 ${dirLbl(toPt?"de":"pt")}</span><span>${D.i+1} / ${D.q.length}</span></div>
   <div class="card" style="margin-top:10px">
-    <p class="sub">${STAGE_T[st]}</p>
+    <p class="sub">${istSpr()&&c.scn!=="w"?STAGE_T[st]:"Laut antworten"}</p>
     ${katTag(c)}<p class="prompt">${toPt?c.de:c.pt}</p>
     <div class="bar" id="bar"><i></i></div>
     ${body}
@@ -2863,7 +2844,7 @@ function drillCard(){
   if(st==="schreiben"){
     const i=document.getElementById("ans"); if(i){ i.focus(); i.addEventListener("keydown",e=>{ if(e.key==="Enter") drillCheck(); }); }
   }
-  countdown(st==="lesen"?4000:9000);
+  countdown(!istSpr()?12000:st==="lesen"?4000:9000);
 }
 function noVoice(){ S.mic=false; save(); drillCard(); }
 function drillCheck(){
@@ -2897,7 +2878,7 @@ function drillReveal(res){
   const c=D.q[D.i], toPt=D.dirs[D.i]!=="pt";
   S.said++; save();
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
-  <div class="meta"><span>${D.label} \u00b7 ${toPt?"DE \u2192 PT":"PT \u2192 DE"}</span><span>${D.i+1} / ${D.q.length}</span></div>
+  <div class="meta"><span>${D.label} \u00b7 ${dirLbl(toPt?"de":"pt")}</span><span>${D.i+1} / ${D.q.length}</span></div>
   <div class="card" style="margin-top:10px">
     <p class="sub">${toPt?c.de:c.pt}</p>
     <p class="answer">${res&&toPt?wordDiff(res.heard,c.pt):(toPt?c.pt:c.de)}</p>
@@ -2933,6 +2914,7 @@ function drillDone(){
 /* ---------------- Mix / Prüfung ---------------- */
 let M=null;
 function mix(n, secs, testNo){
+  if(!istSpr()) secs=secs*3;
   // Prüfung 3: die ersten vier Fokus-Szenarien. Prüfung 5: 70 % Fokus, 30 % Rest.
   const fp=focusPool(), rest=CHUNKS.filter(c=>!inFocus(c.scn));
   let pool;
@@ -3154,7 +3136,7 @@ function exportView(){
   ${S.errors.length?`<div class="card">${S.errors.map(e=>`<div class="err">${e.de}<br><b>${e.pt}</b></div>`).join("")}</div>
   <button class="btn" onclick="copyErr()">Als Text kopieren</button>
   <button class="btn ghost" onclick="if(confirmClear())home()">Liste leeren</button>
-  <p class="note" id="msg" style="margin-top:10px">Format: Deutsch | Portugiesisch \u2014 passt direkt in deinen Anki-Import.</p>`
+  <p class="note" id="msg" style="margin-top:10px">Format: Frage | Antwort \u2014 passt direkt in einen Anki-Import.</p>`
   :`<div class="card"><p class="note">Noch leer. Sie f\u00fcllt sich, sobald du in einem Drill stockst oder eine Mission verhaust.</p></div>`}`);
   window.__errTxt=txt;
 }

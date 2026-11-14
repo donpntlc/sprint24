@@ -32,7 +32,7 @@ function hPool(src){
   else if(src==="offen") pool=focusPool().filter(function(c){ return (S.box[c.id]||0)<3; });
   else if(src==="fokus") pool=focusPool();
   else pool=CHUNKS.slice();
-  return pool.filter(function(c){ return c && c.pt && c.de; });
+  return pool.filter(function(c){ return c && c.pt && c.de && !(c.scn==="w" && window.istSpr && istSpr()); });
 }
 function hLabel(src){
   return src==="fehler" ? "Fehlerliste" : src==="offen" ? "Was noch nicht sitzt" : src==="fokus" ? "Alles im Fokus" : "Ganze Rubrik";
@@ -58,7 +58,7 @@ function hoerMenu(){
   src("fokus","der ganze aktuelle Fokus")+
   src("alles","alle Einträge dieser Rubrik")+
   '<div class="card" style="margin-top:14px"><p class="sub">Richtung</p><div class="row" style="margin-top:8px">'+
-    pill("dir","mix","gemischt")+pill("dir","de","Deutsch zuerst")+pill("dir","ziel",cfg().name.split(" ")[0]+" zuerst")+
+    pill("dir","mix","gemischt")+(window.istSpr&&!istSpr()? pill("dir","de","Frage zuerst")+pill("dir","ziel","Antwort zuerst") : pill("dir","de","Deutsch zuerst")+pill("dir","ziel",(cfg().name==="Brasilianisches Portugiesisch"?"Portugiesisch":cfg().name.split(" ")[0])+" zuerst"))+
   '</div>'+
   '<p class="sub" style="margin-top:14px">Denkpause</p><div class="row" style="margin-top:8px">'+
     pill("pause","3","3 Sek")+pill("pause","4","4 Sek")+pill("pause","6","6 Sek")+pill("pause","8","8 Sek")+
