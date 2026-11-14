@@ -149,8 +149,10 @@ function uebWeiter(){ if(U.herz<=0) return uebDone(); U.i++; U.opt=null; uebAufg
 function uebZeig(){ U.gezeigt=true; uebView(); }
 function uebScore(v){
   if(v){ U.ok++; S.box[U.c.id]=Math.min(5,(S.box[U.c.id]||0)+1); if(typeof clearError==="function") clearError(U.c.id); }
-  else { U.falsch++; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
-  S.said++; save(); U.i++; U.opt=null; uebAufgabe();
+  else { U.falsch++; U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
+  S.said++; save();
+  if(U.herz<=0) return uebDone();
+  U.i++; U.opt=null; uebAufgabe();
 }
 function uebWahl(k){
   var gew=U.opt[k], ok=norm(gew)===norm(loesungText());
