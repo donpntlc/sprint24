@@ -37,10 +37,15 @@ function uebMenu(){
   '<p class="note" style="margin-bottom:14px">Ein Durchgang mit wechselnden Aufgaben: '+(istSprache()?'erkennen, auswählen, bauen, tippen, hören, sprechen':'erkennen, auswählen, laut antworten')+'. Welche Aufgabe kommt, entscheidet die App danach, wie sicher der Eintrag schon sitzt.</p>'+
   '<div class="card" style="padding:14px 16px"><p class="sub">Im Fokus</p>'+
   '<p style="margin:6px 0 0;font-weight:700">'+offen+' von '+pool.length+' sitzen noch nicht</p></div>'+
+  '<p class="sub" style="margin-top:6px">Lernblock nach Zeit</p>'+
+  '<p class="note" style="margin-bottom:8px">Die Aufgaben laufen kreuz und quer, bis die Zeit um ist. Keine Herzen — einfach dranbleiben.</p>'+
+  '<div class="row" style="gap:8px;margin-bottom:14px">'+[1,3,6,9].map(function(m){ var on=(S.blockMin||3)===m;
+     return '<button class="btn ghost" style="flex:1;margin:0;'+(on?"border-color:var(--accent);color:var(--accent)":"")+'" onclick="uebBlock('+m+')">'+m+' Min</button>'; }).join("")+'</div>'+
+  '<p class="sub">Nach Anzahl</p>'+
   '<button class="tile" onclick="uebStart(8)"><span class="ic">⚡</span><span>Kurz<small>8 Aufgaben · etwa drei Minuten</small></span><span class="chev">›</span></button>'+
   '<button class="tile" onclick="uebStart(14)"><span class="ic">🎯</span><span>Normal<small>14 Aufgaben · etwa fünf Minuten</small></span><span class="chev">›</span></button>'+
   '<button class="tile" onclick="uebStart(25)"><span class="ic">🔥</span><span>Lang<small>25 Aufgaben · etwa zehn Minuten</small></span><span class="chev">›</span></button>'+
-  '<p class="note" style="margin-top:14px">Drei Herzen. Bei jedem Fehler siehst du sofort die richtige Lösung, der Eintrag wandert in die Fehlerliste und kommt später wieder.</p>');
+  '<p class="note" style="margin-top:14px">Nach Anzahl: drei Herzen. Bei jedem Fehler siehst du sofort die richtige Lösung, der Eintrag wandert in die Fehlerliste und kommt später wieder.</p>');
 }
 
 function uebStart(n){
@@ -51,8 +56,34 @@ function uebStart(n){
   U={liste:liste, i:0, herz:3, ok:0, falsch:0, t0:Date.now(), fb:null, schwach:[]};
   uebAufgabe();
 }
+var blockUhr=null;
+function blockPool(){
+  var pool=focusPool().slice();
+  pool.sort(function(a,b){ return (S.box[a.id]||0)-(S.box[b.id]||0); });
+  var schwach=pool.slice(0, Math.max(6, Math.ceil(pool.length*0.6)));
+  return shuffle(schwach.concat(shuffle(pool).slice(0,4)));
+}
+function uebBlock(min){
+  if(!focusPool().length) return home();
+  S.blockMin=min; save();
+  U={liste:blockPool(), i:0, herz:3, ok:0, falsch:0, t0:Date.now(), fb:null, schwach:[], block:min*60000};
+  U.ende=U.t0+U.block;
+  clearInterval(blockUhr);
+  blockUhr=setInterval(function(){
+    if(!U||!U.block){ clearInterval(blockUhr); return; }
+    var el=document.getElementById("ubz"), rest=Math.max(0,U.ende-Date.now());
+    if(el) el.textContent=rest>0? Math.floor(rest/60000)+":"+String(Math.floor(rest/1000)%60).padStart(2,"0") : "Zeit um — letzte Aufgabe";
+    var b=document.getElementById("ubb"); if(b) b.style.width=Math.min(100,(Date.now()-U.t0)/U.block*100)+"%";
+  },500);
+  uebAufgabe();
+}
 function uebAufgabe(){
   if(!U) return;
+  if(U.block && Date.now()>=U.ende) return uebDone();
+  if(U.block && U.i>=U.liste.length){
+    var neu=blockPool(); if(neu.length>1 && U.liste.length && neu[0].id===U.liste[U.liste.length-1].id) neu.push(neu.shift());
+    U.liste=U.liste.concat(neu);
+  }
   if(U.i>=U.liste.length) return uebDone();
   var c=U.liste[U.i];
   U.c=c; U.typ=typFuer(c); U.ri=richtung(); U.fb=null; U.sel=[]; U.bank=null; U.gezeigt=false; U.wahl=null;
@@ -61,6 +92,14 @@ function uebAufgabe(){
 }
 
 function kopf(){
+  if(U.block){
+    var rest=Math.max(0,U.ende-Date.now());
+    return '<button class="back" onclick="uebQuit()">‹ abbrechen</button>'+
+    '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">'+
+      '<div class="bar" style="flex:1;margin:0"><i id="ubb" style="width:'+Math.min(100,(Date.now()-U.t0)/U.block*100)+'%"></i></div>'+
+      '<span id="ubz" style="font-size:14px;font-weight:700;min-width:44px;text-align:right">'+(rest>0?Math.floor(rest/60000)+":"+String(Math.floor(rest/1000)%60).padStart(2,"0"):"Zeit um — letzte Aufgabe")+'</span>'+
+    '</div>';
+  }
   var p=Math.round(U.i/U.liste.length*100);
   return '<button class="back" onclick="uebQuit()">‹ abbrechen</button>'+
   '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">'+
@@ -149,7 +188,7 @@ function fbBox(){
 function zeigFb(ok, text){
   U.fb={ok:ok, text:text};
   if(ok){ U.ok++; S.box[U.c.id]=Math.min(5,(S.box[U.c.id]||0)+1); if(typeof clearError==="function") clearError(U.c.id); }
-  else { U.falsch++; U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
+  else { U.falsch++; if(!U.block) U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
   S.said++; save();
   uebView();
 }
@@ -157,7 +196,7 @@ function uebWeiter(){ if(U.herz<=0) return uebDone(); U.i++; U.opt=null; U.wahl=
 function uebZeig(){ U.gezeigt=true; uebView(); }
 function uebScore(v){
   if(v){ U.ok++; S.box[U.c.id]=Math.min(5,(S.box[U.c.id]||0)+1); if(typeof clearError==="function") clearError(U.c.id); }
-  else { U.falsch++; U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
+  else { U.falsch++; if(!U.block) U.herz--; S.box[U.c.id]=0; U.schwach.push(U.c.id); if(typeof logError==="function") logError(U.c.id,U.c.de,U.c.pt); }
   S.said++; save();
   if(U.herz<=0) return uebDone();
   U.i++; U.opt=null; U.wahl=null; uebAufgabe();
@@ -209,11 +248,14 @@ function uebMic(){
     zeigFb(ok, (ok? c.pt : wordDiff(r.heard, c.pt))+'<br><span style="opacity:.7">gehört: „'+r.heard+'“</span>');
   });
 }
-function uebQuit(){ U=null; home(); }
+function uebQuit(){ clearInterval(blockUhr); U=null; home(); }
 function uebDone(){
   var n=U.ok+U.falsch, pct=n?Math.round(U.ok/n*100):0, aus=U.herz<=0;
   var schwach=U.schwach.filter(function(v,i,a){ return a.indexOf(v)===i; });
-  render('<div class="card"><h2>'+(aus?"Herzen alle":"Durchgang fertig")+'</h2>'+
+  clearInterval(blockUhr);
+  var blk=U.block? Math.round(U.block/60000) : 0;
+  if(blk) aus=false;
+  render('<div class="card"><h2>'+(blk? blk+"-Minuten-Block fertig" : aus?"Herzen alle":"Durchgang fertig")+'</h2>'+
   '<p class="big">'+pct+'%</p>'+
   '<p class="note" style="text-align:center">'+U.ok+' von '+n+' richtig · '+Math.max(1,Math.round((Date.now()-U.t0)/60000))+' Minuten</p></div>'+
   (schwach.length
@@ -222,12 +264,19 @@ function uebDone(){
         return c? '<div class="err"><b>'+c.pt+'</b><br>'+c.de+'</div>' : "";
       }).join("")+'<button class="btn" onclick="drill('+JSON.stringify(schwach).replace(/"/g,"&quot;")+',\'Aus der Übung\')">Diese jetzt drillen</button>'
     : '<p class="note">Kein Fehler. Starke Runde.</p>')+
-  '<button class="btn ghost" onclick="uebMenu()">Noch ein Durchgang</button>'+
+  (blk? '<button class="btn" onclick="uebBlock('+blk+')">Noch ein Block · '+blk+' Min</button>' : '<button class="btn ghost" onclick="uebMenu()">Noch ein Durchgang</button>')+
   '<button class="btn ghost" onclick="uebQuit()">Zurück</button>');
   U=null;
 }
 
-window.uebMenu=uebMenu; window.uebStart=uebStart; window.uebZeig=uebZeig; window.uebScore=uebScore;
+function blockMenu(){
+  var cur=S.blockMin||3;
+  render('<button class="back" onclick="settings()">‹ zurück</button><h2>Lernblock</h2>'+
+  '<p class="note" style="margin-bottom:12px">Wie lange ein Block dauert. Im Block laufen die Aufgaben kreuz und quer, bis die Zeit um ist — Schwaches kommt öfter dran.</p>'+
+  [1,3,6,9].map(function(m){ return '<button class="tile" onclick="S.blockMin='+m+';save();settings()" style="'+(cur===m?"border-color:var(--accent)":"")+'"><span class="ic">⏱️</span><span>'+m+' '+(m===1?"Minute":"Minuten")+(cur===m?' <span class="done">· aktiv</span>':'')+'<small>'+({1:"Kurz zwischendurch",3:"Ein schneller Block",6:"Konzentriert",9:"Lang und tief"})[m]+'</small></span><span class="chev">›</span></button>'; }).join(""));
+}
+window.blockMenu=blockMenu;
+window.uebMenu=uebMenu; window.uebStart=uebStart; window.uebBlock=uebBlock; window.uebZeig=uebZeig; window.uebScore=uebScore;
 window.uebWahl=uebWahl; window.uebWahlCheck=uebWahlCheck; window.uebBau=uebBau; window.uebBauCheck=uebBauCheck; window.uebTippCheck=uebTippCheck;
 window.uebHoerCheck=uebHoerCheck; window.uebMic=uebMic; window.uebWeiter=uebWeiter; window.uebQuit=uebQuit;
 window.U_text=U_text;
