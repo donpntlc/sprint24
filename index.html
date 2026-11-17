@@ -2612,6 +2612,7 @@ function home(){
    :`<div class="card" style="padding:14px 16px"><p class="sub">Startpunkt</p><p style="margin:6px 0 0;font-weight:700">${preR().score}/${preR().of} vorher${postR()?` · ${postR().score}/${postR().of} jetzt`:""}</p>${postR()?`<p class="note">Unterschied: <b style="color:var(--accent)">+${postR().score-preR().score}</b> Sätze</p>`:`<p class="note">Am Ende machst du genau denselben Test nochmal.</p>`}</div>`}
   <h2>Üben</h2>
   <button class="tile" onclick="uebBlock(S.blockMin||3)" style="border-color:var(--accent)"><span class="ic">⏱️</span><span>Lernblock · ${S.blockMin||3} Min<small>Aufgaben kreuz und quer, bis die Zeit um ist · Länge unter Durchgang wählbar</small></span><span class="chev">›</span></button>
+  ${window.bildDa&&bildDa()?`<button class="tile" onclick="bildMenu()"><span class="ic">🖼️</span><span>Bildkarten<small>Bild sehen, Wort hören, selbst sagen — ganz ohne Deutsch</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="uebMenu()"><span class="ic">🎮</span><span>Durchgang<small>Wechselnde Aufgaben: ${istSpr()?"erkennen, auswählen, bauen, tippen, hören, sprechen":"erkennen, auswählen, laut antworten"}</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="go('scn')"><span class="ic">🎯</span><span>Abruf nach ${istSpr()?"Szenario":"Bereich"}<small>${istSpr()?"Deutsch rein, du sagst es laut, dann Auflösung":"Frage rein, du antwortest laut, dann Auflösung"}</small></span><span class="chev">›</span></button>
   ${Object.keys(MISSIONS).length?`<button class="tile" onclick="go('mission')"><span class="ic">🎭</span><span>Mission spielen<small>Ich bin das Gegenüber, du musst durchkommen</small></span><span class="chev">›</span></button>`:""}
@@ -3163,6 +3164,7 @@ home();
 <script src="profil.js"></script>
 <script src="stimmen.js"></script>
 <script src="monolog.js"></script>
+<script src="bild.js"></script>
 <script src="gen.js"></script>
 </body>
 </html>
