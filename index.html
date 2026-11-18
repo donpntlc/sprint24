@@ -167,6 +167,7 @@ const PT_SCN = [
   {id:"s7", name:"Telefon & WhatsApp", icon:"\ud83d\udcf2"},
   {id:"s8", name:"Kennenlernen", icon:"\ud83e\udd1d"},
  {id:"s9", name:"Zahlen & Strukturen", icon:"\ud83d\udd22"},
+{id:"g1", name:"Gottesdienst", icon:"⛪"},
  {id:"w", name:"Typische Fehler", icon:"\u26a0\ufe0f"}
 ];
 
@@ -311,7 +312,37 @@ const PT_CHUNKS = [
 ["s5", "Wann fährt der nächste Bus?", "Quando passa o próximo ônibus?"],
 ["s5", "Ich steige hier aus.", "Vou descer aqui."],
 ["s7", "Können wir uns morgen treffen?", "A gente pode se ver amanhã?"],
-["s7", "Schreib mir, wenn du da bist.", "Me avisa quando chegar."]
+["s7", "Schreib mir, wenn du da bist.", "Me avisa quando chegar."],
+["g1", "Herr, erbarme dich.", "Senhor, tende piedade de nós."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Glória ao Pai e ao Filho e ao Espírito Santo."],
+["g1", "Jetzt und immer und in alle Ewigkeit. Amen.", "Agora e sempre, e pelos séculos dos séculos. Amém."],
+["g1", "Der Herr sei mit euch.", "O Senhor esteja convosco."],
+["g1", "Und mit deinem Geiste.", "E com o teu espírito."],
+["g1", "Der Friede sei mit euch.", "A paz esteja convosco."],
+["g1", "Lasst uns beten.", "Oremos."],
+["g1", "Vater unser im Himmel.", "Pai nosso, que estais nos céus."],
+["g1", "Geheiligt werde dein Name.", "Santificado seja o vosso nome."],
+["g1", "Ich glaube an den einen Gott.", "Creio em um só Deus."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Corações ao alto. — O nosso coração está em Deus."],
+["g1", "Nehmt und esst alle davon: Das ist mein Leib.", "Tomai, todos, e comei: isto é o meu corpo."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaft auferstanden!", "Cristo ressuscitou! — Em verdade ressuscitou!"],
+["g1", "Gehet hin in Frieden.", "Ide em paz."],
+["g1", "Aus dem Evangelium nach Johannes.", "Evangelho de Jesus Cristo segundo João."],
+["g1", "die Messe", "a missa"],
+["g1", "der Priester", "o padre"],
+["g1", "die Kommunion", "a comunhão"],
+["g1", "die Beichte", "a confissão"],
+["g1", "das Gebet", "a oração"],
+["g1", "der Segen", "a bênção"],
+["g1", "das Kreuz", "a cruz"],
+["g1", "die Kerze", "a vela"],
+["g1", "die Predigt", "a homilia"],
+["g1", "die Ikone", "o ícone"],
+["g1", "die Lesung", "a leitura"],
+["g1", "das Evangelium", "o Evangelho"],
+["g1", "die Gemeinde", "a comunidade"],
+["g1", "die Taufe", "o batismo"],
+["g1", "der Altar", "o altar"]
 ].map((c,i)=>({id:"c"+i, scn:c[0], de:c[1], pt:c[2]}));
 
 const LESEN = [
@@ -431,7 +462,8 @@ const PT_FOCI=[
  {id:"reise", t:"Reise & Alltag überleben", d:"Ankunft, Hotel, Essen, Markt, Weg, Apotheke", scn:["s1","s2","s3","s4","s5","s6"]},
  {id:"leute", t:"Leute kennenlernen", d:"Smalltalk, über dich reden, sich verabreden", scn:["s8","s3","s7"]},
  {id:"telefon", t:"Telefon & Nachrichten", d:"Anrufe, WhatsApp, Termine ausmachen", scn:["s7","s2","s6"]},
- {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorität, alle acht Szenarien", scn:["s1","s2","s3","s4","s5","s6","s7","s8"]}
+ {id:"gottesdienst", t:"Gottesdienst verstehen", d:"Gebete, Antworten und Begriffe, die im Gottesdienst immer wieder kommen", scn:["g1"]},
+ {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorität, alle acht Szenarien", scn:["s1","s2","s3","s4","s5","s6","s7","s8","g1"]}
 ];
 const PLANS=[
  {id:"12", t:"12-Stunden-Sprint", d:"Wenig Zeit — nur der Kern, höchstens 8 Einträge pro Bereich"},
@@ -843,7 +875,37 @@ const ES_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "¿Cuándo sale el próximo autobús?"],
 ["s5", "Ich steige hier aus.", "Me bajo aquí."],
 ["s7", "Können wir uns morgen treffen?", "¿Nos vemos mañana?"],
-["s7", "Schreib mir, wenn du da bist.", "Escríbeme cuando llegues."]
+["s7", "Schreib mir, wenn du da bist.", "Escríbeme cuando llegues."],
+["g1", "Herr, erbarme dich.", "Señor, ten piedad."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Gloria al Padre, y al Hijo, y al Espíritu Santo."],
+["g1", "Jetzt und immer und in alle Ewigkeit. Amen.", "Ahora y siempre, y por los siglos de los siglos. Amén."],
+["g1", "Der Herr sei mit euch.", "El Señor esté con vosotros."],
+["g1", "Und mit deinem Geiste.", "Y con tu espíritu."],
+["g1", "Der Friede sei mit euch.", "La paz esté con vosotros."],
+["g1", "Lasst uns beten.", "Oremos."],
+["g1", "Vater unser im Himmel.", "Padre nuestro, que estás en el cielo."],
+["g1", "Geheiligt werde dein Name.", "Santificado sea tu nombre."],
+["g1", "Ich glaube an den einen Gott.", "Creo en un solo Dios."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Levantemos el corazón. — Lo tenemos levantado hacia el Señor."],
+["g1", "Nehmt und esst alle davon: Das ist mein Leib.", "Tomad y comed todos de él, porque esto es mi Cuerpo."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaft auferstanden!", "¡Cristo ha resucitado! — ¡En verdad ha resucitado!"],
+["g1", "Gehet hin in Frieden.", "Podéis ir en paz."],
+["g1", "Aus dem Evangelium nach Johannes.", "Lectura del santo Evangelio según san Juan."],
+["g1", "die Messe", "la misa"],
+["g1", "der Priester", "el sacerdote"],
+["g1", "die Kommunion", "la comunión"],
+["g1", "die Beichte", "la confesión"],
+["g1", "das Gebet", "la oración"],
+["g1", "der Segen", "la bendición"],
+["g1", "das Kreuz", "la cruz"],
+["g1", "die Kerze", "la vela"],
+["g1", "die Predigt", "la homilía"],
+["g1", "die Ikone", "el icono"],
+["g1", "die Lesung", "la lectura"],
+["g1", "das Evangelium", "el Evangelio"],
+["g1", "die Gemeinde", "la comunidad"],
+["g1", "die Taufe", "el bautismo"],
+["g1", "der Altar", "el altar"]
 ].map((c,i)=>({id:"e"+i, scn:c[0], de:c[1], pt:c[2]}));
 const ES_MISSIONS={
 s1:{title:"Vom Flughafen ins Hotel", turns:[
@@ -872,7 +934,8 @@ const ES_TOPICS=[
 const ES_FOCI=[
  {id:"reise", t:"Reise & Alltag überleben", d:"Ankunft, Hotel, Essen, Markt, Weg, Apotheke", scn:["s1","s2","s3","s4","s5","s6"]},
  {id:"leute", t:"Leute kennenlernen", d:"Smalltalk, über dich reden", scn:["s8","s3","s7"]},
- {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorität", scn:["s1","s2","s3","s4","s5","s6","s7","s8"]}
+ {id:"gottesdienst", t:"Gottesdienst verstehen", d:"Gebete, Antworten und Begriffe, die im Gottesdienst immer wieder kommen", scn:["g1"]},
+ {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorität", scn:["s1","s2","s3","s4","s5","s6","s7","s8","g1"]}
 ];
 const K_SCN=[
  {id:"k1", name:"Schrift & Lesen", icon:"\ud83d\udd24"},
@@ -892,11 +955,12 @@ const K_TOPICS=[
 const L_FOCI=[
  {id:"reise", t:"Reise & Alltag", d:"Ankunft, Hotel, Essen, Weg, Apotheke", scn:["s1","s2","s3","s4","s5","s6"]},
  {id:"leute", t:"Leute kennenlernen", d:"Smalltalk und Telefon", scn:["s8","s7","s3"]},
- {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorit\u00e4t", scn:["s1","s2","s3","s4","s5","s6","s7","s8"]}
+ {id:"gottesdienst", t:"Gottesdienst verstehen", d:"Gebete, Antworten und Begriffe, die im Gottesdienst immer wieder kommen", scn:["g1"]},
+ {id:"alles", t:"Alles gleich gewichtet", d:"Keine Priorit\u00e4t", scn:["s1","s2","s3","s4","s5","s6","s7","s8","g1"]}
 ];
 const L_TOPICS=[
  {t:"Wer du bist", hints:["Herkunft","Wohnort","Familie","Alter"]},
- {t:"Was du arbeitest", hints:["Beruf","online","Kunden","Training"]},
+ {t:"Was du arbeitest", hints:["Beruf","Arbeitszeit","Kollegen","was dir gefällt"]},
  {t:"Deine Pl\u00e4ne", hints:["Reise","Dauer","was du sehen willst","danach"]}
 ];
 const EN_CHUNKS=[
@@ -959,7 +1023,37 @@ const EN_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "When's the next bus?"],
 ["s5", "Ich steige hier aus.", "I'm getting off here."],
 ["s7", "Können wir uns morgen treffen?", "Can we meet tomorrow?"],
-["s7", "Schreib mir, wenn du da bist.", "Text me when you get there."]
+["s7", "Schreib mir, wenn du da bist.", "Text me when you get there."],
+["g1", "Herr, erbarme dich.", "Lord, have mercy."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Glory to the Father, and to the Son, and to the Holy Spirit."],
+["g1", "Jetzt und immer und in alle Ewigkeit. Amen.", "Now and ever, and unto ages of ages. Amen."],
+["g1", "Der Herr sei mit euch.", "The Lord be with you."],
+["g1", "Und mit deinem Geiste.", "And with your spirit."],
+["g1", "Der Friede sei mit euch.", "Peace be with you."],
+["g1", "Lasst uns beten.", "Let us pray."],
+["g1", "Vater unser im Himmel.", "Our Father, who art in heaven."],
+["g1", "Geheiligt werde dein Name.", "Hallowed be thy name."],
+["g1", "Ich glaube an den einen Gott.", "I believe in one God."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Lift up your hearts. — We lift them up to the Lord."],
+["g1", "Nehmt und esst alle davon: Das ist mein Leib.", "Take this, all of you, and eat of it: this is my Body."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaft auferstanden!", "Christ is risen! — He is risen indeed!"],
+["g1", "Gehet hin in Frieden.", "Go in peace."],
+["g1", "Aus dem Evangelium nach Johannes.", "A reading from the holy Gospel according to John."],
+["g1", "die Messe", "the Mass"],
+["g1", "der Priester", "the priest"],
+["g1", "die Kommunion", "Communion"],
+["g1", "die Beichte", "confession"],
+["g1", "das Gebet", "the prayer"],
+["g1", "der Segen", "the blessing"],
+["g1", "das Kreuz", "the cross"],
+["g1", "die Kerze", "the candle"],
+["g1", "die Predigt", "the sermon"],
+["g1", "die Ikone", "the icon"],
+["g1", "die Lesung", "the reading"],
+["g1", "das Evangelium", "the Gospel"],
+["g1", "die Gemeinde", "the congregation"],
+["g1", "die Taufe", "baptism"],
+["g1", "der Altar", "the altar"]
 ].map((c,i)=>({id:"en"+i, scn:c[0], de:c[1], pt:c[2]}));
 const FR_CHUNKS=[
 ["s1", "Kannst du mich ins Zentrum bringen?", "Pouvez-vous m'emmener au centre-ville ?"],
@@ -1021,7 +1115,37 @@ const FR_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "Le prochain bus part quand ?"],
 ["s5", "Ich steige hier aus.", "Je descends ici."],
 ["s7", "Können wir uns morgen treffen?", "On peut se voir demain ?"],
-["s7", "Schreib mir, wenn du da bist.", "Écris-moi quand tu arrives."]
+["s7", "Schreib mir, wenn du da bist.", "Écris-moi quand tu arrives."],
+["g1", "Herr, erbarme dich.", "Seigneur, prends pitié."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Gloire au Père, et au Fils, et au Saint-Esprit."],
+["g1", "Jetzt und immer und in alle Ewigkeit. Amen.", "Maintenant et toujours, et aux siècles des siècles. Amen."],
+["g1", "Der Herr sei mit euch.", "Le Seigneur soit avec vous."],
+["g1", "Und mit deinem Geiste.", "Et avec votre esprit."],
+["g1", "Der Friede sei mit euch.", "La paix soit avec vous."],
+["g1", "Lasst uns beten.", "Prions."],
+["g1", "Vater unser im Himmel.", "Notre Père, qui es aux cieux."],
+["g1", "Geheiligt werde dein Name.", "Que ton nom soit sanctifié."],
+["g1", "Ich glaube an den einen Gott.", "Je crois en un seul Dieu."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Élevons notre cœur. — Nous le tournons vers le Seigneur."],
+["g1", "Nehmt und esst alle davon: Das ist mein Leib.", "Prenez, et mangez-en tous : ceci est mon corps."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaft auferstanden!", "Christ est ressuscité ! — Il est vraiment ressuscité !"],
+["g1", "Gehet hin in Frieden.", "Allez dans la paix du Christ."],
+["g1", "Aus dem Evangelium nach Johannes.", "Évangile de Jésus-Christ selon saint Jean."],
+["g1", "die Messe", "la messe"],
+["g1", "der Priester", "le prêtre"],
+["g1", "die Kommunion", "la communion"],
+["g1", "die Beichte", "la confession"],
+["g1", "das Gebet", "la prière"],
+["g1", "der Segen", "la bénédiction"],
+["g1", "das Kreuz", "la croix"],
+["g1", "die Kerze", "le cierge"],
+["g1", "die Predigt", "l'homélie"],
+["g1", "die Ikone", "l'icône"],
+["g1", "die Lesung", "la lecture"],
+["g1", "das Evangelium", "l'Évangile"],
+["g1", "die Gemeinde", "la paroisse"],
+["g1", "die Taufe", "le baptême"],
+["g1", "der Altar", "l'autel"]
 ].map((c,i)=>({id:"fr"+i, scn:c[0], de:c[1], pt:c[2]}));
 const IT_CHUNKS=[
 ["s1", "Kannst du mich ins Zentrum bringen?", "Mi può portare in centro?"],
@@ -1083,7 +1207,37 @@ const IT_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "Quando parte il prossimo autobus?"],
 ["s5", "Ich steige hier aus.", "Scendo qui."],
 ["s7", "Können wir uns morgen treffen?", "Ci vediamo domani?"],
-["s7", "Schreib mir, wenn du da bist.", "Scrivimi quando arrivi."]
+["s7", "Schreib mir, wenn du da bist.", "Scrivimi quando arrivi."],
+["g1", "Herr, erbarme dich.", "Signore, pietà."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Gloria al Padre e al Figlio e allo Spirito Santo."],
+["g1", "Jetzt und immer und in alle Ewigkeit. Amen.", "Ora e sempre e nei secoli dei secoli. Amen."],
+["g1", "Der Herr sei mit euch.", "Il Signore sia con voi."],
+["g1", "Und mit deinem Geiste.", "E con il tuo spirito."],
+["g1", "Der Friede sei mit euch.", "La pace sia con voi."],
+["g1", "Lasst uns beten.", "Preghiamo."],
+["g1", "Vater unser im Himmel.", "Padre nostro, che sei nei cieli."],
+["g1", "Geheiligt werde dein Name.", "Sia santificato il tuo nome."],
+["g1", "Ich glaube an den einen Gott.", "Credo in un solo Dio."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "In alto i nostri cuori. — Sono rivolti al Signore."],
+["g1", "Nehmt und esst alle davon: Das ist mein Leib.", "Prendete, e mangiatene tutti: questo è il mio Corpo."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaft auferstanden!", "Cristo è risorto! — È veramente risorto!"],
+["g1", "Gehet hin in Frieden.", "Andate in pace."],
+["g1", "Aus dem Evangelium nach Johannes.", "Dal Vangelo secondo Giovanni."],
+["g1", "die Messe", "la messa"],
+["g1", "der Priester", "il sacerdote"],
+["g1", "die Kommunion", "la comunione"],
+["g1", "die Beichte", "la confessione"],
+["g1", "das Gebet", "la preghiera"],
+["g1", "der Segen", "la benedizione"],
+["g1", "das Kreuz", "la croce"],
+["g1", "die Kerze", "la candela"],
+["g1", "die Predigt", "l'omelia"],
+["g1", "die Ikone", "l'icona"],
+["g1", "die Lesung", "la lettura"],
+["g1", "das Evangelium", "il Vangelo"],
+["g1", "die Gemeinde", "la comunità"],
+["g1", "die Taufe", "il battesimo"],
+["g1", "der Altar", "l'altare"]
 ].map((c,i)=>({id:"it"+i, scn:c[0], de:c[1], pt:c[2]}));
 const RU_CHUNKS=[
 ["s1", "Kannst du mich ins Zentrum bringen?", "Можете отвезти меня в центр? · Moschetje otwesti menja w zentr?"],
@@ -1143,7 +1297,37 @@ const RU_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "Когда следующий автобус? · Kagda sledujuschtschi awtobus?"],
 ["s5", "Ich steige hier aus.", "Я выхожу здесь. · Ja wychoschu sdjes."],
 ["s7", "Können wir uns morgen treffen?", "Встретимся завтра? · Wstretimsja sawtra?"],
-["s7", "Schreib mir, wenn du da bist.", "Напиши, когда приедешь. · Napischi, kagda prijedesch."]
+["s7", "Schreib mir, wenn du da bist.", "Напиши, когда приедешь. · Napischi, kagda prijedesch."],
+["g1", "Herr, erbarme dich.", "Господи, помилуй. · Gospodi, pomiluj."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Слава Отцу и Сыну и Святому Духу. · Slawa Otzu i Synu i Swjatomu Duchu."],
+["g1", "Jetzt und immerdar und in alle Ewigkeit. Amen.", "И ныне и присно и во веки веков. Аминь. · I nyne i prisno i wo weki wekow. Amin."],
+["g1", "Friede allen.", "Мир всем. · Mir wsem."],
+["g1", "Und deinem Geiste.", "И духови твоему. · I duchowi twojemu."],
+["g1", "Lasst uns zum Herrn beten.", "Господу помолимся. · Gospodu pomolimsja."],
+["g1", "Vater unser, der du bist im Himmel.", "Отче наш, Иже еси на небесех. · Otsche nasch, ische jessi na nebesech."],
+["g1", "Geheiligt werde dein Name.", "Да святится имя Твое. · Da swjatitsja imja Twoje."],
+["g1", "Ich glaube an den einen Gott.", "Верую во единаго Бога. · Weruju wo jedinago Boga."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Горе имеим сердца. — Имамы ко Господу. · Gore imejim serdza. — Imamy ko Gospodu."],
+["g1", "Nehmt, esst, das ist mein Leib.", "Приимите, ядите, сие есть Тело Мое. · Priimite, jadite, sije jest Telo Moje."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaftig auferstanden!", "Христос воскресе! — Воистину воскресе! · Christos woskrese! — Woistinu woskrese!"],
+["g1", "Lasst uns in Frieden hinausgehen.", "С миром изыдем. · S mirom isydem."],
+["g1", "Weisheit! Stehet aufrecht!", "Премудрость, прости! · Premudrost, prosti!"],
+["g1", "Halleluja.", "Аллилуия. · Allilujja."],
+["g1", "der Gottesdienst", "богослужение · bogosluschenije"],
+["g1", "die Göttliche Liturgie", "литургия · liturgija"],
+["g1", "der Priester", "священник · swjaschtschennik"],
+["g1", "die Kommunion", "причастие · pritschastije"],
+["g1", "die Beichte", "исповедь · ispowed"],
+["g1", "das Gebet", "молитва · molitwa"],
+["g1", "der Segen", "благословение · blagoslowenije"],
+["g1", "das Kreuz", "крест · krest"],
+["g1", "die Kerze", "свеча · swetscha"],
+["g1", "die Predigt", "проповедь · propowed"],
+["g1", "die Ikone", "икона · ikona"],
+["g1", "das Evangelium", "Евангелие · Jewangelije"],
+["g1", "die Gemeinde", "приход · prichod"],
+["g1", "die Taufe", "крещение · kreschtschenije"],
+["g1", "der Altarraum", "алтарь · altar"]
 ].map((c,i)=>({id:"ru"+i, scn:c[0], de:c[1], pt:c[2]}));
 const SR_CHUNKS=[
 ["s1", "Kannst du mich ins Zentrum bringen?", "Možete li me odvesti u centar?"],
@@ -1203,7 +1387,37 @@ const SR_CHUNKS=[
 ["s5", "Wann fährt der nächste Bus?", "Kada polazi sledeći autobus?"],
 ["s5", "Ich steige hier aus.", "Izlazim ovde."],
 ["s7", "Können wir uns morgen treffen?", "Možemo li da se vidimo sutra?"],
-["s7", "Schreib mir, wenn du da bist.", "Piši mi kad stigneš."]
+["s7", "Schreib mir, wenn du da bist.", "Piši mi kad stigneš."],
+["g1", "Herr, erbarme dich.", "Gospode, pomiluj."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Slava Ocu i Sinu i Svetome Duhu."],
+["g1", "Jetzt und immerdar und in alle Ewigkeit. Amen.", "I sada i uvek i u vekove vekova. Amin."],
+["g1", "Friede allen.", "Mir svima."],
+["g1", "Und deinem Geiste.", "I duhu tvome."],
+["g1", "Lasst uns zum Herrn beten.", "Gospodu se pomolimo."],
+["g1", "Vater unser, der du bist im Himmel.", "Oče naš, koji si na nebesima."],
+["g1", "Geheiligt werde dein Name.", "Da se sveti ime Tvoje."],
+["g1", "Ich glaube an den einen Gott.", "Verujem u jednoga Boga."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Gore imajmo srca. — Imamo ih ka Gospodu."],
+["g1", "Nehmt, esst, das ist mein Leib.", "Primite, jedite, ovo je telo moje."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaftig auferstanden!", "Hristos voskrese! — Vaistinu voskrese!"],
+["g1", "Lasst uns in Frieden hinausgehen.", "Iziđimo s mirom."],
+["g1", "Weisheit! Stehet aufrecht!", "Premudrost, prosti!"],
+["g1", "Halleluja.", "Aliluja."],
+["g1", "der Gottesdienst", "bogosluženje"],
+["g1", "die Göttliche Liturgie", "liturgija"],
+["g1", "der Priester", "sveštenik"],
+["g1", "die Kommunion", "pričešće"],
+["g1", "die Beichte", "ispovest"],
+["g1", "das Gebet", "molitva"],
+["g1", "der Segen", "blagoslov"],
+["g1", "das Kreuz", "krst"],
+["g1", "die Kerze", "sveća"],
+["g1", "die Predigt", "propoved"],
+["g1", "die Ikone", "ikona"],
+["g1", "das Evangelium", "Jevanđelje"],
+["g1", "die Gemeinde", "parohija"],
+["g1", "die Taufe", "krštenje"],
+["g1", "der Altarraum", "oltar"]
 ].map((c,i)=>({id:"sr"+i, scn:c[0], de:c[1], pt:c[2]}));
 const GR_CHUNKS=[
 ["k1","Wie liest man die Buchstabenfolge ου?","Wie ein deutsches u. λόγου wird logu gesprochen, nicht lo-gou."],
@@ -1702,7 +1916,37 @@ const EL_CHUNKS=[
 ["w", "Warum klingt ein Nicken nach oben unhöflich?", "Tut es nicht — das kurze Kopfheben mit Zungenschnalzen ist einfach das griechische Nein."],
 ["w", "Warum solltest du das Wort μαλάκα nicht selbst benutzen?", "μαλάκα hörst du ständig unter Freunden. Aus deinem Mund ist es eine Beleidigung. Lass es."],
 ["w", "Welche drei Bedeutungen hat παρακαλώ?", "bitte, gern geschehen und wie bitte? — der Ton entscheidet. · parakaló"],
-["w", "Siezen oder duzen?", "Fremde und Ältere mit εσείς, nicht mit εσύ. Im Zweifel siezen."]
+["w", "Siezen oder duzen?", "Fremde und Ältere mit εσείς, nicht mit εσύ. Im Zweifel siezen."],
+["g1", "Herr, erbarme dich.", "Κύριε, ελέησον. · Kírie, eléison."],
+["g1", "Ehre sei dem Vater und dem Sohn und dem Heiligen Geist.", "Δόξα Πατρί και Υιώ και Αγίω Πνεύματι. · Dóxa Patrí ke Ió ke Ajío Pnévmati."],
+["g1", "Jetzt und immerdar und in alle Ewigkeit. Amen.", "Και νυν και αεί και εις τους αιώνας των αιώνων. Αμήν. · Ke nin ke aí ke is tous eónas ton eónon. Amín."],
+["g1", "Friede allen.", "Ειρήνη πάσι. · Iríni pási."],
+["g1", "Und deinem Geiste.", "Και τω πνεύματί σου. · Ke to pnévmatí su."],
+["g1", "Lasst uns zum Herrn beten.", "Του Κυρίου δεηθώμεν. · Tu Kiríu deithómen."],
+["g1", "Vater unser, der du bist im Himmel.", "Πάτερ ημών, ο εν τοις ουρανοίς. · Páter imón, o en tis uranís."],
+["g1", "Geheiligt werde dein Name.", "Αγιασθήτω το όνομά σου. · Ajiasthíto to ónomá su."],
+["g1", "Ich glaube an den einen Gott.", "Πιστεύω εις ένα Θεόν. · Pistévo is éna Theón."],
+["g1", "Erhebet die Herzen. — Wir haben sie beim Herrn.", "Άνω σχώμεν τας καρδίας. — Έχομεν προς τον Κύριον. · Áno schómen tas kardías. — Échomen pros ton Kírion."],
+["g1", "Nehmt, esst, das ist mein Leib.", "Λάβετε, φάγετε· τούτό μού εστι το σώμα. · Lávete, fájete· túto mu esti to sóma."],
+["g1", "Christus ist auferstanden! — Er ist wahrhaftig auferstanden!", "Χριστός ανέστη! — Αληθώς ανέστη! · Christós anésti! — Alithós anésti!"],
+["g1", "Lasst uns in Frieden hinausgehen.", "Εν ειρήνη προέλθωμεν. · En iríni proélthomen."],
+["g1", "Weisheit! Stehet aufrecht!", "Σοφία, ορθοί! · Sofía, orthí!"],
+["g1", "Halleluja.", "Αλληλούια. · Allilúia."],
+["g1", "der Gottesdienst", "η λατρεία · i latría"],
+["g1", "die Göttliche Liturgie", "η Θεία Λειτουργία · i Thía Liturjía"],
+["g1", "der Priester", "ο ιερέας · o ieréas"],
+["g1", "die Kommunion", "η Θεία Κοινωνία · i Thía Kinonía"],
+["g1", "die Beichte", "η εξομολόγηση · i exomolójisi"],
+["g1", "das Gebet", "η προσευχή · i prosefchí"],
+["g1", "der Segen", "η ευλογία · i evlojía"],
+["g1", "das Kreuz", "ο σταυρός · o stavrós"],
+["g1", "die Kerze", "το κερί · to kerí"],
+["g1", "die Predigt", "το κήρυγμα · to kírigma"],
+["g1", "die Ikone", "η εικόνα · i ikóna"],
+["g1", "das Evangelium", "το Ευαγγέλιο · to Evanjélio"],
+["g1", "die Gemeinde", "η ενορία · i enoría"],
+["g1", "die Taufe", "η βάπτιση · i váptisi"],
+["g1", "der Altarraum", "το ιερό · to ieró"]
 ].map((c,i)=>({id:"el"+i, scn:c[0], de:c[1], pt:c[2]}));
 
 const RUBRIK_DATA={
@@ -1748,7 +1992,7 @@ function applyRubrik(){
   const d=cfg();
   SCN=d.scn; CHUNKS=d.chunks; MISSIONS=d.missions; TOPICS=d.topics;
   // Der Bereich "Vorsicht" l\u00e4uft in jedem Fokus mit
-  FOCI=d.foci.map(f=>CHUNKS.some(c=>c.scn==="w") && !f.scn.includes("w") ? Object.assign({}, f, {scn:f.scn.concat("w")}) : f);
+  FOCI=d.foci.map(f=>f.id!=="gottesdienst" && CHUNKS.some(c=>c.scn==="w") && !f.scn.includes("w") ? Object.assign({}, f, {scn:f.scn.concat("w")}) : f);
   if(!FOCI.find(f=>f.id===S.focus)) S.focus=FOCI[0].id;
 }
 
