@@ -2001,6 +2001,7 @@ const KEY="brasileiro-sprint-v1";
 let S = {box:{}, errors:[], tests:{}, said:0, base:"sol", accent:"salbei"};
 try{ const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw)); }catch(e){}
 S.base="sol"; S.accent="salbei";
+S.tests=S.tests||{}; ["1","2","3","5"].forEach(k=>{ if(S.tests[k] && !S.tests["pt:"+k]){ S.tests["pt:"+k]=S.tests[k]; } delete S.tests[k]; });
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 
 let VOICES=[];
@@ -2202,6 +2203,7 @@ function logError(id, de, pt){
   if(!S.errors.find(e=>e.id===id)) S.errors.push({id,de,pt});
   save();
 }
+function myErr(){ return (S.errors||[]).filter(e=>CHUNKS.some(c=>c.id===e.id)); }
 function clearError(id){ S.errors = S.errors.filter(e=>e.id!==id); save(); }
 
 /* ---------------- Reset mit Sicherheitsnetz ---------------- */
@@ -2728,15 +2730,15 @@ function steps(){
    {t:"Startpunkt messen", s:"20 "+einh()+" ohne Hilfe", run:"levelTest('pre')", done:!!preR()},
   ];
   if(S.rubrik==="pt"){
-    L.push({t:"Lesen: Schrift \u2192 Laut", s:"30 W\u00f6rter vorlesen \u00b7 max. 3 Fehler", run:"lesen()", done:!!(S.tests[1]&&S.tests[1].pass)});
-    L.push({t:"Englisch-Hebel", s:"40 W\u00f6rter umrechnen \u00b7 30 richtig", run:"hebel()", done:!!(S.tests[2]&&S.tests[2].pass)});
+    L.push({t:"Lesen: Schrift \u2192 Laut", s:"30 W\u00f6rter vorlesen \u00b7 max. 3 Fehler", run:"lesen()", done:!!(S.tests[S.rubrik+":"+1]&&S.tests[S.rubrik+":"+1].pass)});
+    L.push({t:"Englisch-Hebel", s:"40 W\u00f6rter umrechnen \u00b7 30 richtig", run:"hebel()", done:!!(S.tests[S.rubrik+":"+2]&&S.tests[S.rubrik+":"+2].pass)});
   }
   order.forEach(s=>L.push({t:s.name, s:(inFocus(s.id)?"im Fokus \u00b7 ":"")+"70 % der "+einh()+" sitzen", run:`drillScn('${s.id}')`, done:scnDone(s.id)}));
-  L.push({t:"Pr\u00fcfung 3 \u00b7 Abruf im Fokus", s:"20 Prompts \u00b7 16 richtig", run:"mix(20,4,3)", done:!!(S.tests[3]&&S.tests[3].pass)});
+  L.push({t:"Abruf im Fokus", s:"20 "+einh()+" \u00b7 80 % richtig", run:"mix(20,4,3)", done:!!(S.tests[S.rubrik+":"+3]&&S.tests[S.rubrik+":"+3].pass)});
   if(Object.keys(MISSIONS).length) L.push({t:"Missionen spielen", s:"alle durchspielen", run:"missionList()", done:Object.keys(S.missDone||{}).length>=Object.keys(MISSIONS).length});
   L.push({t:"4/3/2 Monolog", s:"ein Thema, drei Runden", run:"f432List()", done:(S.f432Done||0)>=1});
-  L.push({t:"Pr\u00fcfung 5 \u00b7 Mix unter Zeitdruck", s:"30 Prompts \u00b7 24 richtig", run:"mix(30,3,5)", done:!!(S.tests[5]&&S.tests[5].pass)});
-  L.push({t:"Fehlerliste leer drillen", s:"nur noch deine Schwachstellen", run:"drillErrors()", done:S.errors.length===0&&!!preR()});
+  L.push({t:"Mix unter Zeitdruck", s:"30 "+einh()+" \u00b7 80 % richtig", run:"mix(30,3,5)", done:!!(S.tests[S.rubrik+":"+5]&&S.tests[S.rubrik+":"+5].pass)});
+  L.push({t:"Fehlerliste leer drillen", s:"nur noch deine Schwachstellen", run:"drillErrors()", done:myErr().length===0&&!!preR()});
   L.push({t:"Gespr\u00e4ch", s:"frei reden, 10 Minuten", run:"dlgMenu()", done:(S.exams||[]).some(x=>x.rubrik===S.rubrik)});
   L.push({t:"Endtest", s:"dieselben 20 "+einh()+" wie am Start", run:"levelTest('post')", done:!!postR()});
   return L;
@@ -2855,7 +2857,7 @@ function home(){
   <div class="stat">
     <div><b>${sitting}/${pool.length}</b><span>im Fokus</span></div>
     <div><b>${S.said}</b><span>laut gesagt</span></div>
-    <div><b>${S.errors.length}</b><span>Fehlerliste</span></div>
+    <div><b>${myErr().length}</b><span>Fehlerliste</span></div>
   </div>
   ${S.mode==="streng" ? strictView() : `
   ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Zuerst: Startpunkt messen<small>20 ${einh()} ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
@@ -2871,12 +2873,12 @@ function home(){
   <h2 style="margin-top:18px">Prüfungen</h2>
   ${S.rubrik==="pt"?`<button class="tile" onclick="lesen()"><span class="ic">📖</span><span>1 · Lesen: Schrift → Laut<small>30 Wörter kalt vorlesen · max. 3 Fehler</small>${badge(1)}</span><span class="chev">›</span></button>
   <button class="tile" onclick="hebel()"><span class="ic">🔄</span><span>2 · Englisch-Hebel<small>40 Wörter umrechnen, 5 Minuten · 30 richtig</small>${badge(2)}</span><span class="chev">›</span></button>`:""}
-  <button class="tile" onclick="mix(20,4,3)"><span class="ic">⚡</span><span>${S.rubrik==="pt"?"3 · ":""}Abruf im Fokus<small>20 ${einh()}, je ${istSpr()?4:12} Sekunden · 16 richtig</small>${badge(3)}</span><span class="chev">›</span></button>
-  <button class="tile" onclick="mix(30,3,5)"><span class="ic">🔥</span><span>${S.rubrik==="pt"?"4 · ":""}Mix unter Zeitdruck<small>30 ${einh()}, 70 % Fokus · je ${istSpr()?3:9} Sekunden · 24 richtig</small>${badge(5)}</span><span class="chev">›</span></button>
+  <button class="tile" onclick="mix(20,4,3)"><span class="ic">⚡</span><span>${S.rubrik==="pt"?"3 · ":""}Abruf im Fokus<small>20 ${einh()}, je ${istSpr()?4:12} Sekunden · 80 % richtig</small>${badge(3)}</span><span class="chev">›</span></button>
+  <button class="tile" onclick="mix(30,3,5)"><span class="ic">🔥</span><span>${S.rubrik==="pt"?"4 · ":""}Mix unter Zeitdruck<small>30 ${einh()}, 70 % Fokus · je ${istSpr()?3:9} Sekunden · 80 % richtig</small>${badge(5)}</span><span class="chev">›</span></button>
   `}
   <button class="tile" onclick="dlgMenu()" style="border-color:var(--accent2)"><span class="ic">💬</span><span>Gespräch<small>echtes Gespräch mit Nachfragen · findet deine Schwächen</small>${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0]?`<small class="done">zuletzt ${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0].pct}%</small>`:""}</span><span class="chev">›</span></button>
   <h2 style="margin-top:18px">Deine Schwachstellen</h2>
-  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${S.errors.length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${myErr().length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
   ${preR()?`<button class="tile" onclick="levelTest('post')"><span class="ic">🏁</span><span>Endtest · dieselben 20 ${einh()}<small>Am Schluss · Vergleich zum Start</small></span><span class="chev">›</span></button>`:""}
   <p class="note" style="margin-top:18px">Regel: erst sagen, dann auflösen. Nie mitlesen und nachsprechen — das fühlt sich gut an und bringt fast nichts.</p>
   `);
@@ -2940,7 +2942,7 @@ function settings(){
   voiceCard();
 }
 function toggleMic(){ S.mic = S.mic===false ? true : false; save(); settings(); }
-function badge(n){ const t=S.tests[n]; if(!t) return ""; return `<small class="${t.pass?'done':'fail'}">${t.pass?"bestanden":"nicht bestanden"} \u00b7 ${t.score}</small>`; }
+function badge(n){ const t=S.tests[S.rubrik+":"+n]; if(!t) return ""; return `<small class="${t.pass?'done':'fail'}">${t.pass?"bestanden":"nicht bestanden"} \u00b7 ${t.score}</small>`; }
 
 function go(where){
   if(where==="scn") return scnList();
@@ -3056,7 +3058,7 @@ function drillScn(id){
   const s=SCN.find(x=>x.id===id);
   drill(CHUNKS.filter(c=>c.scn===id).map(c=>c.id), s?s.name:"Drill");
 }
-function drillErrors(){ drill(S.errors.map(e=>e.id), "Fehlerliste"); }
+function drillErrors(){ const E=myErr(); if(!E.length) return exportView(); drill(E.map(e=>e.id), "Fehlerliste"); }
 function drillAgain(){ if(D) drill(D.q.map(c=>c.id), D.label); }
 
 let D=null;
@@ -3180,7 +3182,7 @@ function mix(n, secs, testNo){
     const nf=Math.round(n*0.7);
     pool=shuffle(fp).slice(0,nf).concat(shuffle(rest).slice(0,n-nf));
   }
-  M={q:shuffle(pool).slice(0,n), i:0, secs, testNo, ok:0, need: testNo===3?16:24};
+  M={q:shuffle(pool).slice(0,n), i:0, secs, testNo, ok:0}; M.need=Math.ceil(M.q.length*0.8);
   mixCard();
 }
 function mixCard(){
@@ -3200,7 +3202,7 @@ function mixReveal(){
   const c=M.q[M.i];
   S.said++; save();
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
-  <div class="meta"><span>Pr\u00fcfung ${M.testNo}</span><span>${M.i+1} / ${M.q.length}</span></div>
+  <div class="meta"><span>${M.testNo===3?"Abruf im Fokus":"Mix unter Zeitdruck"}</span><span>${M.i+1} / ${M.q.length}</span></div>
   <div class="card" style="margin-top:10px">
     <p class="sub">${c.de}</p>
     <p class="answer">${c.pt}</p>
@@ -3219,11 +3221,11 @@ function mixScore(v){
 }
 function mixDone(){
   const pass=M.ok>=M.need;
-  S.tests[M.testNo]={pass, score:M.ok+"/"+M.q.length}; save();
-  render(`<div class="card"><h2>Pr\u00fcfung ${M.testNo}</h2>
+  S.tests[S.rubrik+":"+M.testNo]={pass, score:M.ok+"/"+M.q.length}; save();
+  render(`<div class="card"><h2>${M.testNo===3?"Abruf im Fokus":"Mix unter Zeitdruck"}</h2>
   <p class="big ${pass?'done':'fail'}">${M.ok}/${M.q.length}</p>
   <p style="text-align:center" class="${pass?'done':'fail'}">${pass?"Bestanden":"Nicht bestanden \u2014 n\u00f6tig: "+M.need}</p>
-  <p class="note">${pass?"Weiter im Stundenplan.":"Dieser Block kommt im n\u00e4chsten Wiederholungsfenster nochmal. Der Tag l\u00e4uft normal weiter."}</p>
+  <p class="note">${pass?"Stark. Weiter mit dem nächsten Bereich.":"Was nicht kam, steht jetzt in der Fehlerliste — die drillen, dann nochmal versuchen."}</p>
   <button class="btn ghost" onclick="home()">Zur\u00fcck</button></div>`);
 }
 
@@ -3259,7 +3261,7 @@ function lesenReveal(){
 function lesenScore(v){ if(!v) L.bad++; L.i++; lesenCard(); }
 function lesenDone(){
   const pass=L.bad<=3;
-  S.tests[1]={pass, score:(L.q.length-L.bad)+"/"+L.q.length}; save();
+  S.tests[S.rubrik+":"+1]={pass, score:(L.q.length-L.bad)+"/"+L.q.length}; save();
   render(`<div class="card"><h2>Pr\u00fcfung 1 \u00b7 Lesen</h2>
   <p class="big ${pass?'done':'fail'}">${L.bad}</p>
   <p style="text-align:center" class="${pass?'done':'fail'}">${pass?"Bestanden":"Nicht bestanden"} \u2014 erlaubt sind 3 Fehler</p>
@@ -3303,7 +3305,7 @@ function hebelCheck(){
 function hebelNext(){ H.i++; hebelCard(); }
 function hebelDone(){
   const pass=H.ok>=30;
-  S.tests[2]={pass, score:H.ok+"/"+H.q.length}; save();
+  S.tests[S.rubrik+":"+2]={pass, score:H.ok+"/"+H.q.length}; save();
   render(`<div class="card"><h2>Pr\u00fcfung 2 \u00b7 Hebel</h2>
   <p class="big ${pass?'done':'fail'}">${H.ok}/${H.q.length}</p>
   <p style="text-align:center" class="${pass?'done':'fail'}">${pass?"Bestanden":"Nicht bestanden \u2014 n\u00f6tig: 30"}</p>
@@ -3386,9 +3388,9 @@ function f432Start(secs){
 
 /* ---------------- Export ---------------- */
 function exportView(){
-  const txt=S.errors.map(e=>e.de+" | "+e.pt).join("\n");
-  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>Fehlerliste (${S.errors.length})</h2>
-  ${S.errors.length?`<div class="card">${S.errors.map(e=>`<div class="err">${e.de}<br><b>${e.pt}</b></div>`).join("")}</div>
+  const E=myErr(); const txt=E.map(e=>e.de+" | "+e.pt).join("\n");
+  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>Fehlerliste (${E.length})</h2>
+  ${E.length?`<div class="card">${E.map(e=>`<div class="err">${e.de}<br><b>${e.pt}</b></div>`).join("")}</div>
   <button class="btn" onclick="copyErr()">Als Text kopieren</button>
   <button class="btn ghost" onclick="if(confirmClear())home()">Liste leeren</button>
   <p class="note" id="msg" style="margin-top:10px">Format: Frage | Antwort \u2014 passt direkt in einen Anki-Import.</p>`
@@ -3404,7 +3406,7 @@ function fallbackCopy(){
   const m=document.getElementById("msg");
   if(m){ m.textContent="Kopieren hat nicht geklappt \u2014 markiere den Text oben von Hand."; }
 }
-function confirmClear(){ snapshot(); S.errors=[]; save(); return true; }
+function confirmClear(){ snapshot(); const ids=new Set(CHUNKS.map(c=>c.id)); S.errors=S.errors.filter(e=>!ids.has(e.id)); save(); return true; }
 
 S.rubrik=S.rubrik||"pt";
 applyRubrik();
