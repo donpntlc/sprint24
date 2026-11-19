@@ -3112,10 +3112,12 @@ function countdown(ms, onEnd){
   const bar=document.querySelector("#bar>i"); if(!bar) return;
   const t0=Date.now();
   timer=setInterval(()=>{
+    const box=document.getElementById("bar");
+    if(!box || !document.body.contains(bar)){ clearInterval(timer); return; }
     const p=1-(Date.now()-t0)/ms;
-    if(p<=0){ clearInterval(timer); bar.style.width="0%"; document.getElementById("bar").classList.add("warn"); if(onEnd) onEnd(); return; }
+    if(p<=0){ clearInterval(timer); bar.style.width="0%"; box.classList.add("warn"); if(onEnd) onEnd(); return; }
     bar.style.width=(p*100)+"%";
-    if(p<.34) document.getElementById("bar").classList.add("warn");
+    if(p<.34) box.classList.add("warn");
   },60);
 }
 function micDrill(){
