@@ -151,6 +151,7 @@ body.sol .top{padding-bottom:4px}
 .chip b{color:var(--ink);font-weight:600}
 .gear{margin-left:auto;background:var(--card);border:1px solid var(--line);border-radius:999px;width:38px;height:38px;font-size:17px;line-height:1;color:var(--ink);flex:0 0 auto}
 .top{display:flex;align-items:center;gap:12px}
+.answer{cursor:pointer}.answer::after{content:" 🔊";font-size:.55em;opacity:.55;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -2199,6 +2200,7 @@ const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v
 const el = (h)=>{ const d=document.createElement("div"); d.innerHTML=h.trim(); return d.firstChild; };
 const app = document.getElementById("app");
 function render(h){ app.innerHTML = h; window.scrollTo(0,0); }
+document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest(".answer"); if(a && !e.target.closest("button")){ try{ speak(a.innerText.replace(/🔊/g,"").trim()); }catch(x){} } });
 function logError(id, de, pt){
   if(!S.errors.find(e=>e.id===id)) S.errors.push({id,de,pt});
   save();
@@ -3003,12 +3005,14 @@ function testReveal(){
   <div class="card" style="margin-top:10px">
     <p class="sub">${c.de}</p>
     <p class="answer">${c.pt}</p>
+    <button class="btn ghost sm" onclick="speak(${JSON.stringify(c.pt).replace(/"/g,"&quot;")})">🔊 anhören</button>
     <div class="score">
       <button class="ok" onclick="testScore(1)">Hatte ich</button>
       <button class="no" onclick="testScore(0)">Nein</button>
     </div>
-  </div>`);
+  </div>`);  testAuto();
 }
+function testAuto(){ try{ const c=T.q[T.i]; if(istSpr() && c.scn!=="w") speak(c.pt); }catch(e){} }
 function testScore(v){
   const c=T.q[T.i];
   if(v) T.ok++; else logError(c.id,c.de,c.pt);
