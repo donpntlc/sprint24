@@ -12,12 +12,12 @@ function kurzGenug(c){ return woerter(c.pt).length<=8; }
 /* welcher Aufgabentyp passt zu diesem Eintrag gerade */
 function typFuer(c){
   var b=S.box[c.id]||0, moeglich=[];
-  if(c.scn==="w") return Math.random()<0.5?"erkennen":"wahl";
+  if(c.scn==="w") return istSprache()? "wahl" : (Math.random()<0.5?"erkennen":"wahl");
   if(b<2){ moeglich=["erkennen","wahl"]; }
   else if(b<4){ moeglich=!istSprache() ? ["wahl","erkennen"] : kurzGenug(c) ? ["bauen","tippen","wahl"] : ["tippen","wahl"]; }
   else { moeglich=istSprache()? ["sprechen","wahl"] : ["erkennen","wahl"]; }
   if(istSprache() && kurzGenug(c) && hasVoice() && b>=1) moeglich.push("hoeren");
-  if(!micOK()){ moeglich=moeglich.filter(function(t){ return t!=="sprechen"; }); if(!moeglich.length) moeglich=istSprache()?["tippen"]:["erkennen"]; }
+  if(!micOK() && typeof afFeld!=="function"){ moeglich=moeglich.filter(function(t){ return t!=="sprechen"; }); if(!moeglich.length) moeglich=istSprache()?["tippen"]:["erkennen"]; }
   return moeglich[Math.floor(Math.random()*moeglich.length)];
 }
 function richtung(){
@@ -106,7 +106,11 @@ function loesungText(){ return U.ri==="de" ? U.c.pt : U.c.de; }
 
 function uebView(){
   var c=U.c, body="";
-  if(U.typ==="erkennen"){
+  if(U.typ==="erkennen" && afOk()){
+    body='<div class="card"><p class="sub">'+(U.ri==="de"?"Wie sagt man das?":"Was heisst das?")+'</p>'+(typeof katTag==='function'?katTag(U.c):'')+'<p class="prompt">'+frageText()+'</p>'+
+      (U.fb?'':afFeld(loesungText(), uebAfFertig, null, {noMic:U.ri!=="de"}))+'</div>';
+  }
+  else if(U.typ==="erkennen"){
     body='<div class="card" style="min-height:200px;display:flex;flex-direction:column;justify-content:center">'+
       '<p class="sub">Erkennen</p>'+(typeof katTag==='function'?katTag(U.c):'')+'<p class="prompt">'+frageText()+'</p>'+
       (U.gezeigt?'<p class="answer">'+loesungText()+'</p>':'<p class="note" style="margin-top:10px">Erst selbst sagen, dann auflösen.</p>')+
@@ -160,12 +164,8 @@ function uebView(){
       '</div><button class="btn" onclick="uebHoerCheck()">Prüfen</button>';
   }
   else { /* sprechen */
-    body='<div class="card"><p class="sub">Laut sagen</p>'+(typeof katTag==='function'?katTag(c):'')+'<p class="prompt">'+c.de+'</p>'+
-      '<button class="btn" onclick="uebMic()">🎤 Antworten</button>'+
-      '<p class="note" id="micst" style="text-align:center;margin-top:8px">Antippen, dann laut sagen</p>'+
-      '<button class="btn ghost sm" onclick="uebZeig()">Kann gerade nicht sprechen</button></div>'+
-      (U.gezeigt? '<div class="card"><p class="answer">'+c.pt+'</p><div class="score">'+
-        '<button class="ok" onclick="uebScore(1)">Saß</button><button class="no" onclick="uebScore(0)">Nochmal</button></div></div>' : "");
+    body='<div class="card"><p class="sub">Laut sagen oder eintippen</p>'+(typeof katTag==='function'?katTag(c):'')+'<p class="prompt">'+c.de+'</p>'+
+      (U.fb?'':afFeld(c.pt, uebAfFertig))+'</div>';
   }
   render(kopf()+body+(U.fb?fbBox():""));
 }
@@ -186,6 +186,13 @@ function zeigFb(ok, text){
   uebView();
 }
 function uebWeiter(){ if(U.herz<=0) return uebDone(); U.i++; U.opt=null; U.wahl=null; uebAufgabe(); }
+function afOk(){ return typeof afFeld==="function" && (typeof istSpr!=="function" || istSpr()) && U.c && U.c.scn!=="w"; }
+function uebAfFertig(r){
+  var ziel=loesungText(); if(U.typ!=="erkennen") ziel=U.c.pt;
+  var ok=afGut(r);
+  if(U.typ!=="erkennen" || U.ri==="de"){ try{ speak(U.c.pt); }catch(e){} }
+  zeigFb(ok, afErgebnis(r, String(ziel).split(" · ")[0]).replace(/^<p[^>]*>[^<]*<\/p>/,""));
+}
 function uebZeig(){ U.gezeigt=true; uebView(); }
 function uebScore(v){
   if(v){ U.ok++; S.box[U.c.id]=Math.min(5,(S.box[U.c.id]||0)+1); if(typeof clearError==="function") clearError(U.c.id); }

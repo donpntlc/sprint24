@@ -89,7 +89,7 @@ function bildMenu(){
   '<p class="sub" style="margin-top:16px">Deutsch nach der Lösung</p>'+
   '<div class="row" style="gap:8px;margin-top:6px">'+[["zeigen","immer zeigen"],["tippen","auf Antippen"],["aus","nie"]].map(function(o){ var on=deModus()===o[0];
     return '<button class="btn ghost sm" style="flex:1;margin:0;'+(on?"border-color:var(--accent);color:var(--accent)":"")+'" onclick="bildDeSet(\''+o[0]+'\')">'+o[1]+'</button>'; }).join("")+'</div>'+
-  '<p class="note" style="margin-top:14px">Aufgaben: Bild sehen und Wort hören · Bild sehen und Wort wählen · Wort hören und Bild wählen · Bild sehen und laut sagen.</p>');
+  '<p class="note" style="margin-top:14px">Aufgaben: Bild sehen und Wort hören · Bild sehen und Wort wählen · Wort hören und Bild wählen · Bild sehen und das Wort eintippen oder sprechen — die App prüft.</p>');
 }
 function auswahl(n){
   var b=box(), alt=[], neu=[];
@@ -151,12 +151,13 @@ function bildKarte(){
       }).join("")+'</div>'+
       (B.fb? '' : '<button class="btn" '+(B.wahl==null?'disabled style="opacity:.4"':'')+' onclick="bildCheck()">Prüfen</button>');
   } else { // sag
-    body='<div class="card">'+gross(W[i][0])+'<p class="sub" style="text-align:center">Sag es laut</p>'+
-      (B.zeig? '<p class="prompt" style="text-align:center">'+nur(w)+'</p>'+(um(w)?'<p class="note" style="text-align:center">'+um(w)+'</p>':'')+deZeile(i) : '')+'</div>'+
-      (B.zeig? '<div class="score"><button class="ok" onclick="bildNext(1)">Saß</button><button class="no" onclick="bildNext(0)">Nochmal</button></div>'
-             : '<button class="btn" onclick="bildZeig()">Gesagt — auflösen</button>');
+    body='<div class="card">'+gross(W[i][0])+'<p class="sub" style="text-align:center">Wie heisst das? Tippen oder sprechen</p>'+
+      (B.fb? '' : afFeld(w, bildSagFertig))+'</div>';
   }
-  if(B.fb) body+='<div class="card" style="border-color:var(--'+(B.fb.ok?"accent":"bad")+')"><p style="margin:0 0 4px;font-weight:800;color:var(--'+(B.fb.ok?"accent":"bad")+')">'+(B.fb.ok?"Richtig.":"Nicht ganz.")+'</p>'+
+  if(B.fb && a.typ==="sag") body+='<div class="card" style="border-color:var(--'+(B.fb.ok?"accent":"bad")+')">'+
+    '<div style="font-size:44px;text-align:center">'+W[i][0]+'</div>'+afErgebnis(B.fb.res, nur(w), (um(w)?'<p class="note">'+um(w)+'</p>':'')+deZeile(i))+
+    '<button class="btn ghost sm" onclick="bildHoer()">🔊 anhören</button><button class="btn" onclick="bildNext('+(B.fb.ok?1:0)+')">Weiter</button></div>';
+  else if(B.fb) body+='<div class="card" style="border-color:var(--'+(B.fb.ok?"accent":"bad")+')"><p style="margin:0 0 4px;font-weight:800;color:var(--'+(B.fb.ok?"accent":"bad")+')">'+(B.fb.ok?"Richtig.":"Nicht ganz.")+'</p>'+
     '<p class="prompt" style="margin:0">'+W[i][0]+' '+nur(w)+'</p>'+deZeile(i)+'<button class="btn" onclick="bildNext('+(B.fb.ok?1:0)+')">Weiter</button></div>';
   render(kopf()+body);
   if(!B.fb && !B.gespielt && (a.typ==="neu"||a.typ==="hoer")){ B.gespielt=true; setTimeout(function(){ sag(w); }, 250); }
@@ -175,6 +176,7 @@ function bildCheck(){
   if(!ok || a.typ==="hoer") sag(wort(a.i));
   bildKarte();
 }
+function bildSagFertig(res){ B.fb={ok:afGut(res), res:res}; sag(wort(B.q[B.k].i)); bildKarte(); }
 function bildZeig(){ B.zeig=true; sag(wort(B.q[B.k].i)); bildKarte(); }
 function bildNext(ok){
   var a=B.q[B.k], b=box();

@@ -2314,10 +2314,10 @@ function examCard(){
   const c=st.c;
   render(`<button class="back" onclick="home()">‹ abbrechen</button>${head}
   <div class="card" style="margin-top:10px">
-    <p class="sub">${cfg().say}</p>
+    <p class="sub">${sayAf(c)}</p>
     ${katTag(c)}<p class="prompt">${c.de}</p>
     <div class="bar" id="bar"><i></i></div>
-    ${micOK()?`<button class="btn" onclick="examMic()">🎤 Antwort sprechen</button>
+    ${afAn(c)?afFeld(c.pt, examAf):micOK()?`<button class="btn" onclick="examMic()">🎤 Antwort sprechen</button>
       <p class="note" id="micst" style="text-align:center;margin-top:8px">Antippen, dann laut sagen</p>
       <button class="btn ghost sm" onclick="examReveal()">Ohne Mikro</button>`
     :`<button class="btn" onclick="examReveal()">Gesagt</button>`}
@@ -2325,20 +2325,22 @@ function examCard(){
   countdown(6000);
 }
 function examMic(){ const c=E.plan[E.i].c; clearInterval(timer); listen(c.pt, r=>{ if(r) examReveal(r); }); }
-function examReveal(res){
+function examAf(res){ examReveal(res, true); }
+function examReveal(res, auto){
   clearInterval(timer);
   const st=E.plan[E.i], c=st.c;
   S.said++; save();
   render(`<div class="meta"><span>Gespräch</span><span>${E.i+1} / ${E.plan.length}</span></div>
   <div class="card" style="margin-top:10px">
     <p class="sub">${c.de}</p>
+    ${auto?afErgebnis(res,String(c.pt).split(" \u00b7 ")[0])+`<button class="btn ghost sm" onclick="speak(${JSON.stringify(c.pt).replace(/"/g,"&quot;")})">🔊 anhören</button><button class="btn" onclick="examScore(${res.v==="ok"?1:res.v==="near"?0:-1})">Weiter</button>`:`
     <p class="answer">${res?wordDiff(res.heard,c.pt):c.pt}</p>
     ${res?`<p class="note">Gehört: „${res.heard}“</p>`:""}
     <div class="score">
       <button class="ok" onclick="examScore(1)">Saß</button>
       <button class="mid" onclick="examScore(0)">Gestockt</button>
       <button class="no" onclick="examScore(-1)">Nein</button>
-    </div>
+    </div>`}
   </div>`);
 }
 function examScore(v){
@@ -2998,6 +3000,8 @@ function dirNote(d){ return istSpr()
   ? (d==="de"?"Du produzierst \u2014 das trainiert Sprechen.":d==="pt"?"Du verstehst \u2014 das trainiert H\u00f6ren und Lesen.":"Beides gemischt, Richtung pro Satz zuf\u00e4llig.")
   : (d==="de"?"Du siehst die Frage und antwortest selbst \u2014 das trainiert Abrufen.":d==="pt"?"Du siehst die Antwort und nennst die passende Frage \u2014 festigt von der anderen Seite.":"Beides gemischt, pro Karte zuf\u00e4llig."); }
 function einh(){ return istSpr()?"S\u00e4tze":"Fragen"; }
+function sayAf(c){ const t=cfg().say||""; return afAn(c)? t.replace("Sag es laut","Sprich oder tipp es") : t; }
+function afAn(c){ return typeof afFeld==="function" && istSpr() && c && c.scn!=="w"; }
 function katTag(c){
   try{ const k=(SCN||[]).find(x=>x.id===c.scn); if(!k) return ""; return `<p class="note" style="margin:0 0 6px">${k.icon||""} ${k.name}</p>`; }catch(e){ return ""; }
 }
@@ -3012,27 +3016,28 @@ function testCard(){
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
   <div class="meta"><span>${T.kind==="pre"?"Startpunkt":"Endtest"}</span><span>${T.i+1} / ${T.q.length} \u00b7 ${T.ok} ok</span></div>
   <div class="card" style="margin-top:10px">
-    <p class="sub">${cfg().say} \u2014 ohne Hilfe</p>
+    <p class="sub">${sayAf(c)} \u2014 ohne Hilfe</p>
     ${katTag(c)}<p class="prompt">${c.de}</p>
     <div class="bar" id="bar"><i></i></div>
-    <button class="btn" onclick="testReveal()">Aufl\u00f6sen</button>
+    ${afAn(c)?afFeld(c.pt, testAf):`<button class="btn" onclick="testReveal()">Aufl\u00f6sen</button>`}
   </div>
   <p class="note">Beim ersten Mal wirst du vieles nicht k\u00f6nnen \u2014 das ist der Sinn. Genau diese 20 ${einh()} kommen am Ende nochmal.</p>`);
   countdown(istSpr()?5000:12000);
 }
-function testReveal(){
+function testAf(res){ testReveal(res); }
+function testReveal(res){
   clearInterval(timer);
   const c=T.q[T.i];
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
   <div class="meta"><span>${T.kind==="pre"?"Startpunkt":"Endtest"}</span><span>${T.i+1} / ${T.q.length}</span></div>
   <div class="card" style="margin-top:10px">
     <p class="sub">${c.de}</p>
-    <p class="answer">${c.pt}</p>
+    ${res?afErgebnis(res,String(c.pt).split(" \u00b7 ")[0]):`<p class="answer">${c.pt}</p>`}
     <button class="btn ghost sm" onclick="speak(${JSON.stringify(c.pt).replace(/"/g,"&quot;")})">🔊 anhören</button>
-    <div class="score">
+    ${res?`<button class="btn" onclick="testScore(${afGut(res)?1:0})">Weiter</button>`:`<div class="score">
       <button class="ok" onclick="testScore(1)">Hatte ich</button>
       <button class="no" onclick="testScore(0)">Nein</button>
-    </div>
+    </div>`}
   </div>`);  testAuto();
 }
 function testAuto(){ try{ const c=T.q[T.i]; if(istSpr() && c.scn!=="w") speak(c.pt); }catch(e){} }
@@ -3112,6 +3117,7 @@ function drillCard(){
   } else {
     body = `<button class="btn" onclick="drillReveal()">Gesagt \u2014 aufl\u00f6sen</button>`;
   }
+  if(afAn(c)) body = afFeld(toPt?c.pt:c.de, drillAf, null, {noMic: !toPt || st==="schreiben"});
   render(`<button class="back" onclick="home()">\u2039 abbrechen</button>
   <div class="meta"><span>${D.label} \u00b7 ${dirLbl(toPt?"de":"pt")}</span><span>${D.i+1} / ${D.q.length}</span></div>
   <div class="card" style="margin-top:10px">
@@ -3120,9 +3126,10 @@ function drillCard(){
     <div class="bar" id="bar"><i></i></div>
     ${body}
   </div>
-  <p class="note">${st==="lesen"?"Erst laut sagen, dann aufl\u00f6sen \u2014 auch wenn du unsicher bist."
+  <p class="note">${afAn(c)?"Akzente darfst du weglassen. Beim Sprechen siehst du erst, was erkannt wurde \u2014 dann Pr\u00fcfen.":st==="lesen"?"Erst laut sagen, dann aufl\u00f6sen \u2014 auch wenn du unsicher bist."
     :st==="schreiben"?"Akzente kannst du weglassen, die z\u00e4hlen nicht."
     :"Sprich normal, nicht \u00fcberdeutlich."}</p>`);
+  if(afAn(c)){ const i=document.getElementById("afIn"); if(i&&st==="schreiben") i.focus(); }
   if(st==="schreiben"){
     const i=document.getElementById("ans"); if(i){ i.focus(); i.addEventListener("keydown",e=>{ if(e.key==="Enter") drillCheck(); }); }
   }
@@ -3157,6 +3164,7 @@ function micDrill(){
     drillReveal(res);
   });
 }
+function drillAf(res){ D.af=true; drillReveal(res); }
 function drillReveal(res){
   clearInterval(timer);
   const c=D.q[D.i], toPt=D.dirs[D.i]!=="pt";
@@ -3166,16 +3174,17 @@ function drillReveal(res){
   <div class="card" style="margin-top:10px">
     <p class="sub">${toPt?c.de:c.pt}</p>
     <p class="answer">${res&&toPt?wordDiff(res.heard,c.pt):(toPt?c.pt:c.de)}</p>
-    ${res?`<p class="note">${res.typed?"Getippt":"Geh\u00f6rt"}: \u201e${res.heard}\u201c \u2014 <b style="color:${res.v==="ok"?"var(--accent)":res.v==="near"?"var(--mid)":"var(--bad)"}">${res.v==="ok"?"richtig":res.v==="near"?"fast":"daneben"}</b></p>`:""}
+    ${res&&res.skip?`<p class="note" style="color:var(--bad)">Nicht gewusst</p>`:""}${res&&!res.skip?`<p class="note">${res.typed?"Getippt":"Geh\u00f6rt"}: \u201e${res.heard}\u201c \u2014 <b style="color:${res.v==="ok"?"var(--accent)":res.v==="near"?"var(--mid)":"var(--bad)"}">${res.v==="ok"?"richtig":res.v==="near"?"fast":"daneben"}</b></p>`:""}
     ${hasVoice()?`<button class="btn ghost sm" onclick="speak(${JSON.stringify(c.pt).replace(/"/g,"&quot;")})">🔊 anhören</button>`:""}
-    <div class="score">
+    ${D.af?`<button class="btn" onclick="drillScore(${res.v==="ok"?2:res.v==="near"?1:0})">Weiter</button>`:`<div class="score">
       <button class="ok" onclick="drillScore(2)">${res&&res.v==="ok"?"\u2713 ":""}Sa\u00df sofort</button>
       <button class="mid" onclick="drillScore(1)">Gestockt</button>
       <button class="no" onclick="drillScore(0)">Keine Ahnung</button>
-    </div>
+    </div>`}
   </div>`);
 }
 function drillScore(v){
+  D.af=false;
   const c=D.q[D.i];
   const b=S.box[c.id]||0;
   if(v===2){ S.box[c.id]=Math.min(5,b+2); D.ok++; clearError(c.id); }
@@ -3220,11 +3229,12 @@ function mixCard(){
   <div class="card" style="margin-top:10px">
     ${katTag(c)}<p class="prompt">${c.de}</p>
     <div class="bar" id="bar"><i></i></div>
-    <button class="btn" onclick="mixReveal()">Gesagt</button>
+    ${afAn(c)?afFeld(c.pt, mixAf):`<button class="btn" onclick="mixReveal()">Gesagt</button>`}
   </div>`);
-  countdown(M.secs*1000, mixReveal);
+  countdown(M.secs*1000, ()=>{ if(afAn(c)) afZeitUm(); else mixReveal(); });
 }
-function mixReveal(){
+function mixAf(res){ mixReveal(res); }
+function mixReveal(res){
   clearInterval(timer);
   const c=M.q[M.i];
   S.said++; save();
@@ -3232,12 +3242,12 @@ function mixReveal(){
   <div class="meta"><span>${M.testNo===3?"Abruf im Fokus":"Mix unter Zeitdruck"}</span><span>${M.i+1} / ${M.q.length}</span></div>
   <div class="card" style="margin-top:10px">
     <p class="sub">${c.de}</p>
-    <p class="answer">${c.pt}</p>
+    ${res?afErgebnis(res,String(c.pt).split(" \u00b7 ")[0]):`<p class="answer">${c.pt}</p>`}
     ${hasVoice()?`<button class="btn ghost sm" onclick="speak(${JSON.stringify(c.pt).replace(/"/g,"&quot;")})">🔊 anhören</button>`:""}
-    <div class="score">
+    ${res?`<button class="btn" onclick="mixScore(${afGut(res)?1:0})">Weiter</button>`:`<div class="score">
       <button class="ok" onclick="mixScore(1)">Hatte ich \u2014 in der Zeit</button>
       <button class="no" onclick="mixScore(0)">Nein</button>
-    </div>
+    </div>`}
   </div>`);
 }
 function mixScore(v){
@@ -3441,10 +3451,11 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="20261120133142";
+const APPV="20261120134413";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>
+<script src="antwort.js"></script>
 <script src="hoeren.js"></script>
 <script src="uebung.js"></script>
 <script src="profil.js"></script>
