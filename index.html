@@ -795,7 +795,7 @@ b6:{title:"Was passiert in der Liturgie?", turns:[
 };
 
 const B_TOPICS=[
- {t:"Die Heilsgeschichte in vier Minuten", hints:["Schöpfung","Bund","Christus","Kirche"]},
+ {t:"Die Heilsgeschichte kurz erzählt", hints:["Schöpfung","Bund","Christus","Kirche"]},
  {t:"Die ersten 500 Jahre", hints:["Apostel","Verfolgung","313","Konzilien"]},
  {t:"Was die Eucharistie ist", hints:["Einsetzung","Leib und Blut","Liturgie","Vorbereitung"]},
  {t:"Die vier Evangelien", hints:["Markus kurz","Matthäus jüdisch","Lukas sorgfältig","Johannes anders"]},
@@ -1655,7 +1655,7 @@ const T_FOCI=[
  {id:"alles", t:"Alles gleich gewichtet", d:"Kompletter Durchgang", scn:["t1","t2","t3","t4","t5","t6","t7"]}
 ];
 const T_TOPICS=[
- {t:"Dein Handelsplan in 4 Minuten", hints:["Markt und Zeit","Aufbau","Risiko pro Trade","Tageslimit"]},
+ {t:"Dein Handelsplan kurz erklärt", hints:["Markt und Zeit","Aufbau","Risiko pro Trade","Tageslimit"]},
  {t:"Warum die meisten verlieren", hints:["Kosten","Positionsgr\u00f6sse","Regeltreue","Erwartungswert"]},
  {t:"Ein Trade von A bis Z", hints:["Kontext","Ausl\u00f6ser","Stop","Ausstieg"]},
  {t:"Was du nach drei Verlusten tust", hints:["Limit","Journal","Pause","morgen halbe Gr\u00f6sse"]}
@@ -1768,7 +1768,7 @@ const P_FOCI=[
 const P_TOPICS=[
  {t:"Wie Muskelaufbau funktioniert", hints:["Reiz","Erholung","Protein","Progression"]},
  {t:"Wie du ein Defizit aufsetzt", hints:["Bedarf","Tempo","Protein","Messung"]},
- {t:"Dein Trainingsplan in 4 Minuten", hints:["Frequenz","Volumen","\u00dcbungen","Progression"]},
+ {t:"Dein Trainingsplan kurz erklärt", hints:["Frequenz","Volumen","\u00dcbungen","Progression"]},
  {t:"Was du einem Kunden am ersten Tag sagst", hints:["Ziel","Zeit","Realit\u00e4t","n\u00e4chster Schritt"]}
 ];
 const M_SCN=[
@@ -1857,7 +1857,7 @@ const M_FOCI=[
  {id:"alles", t:"Alles gleich gewichtet", d:"Kompletter Durchgang", scn:["m1","m2","m3","m4","m5","m7"]}
 ];
 const M_TOPICS=[
- {t:"Deine \u00dcbemethode in 4 Minuten", hints:["Stellen","H\u00e4nde einzeln","Tempo-Leiter","Fehlerliste"]},
+ {t:"Deine \u00dcbemethode kurz erklärt", hints:["Stellen","H\u00e4nde einzeln","Tempo-Leiter","Fehlerliste"]},
  {t:"Die vier Griffe erkl\u00e4ren", hints:["C","Am","F","G","eine Handposition"]},
  {t:"Wie man Noten liest", hints:["Violinschl\u00fcssel","Linien","Zwischenr\u00e4ume","Ankerton"]},
  {t:"Was du in 24 Stunden erreichen willst", hints:["Song","Tempo","beidh\u00e4ndig","auswendig"]}
@@ -2749,7 +2749,7 @@ function steps(){
   order.forEach(s=>L.push({t:s.name, s:(inFocus(s.id)?"im Fokus \u00b7 ":"")+"70 % der "+einh()+" sitzen", run:`drillScn('${s.id}')`, done:scnDone(s.id)}));
   L.push({t:"Abruf im Fokus", s:"20 "+einh()+" \u00b7 80 % richtig", run:"mix(20,4,3)", done:!!(S.tests[S.rubrik+":"+3]&&S.tests[S.rubrik+":"+3].pass)});
   if(Object.keys(MISSIONS).length) L.push({t:"Missionen spielen", s:"alle durchspielen", run:"missionList()", done:Object.keys(S.missDone||{}).length>=Object.keys(MISSIONS).length});
-  L.push({t:"4/3/2 Monolog", s:"ein Thema, drei Runden", run:"f432List()", done:(S.f432Done||0)>=1});
+  L.push({t:"Monolog", s:"ein Thema, drei kurze Runden", run:"f432List()", done:(S.f432Done||0)>=1});
   L.push({t:"Mix unter Zeitdruck", s:"30 "+einh()+" \u00b7 80 % richtig", run:"mix(30,3,5)", done:!!(S.tests[S.rubrik+":"+5]&&S.tests[S.rubrik+":"+5].pass)});
   L.push({t:"Fehlerliste leer drillen", s:"nur noch deine Schwachstellen", run:"drillErrors()", done:myErr().length===0&&!!preR()});
   L.push({t:"Gespr\u00e4ch", s:"frei reden, 10 Minuten", run:"dlgMenu()", done:(S.exams||[]).some(x=>x.rubrik===S.rubrik)});
@@ -2883,7 +2883,7 @@ function home(){
   <button class="tile" onclick="go('scn')"><span class="ic">🎯</span><span>Abruf nach ${istSpr()?"Szenario":"Bereich"}<small>${istSpr()?"Deutsch rein, du sagst es laut, dann Auflösung":"Frage rein, du antwortest laut, dann Auflösung"}</small></span><span class="chev">›</span></button>
   ${Object.keys(MISSIONS).length?`<button class="tile" onclick="go('mission')"><span class="ic">🎭</span><span>Mission spielen<small>Ich bin das Gegenüber, du musst durchkommen</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="hoerMenu()"><span class="ic">🎧</span><span>Hören & Nachsprechen<small>Ohne Hinsehen: hören, nachsprechen, Lösung hören — läuft von allein weiter</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="go('f432')"><span class="ic">⏱️</span><span>4/3/2 Monolog<small>Dasselbe Thema in 4, dann 3, dann 2 Minuten</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="go('f432')"><span class="ic">⏱️</span><span>Monolog<small>Ein Thema dreimal frei erzählen: 90, 60, 30 Sekunden</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${myErr().length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
   </div>
   <div class="sek sek-pruef"><div class="sekkopf"><span>🎯</span><div><b>Prüfen</b><small>Ohne Hilfe, mit Ergebnis — zeigt, was wirklich sitzt</small></div></div>
@@ -3372,9 +3372,9 @@ function missionNext(ok){
 
 /* ---------------- 4/3/2 ---------------- */
 function f432List(){
-  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>4/3/2 Monolog</h2>
-  <p class="note" style="margin-bottom:12px">Dasselbe Thema dreimal: 4 Minuten, dann 3, dann 2. Gleicher Inhalt, weniger Zeit \u2014 das erzwingt Tempo. Nicht aufschreiben, nur reden.</p>
-  ${TOPICS.map((t,i)=>`<button class="tile" onclick="f432(${i})"><span class="ic">\ud83d\udde3\ufe0f</span><span>${t.t}<small>3 Runden \u00b7 9 Minuten</small></span><span class="chev">\u203a</span></button>`).join("")}`);
+  render(`<button class="back" onclick="home()">\u2039 zur\u00fcck</button><h2>Monolog</h2>
+  <p class="note" style="margin-bottom:12px">Dasselbe Thema dreimal: erst 90 Sekunden, dann 60, dann 30. Gleicher Inhalt, weniger Zeit \u2014 so wirst du flüssiger. Nicht aufschreiben, einfach reden.</p>
+  ${TOPICS.map((t,i)=>`<button class="tile" onclick="f432(${i})"><span class="ic">\ud83d\udde3\ufe0f</span><span>${t.t}<small>3 Runden \u00b7 3 Minuten</small></span><span class="chev">\u203a</span></button>`).join("")}`);
 }
 let F=null;
 function f432(idx){ F={idx, round:0, used:[]}; f432Card(); }
@@ -3434,7 +3434,7 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="202611201259";
+const APPV="20261120130245";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>

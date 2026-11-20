@@ -1,4 +1,4 @@
-/* 4/3/2 Monolog mit Prüfung: die App hört mit und wertet jede Runde aus */
+/* Monolog 90/60/30 mit Prüfung: die App hört mit und wertet jede Runde aus */
 (function(){
 var R=null, laeuft=false, text="", zwischen="";
 var DE_STOP=["und","ich","nicht","der","die","das","ist","aber","wir","mit","auf","dass","auch","habe","bin","sehr","weil","wenn","oder","ein","eine","zu","es","dann","noch","schon"];
@@ -43,7 +43,7 @@ function stopHoeren(){ laeuft=false; try{ R&&R.stop(); }catch(e){} }
 
 window.f432=function(idx){ F={idx:idx, round:0, used:[], res:[]}; f432Card(); };
 window.f432Card=function(){
-  var t=TOPICS[F.idx], secs=[240,180,120][F.round];
+  var t=TOPICS[F.idx], secs=[90,60,30][F.round];
   if(F.round>2) return ende();
   var mic=micDa();
   render('<button class="back" onclick="f432Abbruch()">‹ abbrechen</button>'+
@@ -81,7 +81,7 @@ function rundeFertig(secs){
   if(!mic){ F.round++; if(F.round>2){ S.f432Done=(S.f432Done||0)+1; save(); } return f432Card(); }
   var ok=r.treffer.filter(Boolean).length;
   var urteil=[];
-  if(r.n<20) urteil.push("Kaum etwas verstanden. Sprich lauter und näher am Handy — oder du hast zu lange Pausen gemacht.");
+  if(r.n<Math.max(8,Math.round(secs/6))) urteil.push("Kaum etwas verstanden. Sprich lauter und näher am Handy — oder du hast zu lange Pausen gemacht.");
   if(r.de>0.12) urteil.push("Da war viel Deutsch dabei. Bleib in der Sprache, auch wenn's holpert — umschreiben statt wechseln.");
   if(ok<t.hints.length) urteil.push("Bausteine fehlen noch — bau sie in der nächsten Runde bewusst ein.");
   var vor=F.res.length>1? F.res[F.res.length-2].wpm : null;
@@ -94,7 +94,7 @@ function rundeFertig(secs){
     '<ul class="ck">'+t.hints.map(function(h,i){ return '<li class="'+(r.treffer[i]?"on":"")+'">'+(r.treffer[i]?"✓ ":"✗ ")+h+'</li>'; }).join("")+'</ul>'+
     urteil.map(function(u){ return '<p class="note" style="margin-top:8px">'+u+'</p>'; }).join("")+
     '<details style="margin-top:10px"><summary class="sum">Was die App gehört hat</summary><p class="note" style="margin-top:6px">'+(r.text||"—")+'</p></details>'+
-    '<button class="btn" onclick="f432Weiter()">'+(F.round<2?"Nächste Runde · "+[3,2][F.round]+" Minuten":"Fertig")+'</button>'+
+    '<button class="btn" onclick="f432Weiter()">'+(F.round<2?"Nächste Runde · "+[60,30][F.round]+" Sekunden":"Fertig")+'</button>'+
   '</div>');
 }
 function kachel(z,l){ return '<div class="card" style="flex:1;margin:0;padding:10px;text-align:center"><p style="margin:0;font-size:22px;font-weight:800">'+z+'</p><p class="note" style="margin:0">'+l+'</p></div>'; }
