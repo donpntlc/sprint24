@@ -18,6 +18,10 @@ function texte(){
       if(g){ add(z[sx], g.open); (g.scenes||[]).forEach(function(sc){ (sc.turns||[]).forEach(function(t){ add(z[sx], t.p); add(z[sx], t.exp); add(z[sx], t.ok); }); }); }
     });
   });
+  if(window.GRAM){
+    Object.keys(GRAM).forEach(function(r){ var z=AZ[r]; if(!z) return;
+      GRAM[r].forEach(function(l){ ["f","m"].forEach(function(sx){ l.bsp.forEach(function(b){ add(z[sx], b[0]); }); }); }); });
+  }
   if(window.BILD_WOERTER){
     Object.keys(BILD_SP).forEach(function(r){ var z=AZ[r]; if(!z) return;
       BILD_WOERTER.forEach(function(w){ ["f","m"].forEach(function(sx){ add(z[sx], w[BILD_SP[r]]); }); }); });
