@@ -169,32 +169,32 @@ el:[
 ]
 };
 
-var VERBEN={pt:[["falar","sprechen"],["morar","wohnen"],["trabalhar","arbeiten"],["comprar","kaufen"],["gostar","mögen"],["precisar","brauchen"],["estudar","lernen"],["chegar","ankommen"],["pagar","bezahlen"],["tomar","nehmen"],["andar","gehen, laufen"],["olhar","schauen"],["comer","essen"],["beber","trinken"],["vender","verkaufen"],["aprender","lernen"],["entender","verstehen"],["correr","rennen"],["escrever","schreiben"],["abrir","öffnen"],["partir","abreisen"],["decidir","entscheiden"],["dividir","teilen"],["assistir","anschauen"],["permitir","erlauben"]]};
-var PERS=[["eu","ich",0],["você","du",1],["ele","er",1],["nós","wir",2],["vocês","ihr",3],["eles","sie",3]];
-var END={ar:["o","a","amos","am"],er:["o","e","emos","em"],ir:["o","e","imos","em"]};
-function form(v,p){ var g=v.slice(-2), st=v.slice(0,-2); return st+END[g][p]; }
+// Verben-Trainer: Daten kommen aus window.VERBTR[sprache] = {pers:[[pronomen, deutsch, endungsIndex]], gr:{gruppe:{suf, end:[...]}}, v:[[infinitiv, deutsch, gruppe]], je:true?}
+function TR(){ return (window.VERBTR||{})[S.rubrik]; }
+function form(v,p){ var t=TR(), g=t.gr[v[2]]; return v[0].slice(0, v[0].length-g.suf.length)+g.end[p]; }
+function zeig(pron,f){ var t=TR(); if(t.je && pron==="je" && /^[aeiouéèêhâ]/i.test(f)) return "j'"+f; return pron+" "+f; }
 var VT=null;
 function verbStart(){ VT={k:0,n:10,ok:0}; verbNeu(); }
 function verbNeu(){
-  var L=VERBEN.pt, v=L[Math.floor(Math.random()*L.length)], p=PERS[Math.floor(Math.random()*PERS.length)];
-  var richtig=form(v[0],p[2]), g=v[0].slice(-2), opts=[richtig];
-  [0,1,2,3].forEach(function(i){ var f=form(v[0],i); if(opts.indexOf(f)<0) opts.push(f); });
-  ["ar","er","ir"].forEach(function(gg){ if(gg!==g){ var f=v[0].slice(0,-2)+END[gg][p[2]]; if(opts.indexOf(f)<0 && opts.length<4) opts.push(f); } });
+  var t=TR(), v=t.v[Math.floor(Math.random()*t.v.length)], p=t.pers[Math.floor(Math.random()*t.pers.length)];
+  var richtig=form(v,p[2]), opts=[richtig], idxs=[]; t.pers.forEach(function(q){ if(idxs.indexOf(q[2])<0) idxs.push(q[2]); });
+  idxs.sort(function(){ return Math.random()-.5; }).forEach(function(i){ var f=form(v,i); if(opts.indexOf(f)<0 && opts.length<4) opts.push(f); });
+  Object.keys(t.gr).forEach(function(k){ if(k!==v[2] && opts.length<4){ var g=t.gr[k], f=v[0].slice(0,v[0].length-t.gr[v[2]].suf.length)+g.end[p[2]]; if(opts.indexOf(f)<0) opts.push(f); } });
   opts=opts.slice(0,4).sort(function(){ return Math.random()-.5; });
   VT.v=v; VT.p=p; VT.r=richtig; VT.o=opts; VT.wahl=null; VT.fb=null; verbView();
 }
 function verbView(){
   if(VT.k>=VT.n) return render('<div class="card"><h2>Verben-Trainer</h2><p class="big">'+VT.ok+' / '+VT.n+'</p></div><button class="btn" onclick="verbStart()">Noch eine Runde</button><button class="btn ghost" onclick="gramMenu()">Zurück</button>');
-  var g=VT.v[0].slice(-2), endg=END[g][VT.p[2]];
+  var t=TR(), g=VT.v[2], endg=t.gr[g].end[VT.p[2]], gname=t.gr[g].name||("-"+g);
   render('<button class="back" onclick="gramMenu()">‹ zurück</button><p class="sub">Verben-Trainer · '+(VT.k+1)+' von '+VT.n+'</p>'+
-  '<div class="card"><p class="note" style="margin:0 0 6px">'+VT.v[0]+' = '+VT.v[1]+' · <b>-'+g+'</b>-Verb</p><p class="prompt" style="font-size:24px">'+VT.p[0]+' … <small style="opacity:.7">('+VT.p[1]+')</small></p></div>'+
+  '<div class="card"><p class="note" style="margin:0 0 6px">'+VT.v[0]+' = '+VT.v[1]+' · <b>'+gname+'</b></p><p class="prompt" style="font-size:24px">'+VT.p[0]+' … <small style="opacity:.7">('+VT.p[1]+')</small></p></div>'+
   VT.o.map(function(o,k){ var st=""; if(VT.fb && o===VT.r) st="border-color:var(--accent);background:rgba(143,214,169,.12)"; else if(VT.fb && VT.wahl===k) st="border-color:var(--bad);background:rgba(235,128,115,.12)"; else if(VT.wahl===k) st="border-color:var(--accent)";
     return '<button class="tile" style="'+st+'" onclick="verbWahl('+k+')"><span class="ic">'+String.fromCharCode(65+k)+'</span><span>'+VT.p[0]+' '+o+'</span></button>'; }).join("")+
   (VT.fb ? '<div class="card" style="border-color:var(--'+(VT.fb.ok?"accent":"bad")+')"><p style="margin:0 0 4px;font-weight:800;color:var(--'+(VT.fb.ok?"accent":"bad")+')">'+(VT.fb.ok?"Richtig.":"Nicht ganz.")+'</p><p class="note" style="margin:0">-'+g+' + '+VT.p[0]+' → <b>-'+endg+'</b>: '+VT.p[0]+' '+VT.r+'</p><button class="btn" onclick="verbWeiter()">Weiter</button></div>'
          : '<button class="btn" '+(VT.wahl==null?'disabled style="opacity:.4"':'')+' onclick="verbCheck()">Prüfen</button>'));
 }
 function verbWahl(k){ if(VT.fb) return; VT.wahl=k; verbView(); }
-function verbCheck(){ var ok=VT.o[VT.wahl]===VT.r; VT.fb={ok:ok}; if(ok) VT.ok++; try{ speak(VT.p[0]+" "+VT.r); }catch(e){} verbView(); }
+function verbCheck(){ var ok=VT.o[VT.wahl]===VT.r; VT.fb={ok:ok}; if(ok) VT.ok++; try{ speak(zeig(VT.p[0],VT.r)); }catch(e){} verbView(); }
 function verbWeiter(){ VT.k++; verbNeu(); }
 function merkliste(){
   var tabs=L().filter(function(l){ return l.tab||l.merk; });
@@ -208,14 +208,14 @@ function L(){ return G[S.rubrik]||[]; }
 function fertig(){ S.gram=S.gram||{}; S.gram[S.rubrik]=S.gram[S.rubrik]||{}; return S.gram[S.rubrik]; }
 var Q=null;
 function gramMenu(){
-  var f=fertig(), n=L().filter(function(l,i){ return f[i]; }).length;
+  var f=fertig(), n=L().filter(function(l){ return f[l.t]; }).length;
   render('<button class="back" onclick="home()">‹ zurück</button><h2>Grammatik — die Basics</h2>'+
   '<p class="note" style="margin-bottom:14px">Kurz erklärt, mit Beispielen zum Anhören, danach zwei schnelle Fragen. Am besten der Reihe nach — das ist das Gerüst, in das später alle Sätze passen.</p>'+
   '<div class="card" style="padding:14px 16px"><p class="sub">Stand</p><p style="margin:6px 0 0;font-weight:700">'+n+' von '+L().length+' Lektionen verstanden</p></div>'+
   '<button class="tile" onclick="merkliste()"><span class="ic">📋</span><span>Merkliste<small>alle Tabellen und Regeln auf einen Blick</small></span><span class="chev">›</span></button>'+
-  (VERBEN[S.rubrik]?'<button class="tile" onclick="verbStart()"><span class="ic">🏋️</span><span>Verben-Trainer<small>Verb + Person → richtige Endung, mit Regel dazu</small></span><span class="chev">›</span></button>':'')+
+  (TR()?'<button class="tile" onclick="verbStart()"><span class="ic">🏋️</span><span>Verben-Trainer<small>Verb + Person → richtige Endung, mit Regel dazu</small></span><span class="chev">›</span></button>':'')+
   '<p class="sub" style="margin-top:14px">Lektionen</p>'+
-  L().map(function(l,i){ return '<button class="tile" onclick="gramLektion('+i+')"'+(!f[i]&&(i===0||f[i-1])?' style="border-color:var(--accent)"':'')+'><span class="ic">'+l.ic+'</span><span>'+(i+1)+'. '+l.t+(f[i]?' <span class="done">· ✓</span>':'')+'</span><span class="chev">›</span></button>'; }).join(""));
+  L().map(function(l,i){ return '<button class="tile" onclick="gramLektion('+i+')"'+(!f[l.t]&&(i===0||f[L()[i-1].t])?' style="border-color:var(--accent)"':'')+'><span class="ic">'+l.ic+'</span><span>'+(i+1)+'. '+l.t+(f[l.t]?' <span class="done">· ✓</span>':'')+'</span><span class="chev">›</span></button>'; }).join(""));
 }
 function gramLektion(i){
   var l=L()[i];
@@ -231,7 +231,7 @@ function gramQuiz(i){ Q={l:i, k:0, wahl:null, fb:null, ok:0}; gramFrage(); }
 function gramFrage(){
   var l=L()[Q.l], q=l.q[Q.k];
   if(!q){
-    var alle=Q.ok===l.q.length; if(alle){ fertig()[Q.l]=true; save(); }
+    var alle=Q.ok===l.q.length; if(alle){ fertig()[l.t]=true; save(); }
     return render('<div class="card"><h2>'+(alle?"Sitzt ✓":"Fast")+'</h2><p class="note">'+Q.ok+' von '+l.q.length+' richtig.'+(alle?"":" Lies die Erklärung nochmal und probier es dann wieder.")+'</p></div>'+
       (alle && L()[Q.l+1] ? '<button class="btn" onclick="gramLektion('+(Q.l+1)+')">Nächste Lektion: '+L()[Q.l+1].t+'</button>' : '')+
       (!alle ? '<button class="btn" onclick="gramLektion('+Q.l+')">Erklärung nochmal</button>' : '')+
@@ -249,6 +249,6 @@ function gramWahl(k){ if(Q.fb) return; Q.wahl=k; var o=L()[Q.l].q[Q.k].o[k]; if(
 function gramCheck(){ var q=L()[Q.l].q[Q.k]; Q.fb={ok:Q.wahl===q.a}; if(Q.fb.ok) Q.ok++; gramFrage(); }
 function gramWeiter(){ Q.k++; Q.wahl=null; Q.fb=null; gramFrage(); }
 window.gramDa=da; window.gramMenu=gramMenu; window.gramLektion=gramLektion; window.gramQuiz=gramQuiz; window.gramWahl=gramWahl; window.gramCheck=gramCheck; window.gramWeiter=gramWeiter;
-window.gramOffen=function(){ var f=fertig(); return L().filter(function(l,i){ return !f[i]; }).length; };
+window.gramOffen=function(){ var f=fertig(); return L().filter(function(l){ return !f[l.t]; }).length; };
 window.GRAM=G;
 })();

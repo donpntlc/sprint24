@@ -513,7 +513,7 @@ function rubProg(id){
   const started = ok>0 || !!pre || ((S.exams||[]).some(x=>x.rubrik===id));
   return {pct, ok, n:items.length, started, done: pct>=90 || !!post};
 }
-function setRubrik(id){ S.rubrik=id; save(); applyRubrik(); loadVoices(); save(); home(); }
+function setRubrik(id){ S.focusBy=S.focusBy||{}; if(S.focus) S.focusBy[S.rubrik]=S.focus; S.rubrik=id; S.focus=S.focusBy[id]||S.focus; applyRubrik(); loadVoices(); save(); setup(1); }
 function focusProg(f, rub){
   const d=rub?RUBRIK_DATA[rub]:null, items=(d?d.chunks:CHUNKS).filter(c=>f.scn.includes(c.scn));
   const ok=items.filter(c=>(S.box[c.id]||0)>=3).length;
@@ -2794,7 +2794,7 @@ function setup(step){
   if(step===1){
     render(`${S.focus?`<button class="back" onclick="home()">\u2039 zur\u00fcck</button>`:""}
     <div class="top"><div class="flag"></div><div><h1>24h Sprint</h1><p class="sub">${cfg().name}</p></div></div>
-    <h2>Worauf setzt du die 24 Stunden?</h2>
+    <h2>Welcher Fokus?</h2>
     <p class="note" style="margin-bottom:12px">Der ganze Stoff passt nicht in ${S.plan==="12"?"12":"24"} Stunden. Was du hier wählst, kommt zuerst dran und wird geübt, bis es sitzt. Der Rest bleibt verfügbar — nur später.</p>
     ${FOCI.map(f=>{ const g=focusProg(f);
       return `<button class="tile" onclick="pickFocus('${f.id}')" style="${S.focus===f.id?"border-color:var(--accent)":""}">
@@ -2816,7 +2816,7 @@ function setup(step){
     <button class="tile" onclick="pickMode('frei')"><span class="ic">🎲</span><span>Frei<small>Du wählst selbst, kreuz und quer</small></span><span class="chev">›</span></button>`);
   }
 }
-function pickFocus(id){ S.focus=id; save(); setup(2); }
+function pickFocus(id){ S.focus=id; S.focusBy=S.focusBy||{}; S.focusBy[S.rubrik]=id; save(); if(S.plan && S.mode) home(); else setup(2); }
 function pickPlan(id){ S.plan=id; save(); setup(3); }
 function pickMode(m){ S.mode=m; save(); home(); }
 
@@ -3441,7 +3441,7 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="20261120132547";
+const APPV="20261120133142";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>
@@ -3452,6 +3452,7 @@ updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidd
 <script src="monolog.js"></script>
 <script src="bild.js"></script>
 <script src="grammatik.js"></script>
+<script src="grammatik2.js"></script>
 <script src="gen.js"></script>
 <script>try{ if(document.querySelector("#app .hdr")) home(); }catch(e){}</script>
 </body>
