@@ -152,6 +152,17 @@ body.sol .top{padding-bottom:4px}
 .gear{margin-left:auto;background:var(--card);border:1px solid var(--line);border-radius:999px;width:38px;height:38px;font-size:17px;line-height:1;color:var(--ink);flex:0 0 auto}
 .top{display:flex;align-items:center;gap:12px}
 .answer{cursor:pointer}.answer::after{content:" 🔊";font-size:.55em;opacity:.55;vertical-align:middle}
+.sek{border-radius:20px;padding:12px 12px 4px;margin:18px 0;border:1px solid}
+.sek-verst{background:rgba(140,170,235,.07);border-color:rgba(140,170,235,.40)}
+.sek-ueb{background:rgba(143,214,169,.07);border-color:rgba(143,214,169,.40)}
+.sek-pruef{background:rgba(235,175,110,.07);border-color:rgba(235,175,110,.45)}
+.sekkopf{display:flex;gap:12px;align-items:center;margin:4px 6px 12px}
+.sekkopf>span{font-size:26px}
+.sekkopf b{display:block;font-family:var(--fontH);font-size:21px;letter-spacing:.3px}
+.sekkopf small{display:block;opacity:.7;font-size:13px;margin-top:2px}
+.sek-ueb .sekkopf b{color:var(--accent)}
+.sek-pruef .sekkopf b{color:#ebaf6e}
+.sek-verst .sekkopf b{color:#8caaeb}
 </style>
 </head>
 <body>
@@ -2862,10 +2873,10 @@ function home(){
     <div><b>${myErr().length}</b><span>Fehlerliste</span></div>
   </div>
   ${S.mode==="streng" ? strictView() : `
+  ${window.gramDa&&gramDa()?`<div class="sek sek-verst"><div class="sekkopf"><span>📘</span><div><b>Verstehen</b><small>Erst das Gerüst: wie die Sprache aufgebaut ist</small></div></div>`:""}
   ${window.gramDa&&gramDa()?`<button class="tile" onclick="gramMenu()" style="${gramOffen()?"border-color:var(--accent)":""}"><span class="ic">📘</span><span>Grammatik — die Basics<small>${gramOffen()?gramOffen()+" Lektionen offen · am besten zuerst":"alle Lektionen verstanden ✓"}</small></span><span class="chev">›</span></button>`:""}
-  ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Zuerst: Startpunkt messen<small>20 ${einh()} ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
-   :`<div class="card" style="padding:14px 16px"><p class="sub">Startpunkt</p><p style="margin:6px 0 0;font-weight:700">${preR().score}/${preR().of} vorher${postR()?` · ${postR().score}/${postR().of} jetzt`:""}</p>${postR()?`<p class="note">Unterschied: <b style="color:var(--accent)">+${postR().score-preR().score}</b> Sätze</p>`:`<p class="note">Am Ende machst du genau denselben Test nochmal.</p>`}</div>`}
-  <h2>Üben</h2>
+  ${window.gramDa&&gramDa()?`</div>`:""}
+  <div class="sek sek-ueb"><div class="sekkopf"><span>🏋️</span><div><b>Üben</b><small>Hier lernst du — Fehler sind erwünscht, es zählt nichts</small></div></div>
   <button class="tile" onclick="uebBlock(S.blockMin||3)" style="border-color:var(--accent)"><span class="ic">⏱️</span><span>Lernblock · ${S.blockMin||3} Min<small>Aufgaben kreuz und quer, bis die Zeit um ist · Länge unter Durchgang wählbar</small></span><span class="chev">›</span></button>
   ${window.bildDa&&bildDa()?`<button class="tile" onclick="bildMenu()"><span class="ic">🖼️</span><span>Bildkarten<small>Bild sehen, Wort hören, selbst sagen — ganz ohne Deutsch</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="uebMenu()"><span class="ic">🎮</span><span>Durchgang<small>Wechselnde Aufgaben: ${istSpr()?"erkennen, auswählen, bauen, tippen, hören, sprechen":"erkennen, auswählen, laut antworten"}</small></span><span class="chev">›</span></button>
@@ -2873,16 +2884,20 @@ function home(){
   ${Object.keys(MISSIONS).length?`<button class="tile" onclick="go('mission')"><span class="ic">🎭</span><span>Mission spielen<small>Ich bin das Gegenüber, du musst durchkommen</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="hoerMenu()"><span class="ic">🎧</span><span>Hören & Nachsprechen<small>Ohne Hinsehen: hören, nachsprechen, Lösung hören — läuft von allein weiter</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="go('f432')"><span class="ic">⏱️</span><span>4/3/2 Monolog<small>Dasselbe Thema in 4, dann 3, dann 2 Minuten</small></span><span class="chev">›</span></button>
-  <h2 style="margin-top:18px">Prüfungen</h2>
+  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${myErr().length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
+  </div>
+  <div class="sek sek-pruef"><div class="sekkopf"><span>🎯</span><div><b>Prüfen</b><small>Ohne Hilfe, mit Ergebnis — zeigt, was wirklich sitzt</small></div></div>
+  ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Startpunkt messen<small>20 ${einh()} ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
+   :`<div class="card" style="padding:14px 16px"><p class="sub">Startpunkt</p><p style="margin:6px 0 0;font-weight:700">${preR().score}/${preR().of} vorher${postR()?` · ${postR().score}/${postR().of} jetzt`:""}</p>${postR()?`<p class="note">Unterschied: <b style="color:var(--accent)">+${postR().score-preR().score}</b> Sätze</p>`:`<p class="note">Am Ende machst du genau denselben Test nochmal.</p>`}</div>`}
   ${S.rubrik==="pt"?`<button class="tile" onclick="lesen()"><span class="ic">📖</span><span>1 · Lesen: Schrift → Laut<small>30 Wörter kalt vorlesen · max. 3 Fehler</small>${badge(1)}</span><span class="chev">›</span></button>
   <button class="tile" onclick="hebel()"><span class="ic">🔄</span><span>2 · Englisch-Hebel<small>40 Wörter umrechnen, 5 Minuten · 30 richtig</small>${badge(2)}</span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="mix(20,4,3)"><span class="ic">⚡</span><span>${S.rubrik==="pt"?"3 · ":""}Abruf im Fokus<small>20 ${einh()}, je ${istSpr()?4:12} Sekunden · 80 % richtig</small>${badge(3)}</span><span class="chev">›</span></button>
   <button class="tile" onclick="mix(30,3,5)"><span class="ic">🔥</span><span>${S.rubrik==="pt"?"4 · ":""}Mix unter Zeitdruck<small>30 ${einh()}, 70 % Fokus · je ${istSpr()?3:9} Sekunden · 80 % richtig</small>${badge(5)}</span><span class="chev">›</span></button>
   `}
+  ${S.mode==="streng"?`<div class="sek sek-pruef"><div class="sekkopf"><span>🎯</span><div><b>Prüfen</b><small>Ohne Hilfe, mit Ergebnis</small></div></div>`:""}
   <button class="tile" onclick="dlgMenu()" style="border-color:var(--accent2)"><span class="ic">💬</span><span>Gespräch<small>echtes Gespräch mit Nachfragen · findet deine Schwächen</small>${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0]?`<small class="done">zuletzt ${(S.exams||[]).filter(x=>x.rubrik===S.rubrik).slice(-1)[0].pct}%</small>`:""}</span><span class="chev">›</span></button>
-  <h2 style="margin-top:18px">Deine Schwachstellen</h2>
-  <button class="tile" onclick="drillErrors()"><span class="ic">🩹</span><span>Fehlerliste drillen<small>${myErr().length} ${einh()} · am Ende nur noch das</small></span><span class="chev">›</span></button>
   ${preR()?`<button class="tile" onclick="levelTest('post')"><span class="ic">🏁</span><span>Endtest · dieselben 20 ${einh()}<small>Am Schluss · Vergleich zum Start</small></span><span class="chev">›</span></button>`:""}
+  </div>
   <p class="note" style="margin-top:18px">Regel: erst sagen, dann auflösen. Nie mitlesen und nachsprechen — das fühlt sich gut an und bringt fast nichts.</p>
   `);
 }
