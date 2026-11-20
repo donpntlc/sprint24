@@ -55,11 +55,13 @@ function zip(files){ // [{name, data:Uint8Array}]
   return new Blob(parts.concat(central,[new Uint8Array(e.buffer)]),{type:"application/zip"});
 }
 
-var stop=false;
+var stop=false, VORHANDEN=null;
+fetch("audio/index.json",{cache:"no-cache"}).then(function(r){ return r.json(); }).then(function(j){ VORHANDEN={}; Object.keys(j).forEach(function(v){ var m={}; j[v].forEach(function(h){ m[h]=1; }); VORHANDEN[v]=m; }); seite(""); }).catch(function(){ VORHANDEN={}; });
+function nurNeu(o){ if(!VORHANDEN) return o; var r={}; Object.keys(o).forEach(function(v){ Object.keys(o[v]).forEach(function(h){ if(!(VORHANDEN[v]&&VORHANDEN[v][h])) (r[v]=r[v]||{})[h]=o[v][h]; }); }); return r; }
 function seite(msg){
-  var o=texte(), a=zaehle(o,false), f=zaehle(o,true);
+  var o=nurNeu(texte()), a=zaehle(o,false), f=zaehle(o,true);
   render('<h2>Audio-Werkstatt</h2>'+
-  '<p class="note" style="margin-bottom:12px">Erzeugt alle Sätze der App als echte Aufnahmen. Am Ende wird eine ZIP-Datei heruntergeladen — die baut Claude in die App ein. Der Schlüssel bleibt in diesem Browser.</p>'+
+  '<p class="note" style="margin-bottom:12px">Erzeugt alle Sätze, die noch keine Aufnahme haben. Am Ende wird eine ZIP-Datei heruntergeladen — die baut Claude in die App ein. Der Schlüssel bleibt in diesem Browser.</p>'+
   '<div class="card"><p class="note">Beide Stimmen: '+a.saetze.toLocaleString("de-DE")+' Sätze · '+a.zeichen.toLocaleString("de-DE")+' Zeichen<br>Nur Frauenstimmen: '+f.saetze.toLocaleString("de-DE")+' Sätze · '+f.zeichen.toLocaleString("de-DE")+' Zeichen<br>Gratis im Monat: 500.000 Zeichen</p></div>'+
   '<div class="card"><p class="sub">Schlüssel</p><input class="txt" id="gk" type="password" autocomplete="off" placeholder="Schlüssel 1 einfügen">'+
   '<p class="sub" style="margin-top:12px">Region</p><input class="txt" id="gr" value="swedencentral" autocomplete="off" autocapitalize="off">'+
@@ -85,7 +87,7 @@ async function anfrage(key, region, voice, lang, liste){
 window.genStart=async function(){
   var key=document.getElementById("gk").value.trim(), region=document.getElementById("gr").value.trim().toLowerCase(), beide=document.getElementById("gb").checked;
   if(!key) return status("Bitte zuerst den Schlüssel einfügen.");
-  var o=texte(), lang={}; Object.keys(ttsAZ).forEach(function(c){ lang[ttsAZ[c].f]=ttsAZ[c].l; lang[ttsAZ[c].m]=ttsAZ[c].l; });
+  var o=nurNeu(texte()), lang={}; Object.keys(ttsAZ).forEach(function(c){ lang[ttsAZ[c].f]=ttsAZ[c].l; lang[ttsAZ[c].m]=ttsAZ[c].l; });
   var stimmen=Object.keys(o).filter(function(v){ return beide || Object.keys(ttsAZ).some(function(c){ return ttsAZ[c].f===v; }); });
   var jobs=[];
   stimmen.forEach(function(v){

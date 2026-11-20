@@ -57,6 +57,15 @@ var W=[
 ["⚽","a bola","la pelota","ball","le ballon","la palla","мяч · mjatsch","lopta","η μπάλα · i bála"]
 ];
 var SP={pt:1,es:2,en:3,fr:4,it:5,ru:6,sr:7,el:8};
+var DE=["das Wasser","das Brot","der Kaffee","die Milch","der Apfel","die Banane","das Ei","der Käse","der Fisch","das Fleisch","der Reis","das Haus","die Tür","das Bett","der Stuhl","der Schlüssel","das Buch","das Handy","das Geld","das Auto","der Bus","der Zug","das Flugzeug","das Fahrrad","die Sonne","der Mond","der Regen","der Baum","die Blume","der Hund","die Katze","der Vogel","das Pferd","die Kuh","die Hand","das Auge","das Ohr","der Mund","das Herz","der Mann","die Frau","das Kind","die Schule","das Krankenhaus","die Kirche","der Strand","der Berg","das Meer","die Uhr","der Schuh","die Brille","die Tasche","der Ball"];
+function deModus(){ return S.bildDe||"tippen"; }
+function deZeile(i){
+  var m=deModus(); if(m==="aus") return "";
+  if(m==="zeigen") return '<p class="note" style="text-align:center;margin:6px 0 0">🇩🇪 '+DE[i]+'</p>';
+  return '<p class="note" style="text-align:center;margin:6px 0 0;display:none">🇩🇪 '+DE[i]+'</p>'+
+    '<button class="btn ghost sm" style="margin-top:8px" onclick="this.previousElementSibling.style.display=\'block\';this.remove()">Auf Deutsch zeigen</button>';
+}
+function bildDeSet(m){ S.bildDe=m; save(); bildMenu(); }
 
 function da(){ return !!SP[S.rubrik]; }
 function wort(i){ return W[i][SP[S.rubrik]]; }
@@ -77,6 +86,9 @@ function bildMenu(){
   '<div class="card" style="padding:14px 16px"><p class="sub">Stand</p><p style="margin:6px 0 0;font-weight:700">'+sitzt+' von '+W.length+' Wörtern sitzen · '+gesehen+' schon gesehen</p></div>'+
   '<button class="tile" onclick="bildStart(12)" style="border-color:var(--accent)"><span class="ic">🖼️</span><span>Runde starten<small>12 Aufgaben · neue Wörter kommen in kleinen Portionen dazu</small></span><span class="chev">›</span></button>'+
   '<button class="tile" onclick="bildStart(24)"><span class="ic">🔥</span><span>Lange Runde<small>24 Aufgaben</small></span><span class="chev">›</span></button>'+
+  '<p class="sub" style="margin-top:16px">Deutsch nach der Lösung</p>'+
+  '<div class="row" style="gap:8px;margin-top:6px">'+[["zeigen","immer zeigen"],["tippen","auf Antippen"],["aus","nie"]].map(function(o){ var on=deModus()===o[0];
+    return '<button class="btn ghost sm" style="flex:1;margin:0;'+(on?"border-color:var(--accent);color:var(--accent)":"")+'" onclick="bildDeSet(\''+o[0]+'\')">'+o[1]+'</button>'; }).join("")+'</div>'+
   '<p class="note" style="margin-top:14px">Aufgaben: Bild sehen und Wort hören · Bild sehen und Wort wählen · Wort hören und Bild wählen · Bild sehen und laut sagen.</p>');
 }
 function auswahl(n){
@@ -114,6 +126,7 @@ function bildKarte(){
   if(a.typ==="neu"){
     body='<div class="card">'+gross(W[i][0])+
       '<p class="prompt" style="text-align:center">'+nur(w)+'</p>'+(um(w)?'<p class="note" style="text-align:center">'+um(w)+'</p>':'')+
+      deZeile(i)+
       '<button class="btn ghost" onclick="bildHoer()">🔊 nochmal hören</button>'+
       '<p class="note" style="text-align:center">Neues Wort. Anschauen, hören, laut nachsagen.</p></div>'+
       '<button class="btn" onclick="bildNext(1)">Gesagt — weiter</button>';
@@ -139,12 +152,12 @@ function bildKarte(){
       (B.fb? '' : '<button class="btn" '+(B.wahl==null?'disabled style="opacity:.4"':'')+' onclick="bildCheck()">Prüfen</button>');
   } else { // sag
     body='<div class="card">'+gross(W[i][0])+'<p class="sub" style="text-align:center">Sag es laut</p>'+
-      (B.zeig? '<p class="prompt" style="text-align:center">'+nur(w)+'</p>'+(um(w)?'<p class="note" style="text-align:center">'+um(w)+'</p>':'') : '')+'</div>'+
+      (B.zeig? '<p class="prompt" style="text-align:center">'+nur(w)+'</p>'+(um(w)?'<p class="note" style="text-align:center">'+um(w)+'</p>':'')+deZeile(i) : '')+'</div>'+
       (B.zeig? '<div class="score"><button class="ok" onclick="bildNext(1)">Saß</button><button class="no" onclick="bildNext(0)">Nochmal</button></div>'
              : '<button class="btn" onclick="bildZeig()">Gesagt — auflösen</button>');
   }
   if(B.fb) body+='<div class="card" style="border-color:var(--'+(B.fb.ok?"accent":"bad")+')"><p style="margin:0 0 4px;font-weight:800;color:var(--'+(B.fb.ok?"accent":"bad")+')">'+(B.fb.ok?"Richtig.":"Nicht ganz.")+'</p>'+
-    '<p class="prompt" style="margin:0">'+W[i][0]+' '+nur(w)+'</p><button class="btn" onclick="bildNext('+(B.fb.ok?1:0)+')">Weiter</button></div>';
+    '<p class="prompt" style="margin:0">'+W[i][0]+' '+nur(w)+'</p>'+deZeile(i)+'<button class="btn" onclick="bildNext('+(B.fb.ok?1:0)+')">Weiter</button></div>';
   render(kopf()+body);
   if(!B.fb && !B.gespielt && (a.typ==="neu"||a.typ==="hoer")){ B.gespielt=true; setTimeout(function(){ sag(w); }, 250); }
 }
@@ -178,7 +191,7 @@ function bildEnde(){
     '<button class="btn" onclick="bildStart(12)">Noch eine Runde</button><button class="btn ghost" onclick="home()">Zurück</button>');
   B=null;
 }
-window.bildMenu=bildMenu; window.bildStart=bildStart; window.bildHoer=bildHoer; window.bildWahl=bildWahl;
+window.bildMenu=bildMenu; window.bildDeSet=bildDeSet; window.bildStart=bildStart; window.bildHoer=bildHoer; window.bildWahl=bildWahl;
 window.bildCheck=bildCheck; window.bildZeig=bildZeig; window.bildNext=bildNext; window.bildDa=da;
 window.BILD_WOERTER=W; window.BILD_SP=SP;
 })();
