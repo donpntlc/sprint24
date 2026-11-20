@@ -15,10 +15,21 @@ pt:[
   bsp:[["(Eu) moro em Berlim.","Ich wohne in Berlin."],["Não falo inglês.","Ich spreche kein Englisch."],["Você fala alemão?","Sprichst du Deutsch?"],["Acho que ele vem amanhã.","Ich glaube, dass er morgen kommt."]],
   q:[{f:"„Ich verstehe nicht.“",o:["Entendo não.","Não entendo.","Eu entendo não."],a:1,w:"não steht direkt vor dem Verb."},
      {f:"Wie wird aus „Você tem tempo.“ eine Frage?",o:["Tem você tempo?","Você tem tempo? — Stimme hoch am Ende","Você tempo tem?"],a:1,w:"Gleiche Reihenfolge, nur die Betonung ändert sich."}]},
- {t:"Verben im Präsens", ic:"⚙️", text:"Verben enden auf <b>-ar</b>, <b>-er</b> oder <b>-ir</b>. Die Endung zeigt, wer etwas tut. In Brasilien brauchst du vor allem vier Formen: eu (ich), você (du/Sie), nós (wir), eles (sie). <b>você</b> nimmt dieselbe Form wie „er/sie“.",
-  bsp:[["eu falo · você fala","ich spreche · du sprichst"],["nós falamos · eles falam","wir sprechen · sie sprechen"],["eu como · você come","ich esse · du isst"],["eu parto · você parte","ich reise ab · du reist ab"]],
-  q:[{f:"„wir sprechen“",o:["nós falam","nós falamos","nós fala"],a:1,w:"nós endet auf -mos: falamos."},
-     {f:"„Isst du Fleisch?“",o:["Você come carne?","Você comes carne?","Você comer carne?"],a:0,w:"você nimmt die Form wie er/sie: come."}]},
+ {t:"Verben im Präsens: -ar, -er, -ir", ic:"⚙️", text:"Jedes Verb gehört zu einer von drei Gruppen — erkennbar an der Grundform: <b>-ar</b> (falar), <b>-er</b> (comer) oder <b>-ir</b> (partir). Du nimmst die Endung weg und hängst die passende neue an. In Brasilien brauchst du vier Formen. <b>você</b> (du/Sie) nimmt dieselbe Form wie ele/ela (er/sie), <b>vocês</b> (ihr) dieselbe wie eles/elas (sie).",
+  tab:'<table class="gt"><tr><th></th><th>-ar<br><small>falar</small></th><th>-er<br><small>comer</small></th><th>-ir<br><small>partir</small></th></tr><tr><td>eu</td><td>fal<b>o</b></td><td>com<b>o</b></td><td>part<b>o</b></td></tr><tr><td>você · ele · ela</td><td>fal<b>a</b></td><td>com<b>e</b></td><td>part<b>e</b></td></tr><tr><td>nós</td><td>fal<b>amos</b></td><td>com<b>emos</b></td><td>part<b>imos</b></td></tr><tr><td>vocês · eles · elas</td><td>fal<b>am</b></td><td>com<b>em</b></td><td>part<b>em</b></td></tr></table>',
+  merk:"Merksatz: ich = immer <b>-o</b>. Bei -ar steht ein <b>a</b> in der Endung, bei -er und -ir ein <b>e</b> — nur bei nós sagt -ir <b>-imos</b>.",
+  bsp:[["eu fal<b>o</b> / você fal<b>a</b>","falar (-ar): ich spreche / du sprichst"],["nós fal<b>amos</b> / eles fal<b>am</b>","falar (-ar): wir sprechen / sie sprechen"],["eu com<b>o</b> / você com<b>e</b>","comer (-er): ich esse / du isst"],["nós com<b>emos</b> / eles com<b>em</b>","comer (-er): wir essen / sie essen"],["eu part<b>o</b> / nós part<b>imos</b>","partir (-ir): ich reise ab / wir reisen ab"]],
+  q:[{f:"<b>morar</b> (wohnen) ist ein -ar-Verb. „wir wohnen“?",o:["nós moremos","nós moramos","nós moram"],a:1,w:"-ar + nós → <b>-amos</b>: moramos."},
+     {f:"<b>beber</b> (trinken) ist ein -er-Verb. „du trinkst“ (você)?",o:["você beba","você bebe","você bebo"],a:1,w:"-er + você → <b>-e</b>: bebe."},
+     {f:"<b>abrir</b> (öffnen) ist ein -ir-Verb. „wir öffnen“?",o:["nós abremos","nós abrimos","nós abramos"],a:1,w:"-ir + nós → <b>-imos</b>: abrimos."},
+     {f:"<b>trabalhar</b> (arbeiten). „sie arbeiten“ (eles)?",o:["eles trabalham","eles trabalhem","eles trabalhamos"],a:0,w:"-ar + eles → <b>-am</b>: trabalham."}]},
+ {t:"Die wichtigsten unregelmässigen Verben", ic:"⭐", text:"Ein paar Verben halten sich nicht an die Regel — aber genau die brauchst du ständig. Lern sie als Block, laut, mehrmals.",
+  tab:'<table class="gt"><tr><th></th><th>eu</th><th>você</th><th>nós</th><th>eles</th></tr><tr><td>ser <small>sein</small></td><td>sou</td><td>é</td><td>somos</td><td>são</td></tr><tr><td>estar <small>sein</small></td><td>estou</td><td>está</td><td>estamos</td><td>estão</td></tr><tr><td>ter <small>haben</small></td><td>tenho</td><td>tem</td><td>temos</td><td>têm</td></tr><tr><td>ir <small>gehen</small></td><td>vou</td><td>vai</td><td>vamos</td><td>vão</td></tr><tr><td>fazer <small>machen</small></td><td>faço</td><td>faz</td><td>fazemos</td><td>fazem</td></tr><tr><td>querer <small>wollen</small></td><td>quero</td><td>quer</td><td>queremos</td><td>querem</td></tr><tr><td>poder <small>können</small></td><td>posso</td><td>pode</td><td>podemos</td><td>podem</td></tr></table>',
+  merk:"Tipp: Mit <b>ir</b> + Grundform sprichst du über die Zukunft: <b>vou comer</b> = ich werde essen.",
+  bsp:[["Eu tenho tempo.","Ich habe Zeit."],["Nós vamos à praia.","Wir gehen an den Strand."],["Você pode me ajudar?","Kannst du mir helfen?"],["Vou comer agora.","Ich esse jetzt gleich."]],
+  q:[{f:"„ich habe“",o:["eu tem","eu tenho","eu teno"],a:1,w:"ter ist unregelmässig: eu <b>tenho</b>."},
+     {f:"„wir gehen“",o:["nós imos","nós vamos","nós vão"],a:1,w:"ir: nós <b>vamos</b>."},
+     {f:"„ich kann“",o:["eu podo","eu posso","eu pode"],a:1,w:"poder: eu <b>posso</b>."}]},
  {t:"Sein: ser oder estar", ic:"⚖️", text:"Portugiesisch hat zwei Wörter für „sein“. <b>ser</b> für das, was jemand oder etwas ist — Herkunft, Beruf, Eigenschaft. <b>estar</b> für Zustände und wo man gerade ist.",
   bsp:[["Sou alemão.","Ich bin Deutscher."],["É caro.","Es ist teuer."],["Estou cansado.","Ich bin müde."],["Estou no hotel.","Ich bin im Hotel."]],
   q:[{f:"„Ich bin müde.“",o:["Sou cansado.","Estou cansado."],a:1,w:"Müde ist ein Zustand — estar."},
@@ -158,6 +169,40 @@ el:[
 ]
 };
 
+var VERBEN={pt:[["falar","sprechen"],["morar","wohnen"],["trabalhar","arbeiten"],["comprar","kaufen"],["gostar","mögen"],["precisar","brauchen"],["estudar","lernen"],["chegar","ankommen"],["pagar","bezahlen"],["tomar","nehmen"],["andar","gehen, laufen"],["olhar","schauen"],["comer","essen"],["beber","trinken"],["vender","verkaufen"],["aprender","lernen"],["entender","verstehen"],["correr","rennen"],["escrever","schreiben"],["abrir","öffnen"],["partir","abreisen"],["decidir","entscheiden"],["dividir","teilen"],["assistir","anschauen"],["permitir","erlauben"]]};
+var PERS=[["eu","ich",0],["você","du",1],["ele","er",1],["nós","wir",2],["vocês","ihr",3],["eles","sie",3]];
+var END={ar:["o","a","amos","am"],er:["o","e","emos","em"],ir:["o","e","imos","em"]};
+function form(v,p){ var g=v.slice(-2), st=v.slice(0,-2); return st+END[g][p]; }
+var VT=null;
+function verbStart(){ VT={k:0,n:10,ok:0}; verbNeu(); }
+function verbNeu(){
+  var L=VERBEN.pt, v=L[Math.floor(Math.random()*L.length)], p=PERS[Math.floor(Math.random()*PERS.length)];
+  var richtig=form(v[0],p[2]), g=v[0].slice(-2), opts=[richtig];
+  [0,1,2,3].forEach(function(i){ var f=form(v[0],i); if(opts.indexOf(f)<0) opts.push(f); });
+  ["ar","er","ir"].forEach(function(gg){ if(gg!==g){ var f=v[0].slice(0,-2)+END[gg][p[2]]; if(opts.indexOf(f)<0 && opts.length<4) opts.push(f); } });
+  opts=opts.slice(0,4).sort(function(){ return Math.random()-.5; });
+  VT.v=v; VT.p=p; VT.r=richtig; VT.o=opts; VT.wahl=null; VT.fb=null; verbView();
+}
+function verbView(){
+  if(VT.k>=VT.n) return render('<div class="card"><h2>Verben-Trainer</h2><p class="big">'+VT.ok+' / '+VT.n+'</p></div><button class="btn" onclick="verbStart()">Noch eine Runde</button><button class="btn ghost" onclick="gramMenu()">Zurück</button>');
+  var g=VT.v[0].slice(-2), endg=END[g][VT.p[2]];
+  render('<button class="back" onclick="gramMenu()">‹ zurück</button><p class="sub">Verben-Trainer · '+(VT.k+1)+' von '+VT.n+'</p>'+
+  '<div class="card"><p class="note" style="margin:0 0 6px">'+VT.v[0]+' = '+VT.v[1]+' · <b>-'+g+'</b>-Verb</p><p class="prompt" style="font-size:24px">'+VT.p[0]+' … <small style="opacity:.7">('+VT.p[1]+')</small></p></div>'+
+  VT.o.map(function(o,k){ var st=""; if(VT.fb && o===VT.r) st="border-color:var(--accent);background:rgba(143,214,169,.12)"; else if(VT.fb && VT.wahl===k) st="border-color:var(--bad);background:rgba(235,128,115,.12)"; else if(VT.wahl===k) st="border-color:var(--accent)";
+    return '<button class="tile" style="'+st+'" onclick="verbWahl('+k+')"><span class="ic">'+String.fromCharCode(65+k)+'</span><span>'+VT.p[0]+' '+o+'</span></button>'; }).join("")+
+  (VT.fb ? '<div class="card" style="border-color:var(--'+(VT.fb.ok?"accent":"bad")+')"><p style="margin:0 0 4px;font-weight:800;color:var(--'+(VT.fb.ok?"accent":"bad")+')">'+(VT.fb.ok?"Richtig.":"Nicht ganz.")+'</p><p class="note" style="margin:0">-'+g+' + '+VT.p[0]+' → <b>-'+endg+'</b>: '+VT.p[0]+' '+VT.r+'</p><button class="btn" onclick="verbWeiter()">Weiter</button></div>'
+         : '<button class="btn" '+(VT.wahl==null?'disabled style="opacity:.4"':'')+' onclick="verbCheck()">Prüfen</button>'));
+}
+function verbWahl(k){ if(VT.fb) return; VT.wahl=k; verbView(); }
+function verbCheck(){ var ok=VT.o[VT.wahl]===VT.r; VT.fb={ok:ok}; if(ok) VT.ok++; try{ speak(VT.p[0]+" "+VT.r); }catch(e){} verbView(); }
+function verbWeiter(){ VT.k++; verbNeu(); }
+function merkliste(){
+  var tabs=L().filter(function(l){ return l.tab||l.merk; });
+  render('<button class="back" onclick="gramMenu()">‹ zurück</button><h2>📋 Merkliste</h2><p class="note" style="margin-bottom:12px">Alles Wichtige auf einen Blick — zum Einprägen und Nachschauen.</p>'+
+    tabs.map(function(l){ return '<p class="sub" style="margin-top:14px">'+l.ic+' '+l.t+'</p>'+(l.tab?'<div class="card" style="overflow-x:auto">'+l.tab+'</div>':'')+(l.merk?'<p class="note">💡 '+l.merk+'</p>':''); }).join("")+
+    L().filter(function(l){ return !l.tab; }).map(function(l){ return '<p class="sub" style="margin-top:14px">'+l.ic+' '+l.t+'</p><div class="card">'+l.bsp.map(function(b){ return '<p style="margin:4px 0"><b>'+b[0]+'</b> <span class="note">— '+b[1]+'</span></p>'; }).join("")+'</div>'; }).join(""));
+}
+window.verbStart=verbStart; window.verbWahl=verbWahl; window.verbCheck=verbCheck; window.verbWeiter=verbWeiter; window.merkliste=merkliste;
 function da(){ return !!G[S.rubrik]; }
 function L(){ return G[S.rubrik]||[]; }
 function fertig(){ S.gram=S.gram||{}; S.gram[S.rubrik]=S.gram[S.rubrik]||{}; return S.gram[S.rubrik]; }
@@ -167,14 +212,19 @@ function gramMenu(){
   render('<button class="back" onclick="home()">‹ zurück</button><h2>Grammatik — die Basics</h2>'+
   '<p class="note" style="margin-bottom:14px">Kurz erklärt, mit Beispielen zum Anhören, danach zwei schnelle Fragen. Am besten der Reihe nach — das ist das Gerüst, in das später alle Sätze passen.</p>'+
   '<div class="card" style="padding:14px 16px"><p class="sub">Stand</p><p style="margin:6px 0 0;font-weight:700">'+n+' von '+L().length+' Lektionen verstanden</p></div>'+
+  '<button class="tile" onclick="merkliste()"><span class="ic">📋</span><span>Merkliste<small>alle Tabellen und Regeln auf einen Blick</small></span><span class="chev">›</span></button>'+
+  (VERBEN[S.rubrik]?'<button class="tile" onclick="verbStart()"><span class="ic">🏋️</span><span>Verben-Trainer<small>Verb + Person → richtige Endung, mit Regel dazu</small></span><span class="chev">›</span></button>':'')+
+  '<p class="sub" style="margin-top:14px">Lektionen</p>'+
   L().map(function(l,i){ return '<button class="tile" onclick="gramLektion('+i+')"'+(!f[i]&&(i===0||f[i-1])?' style="border-color:var(--accent)"':'')+'><span class="ic">'+l.ic+'</span><span>'+(i+1)+'. '+l.t+(f[i]?' <span class="done">· ✓</span>':'')+'</span><span class="chev">›</span></button>'; }).join(""));
 }
 function gramLektion(i){
   var l=L()[i];
   render('<button class="back" onclick="gramMenu()">‹ zurück</button><p class="sub">Lektion '+(i+1)+' von '+L().length+'</p><h2>'+l.ic+' '+l.t+'</h2>'+
   '<div class="card"><p style="margin:0;line-height:1.55">'+l.text+'</p></div>'+
+  (l.tab? '<div class="card" style="overflow-x:auto">'+l.tab+'</div>' : '')+
+  (l.merk? '<div class="card" style="border-color:var(--accent)"><p style="margin:0;line-height:1.5">💡 '+l.merk+'</p></div>' : '')+
   '<p class="sub">Beispiele — antippen zum Anhören</p>'+
-  l.bsp.map(function(b){ return '<button class="tile" onclick="speak('+JSON.stringify(b[0]).replace(/"/g,"&quot;")+')"><span class="ic">🔊</span><span>'+b[0]+'<small>'+b[1]+'</small></span></button>'; }).join("")+
+  l.bsp.map(function(b){ return '<button class="tile" onclick="speak('+JSON.stringify(b[0].replace(/<[^>]+>/g,"").replace(/ \/ /g,", ")).replace(/"/g,"&quot;")+')"><span class="ic">🔊</span><span>'+b[0]+'<small>'+b[1]+'</small></span></button>'; }).join("")+
   '<button class="btn" onclick="gramQuiz('+i+')">Verstanden — kurz prüfen</button>');
 }
 function gramQuiz(i){ Q={l:i, k:0, wahl:null, fb:null, ok:0}; gramFrage(); }

@@ -20,7 +20,7 @@ function texte(){
   });
   if(window.GRAM){
     Object.keys(GRAM).forEach(function(r){ var z=AZ[r]; if(!z) return;
-      GRAM[r].forEach(function(l){ ["f","m"].forEach(function(sx){ l.bsp.forEach(function(b){ add(z[sx], b[0]); }); }); }); });
+      GRAM[r].forEach(function(l){ ["f","m"].forEach(function(sx){ l.bsp.forEach(function(b){ add(z[sx], b[0].replace(/<[^>]+>/g,"").replace(/ \/ /g,", ")); }); }); }); });
   }
   if(window.BILD_WOERTER){
     Object.keys(BILD_SP).forEach(function(r){ var z=AZ[r]; if(!z) return;
