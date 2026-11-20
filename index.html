@@ -3433,6 +3433,11 @@ applyRubrik();
 applyTheme();
 home();
 </script>
+<script>
+const APPV="202611201259";
+function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
+updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
+</script>
 <script src="hoeren.js"></script>
 <script src="uebung.js"></script>
 <script src="profil.js"></script>
