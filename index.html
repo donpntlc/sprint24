@@ -3432,7 +3432,7 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="20261120130934";
+const APPV="20261120131023";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>
@@ -3444,5 +3444,6 @@ updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidd
 <script src="bild.js"></script>
 <script src="grammatik.js"></script>
 <script src="gen.js"></script>
+<script>try{ if(document.querySelector("#app .hdr")) home(); }catch(e){}</script>
 </body>
 </html>
