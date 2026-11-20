@@ -32,20 +32,13 @@ function ablenker(c, n){
 
 function uebMenu(){
   var pool=focusPool();
-  var offen=pool.filter(function(c){ return (S.box[c.id]||0)<3; }).length;
-  render('<button class="back" onclick="home()">‹ zurück</button><h2>Übung</h2>'+
-  '<p class="note" style="margin-bottom:14px">Ein Durchgang mit wechselnden Aufgaben: '+(istSprache()?'erkennen, auswählen, bauen, tippen, hören, sprechen':'erkennen, auswählen, laut antworten')+'. Welche Aufgabe kommt, entscheidet die App danach, wie sicher der Eintrag schon sitzt.</p>'+
+  var offen=pool.filter(function(c){ return (S.box[c.id]||0)<3; }).length, cur=S.blockMin||3;
+  render('<button class="back" onclick="home()">‹ zurück</button><h2>Lernblock</h2>'+
+  '<p class="note" style="margin-bottom:14px">Wähl, wie lange du lernen willst. Die Aufgaben wechseln kreuz und quer ('+(istSprache()?'erkennen, auswählen, bauen, tippen, hören, sprechen':'erkennen, auswählen, laut antworten')+'), bis die Zeit um ist. Was noch nicht sitzt, kommt öfter dran.</p>'+
   '<div class="card" style="padding:14px 16px"><p class="sub">Im Fokus</p>'+
   '<p style="margin:6px 0 0;font-weight:700">'+offen+' von '+pool.length+' sitzen noch nicht</p></div>'+
-  '<p class="sub" style="margin-top:6px">Lernblock nach Zeit</p>'+
-  '<p class="note" style="margin-bottom:8px">Die Aufgaben laufen kreuz und quer, bis die Zeit um ist. Keine Herzen — einfach dranbleiben.</p>'+
-  '<div class="row" style="gap:8px;margin-bottom:14px">'+[1,3,6,9].map(function(m){ var on=(S.blockMin||3)===m;
-     return '<button class="btn ghost" style="flex:1;margin:0;'+(on?"border-color:var(--accent);color:var(--accent)":"")+'" onclick="uebBlock('+m+')">'+m+' Min</button>'; }).join("")+'</div>'+
-  '<p class="sub">Nach Anzahl</p>'+
-  '<button class="tile" onclick="uebStart(8)"><span class="ic">⚡</span><span>Kurz<small>8 Aufgaben · etwa drei Minuten</small></span><span class="chev">›</span></button>'+
-  '<button class="tile" onclick="uebStart(14)"><span class="ic">🎯</span><span>Normal<small>14 Aufgaben · etwa fünf Minuten</small></span><span class="chev">›</span></button>'+
-  '<button class="tile" onclick="uebStart(25)"><span class="ic">🔥</span><span>Lang<small>25 Aufgaben · etwa zehn Minuten</small></span><span class="chev">›</span></button>'+
-  '<p class="note" style="margin-top:14px">Nach Anzahl: drei Herzen. Bei jedem Fehler siehst du sofort die richtige Lösung, der Eintrag wandert in die Fehlerliste und kommt später wieder.</p>');
+  [1,3,6,9].map(function(m){ return '<button class="tile" onclick="uebBlock('+m+')" style="'+(cur===m?"border-color:var(--accent)":"")+'"><span class="ic">⏱️</span><span>'+m+' '+(m===1?"Minute":"Minuten")+(cur===m?' <span class="done">· zuletzt</span>':'')+'<small>'+({1:"Kurz zwischendurch",3:"Ein schneller Block",6:"Konzentriert",9:"Lang und tief"})[m]+'</small></span><span class="chev">›</span></button>'; }).join("")+
+  '<p class="note" style="margin-top:14px">Bei jedem Fehler siehst du sofort die richtige Lösung, der Eintrag wandert in die Fehlerliste und kommt später wieder.</p>');
 }
 
 function uebStart(n){

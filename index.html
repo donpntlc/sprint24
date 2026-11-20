@@ -2877,9 +2877,8 @@ function home(){
   ${window.gramDa&&gramDa()?`<button class="tile" onclick="gramMenu()" style="${gramOffen()?"border-color:var(--accent)":""}"><span class="ic">📘</span><span>Grammatik — die Basics<small>${gramOffen()?gramOffen()+" Lektionen offen · am besten zuerst":"alle Lektionen verstanden ✓"}</small></span><span class="chev">›</span></button>`:""}
   ${window.gramDa&&gramDa()?`</div>`:""}
   <div class="sek sek-ueb"><div class="sekkopf"><span>🏋️</span><div><b>Üben</b><small>Hier lernst du — Fehler sind erwünscht, es zählt nichts</small></div></div>
-  <button class="tile" onclick="uebBlock(S.blockMin||3)" style="border-color:var(--accent)"><span class="ic">⏱️</span><span>Lernblock · ${S.blockMin||3} Min<small>Aufgaben kreuz und quer, bis die Zeit um ist · Länge unter Durchgang wählbar</small></span><span class="chev">›</span></button>
+  <button class="tile" onclick="uebMenu()" style="border-color:var(--accent)"><span class="ic">⏱️</span><span>Lernblock<small>1, 3, 6 oder 9 Minuten · Aufgaben kreuz und quer</small></span><span class="chev">›</span></button>
   ${window.bildDa&&bildDa()?`<button class="tile" onclick="bildMenu()"><span class="ic">🖼️</span><span>Bildkarten<small>Bild sehen, Wort hören, selbst sagen — ganz ohne Deutsch</small></span><span class="chev">›</span></button>`:""}
-  <button class="tile" onclick="uebMenu()"><span class="ic">🎮</span><span>Durchgang<small>Wechselnde Aufgaben: ${istSpr()?"erkennen, auswählen, bauen, tippen, hören, sprechen":"erkennen, auswählen, laut antworten"}</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="go('scn')"><span class="ic">🎯</span><span>Abruf nach ${istSpr()?"Szenario":"Bereich"}<small>${istSpr()?"Deutsch rein, du sagst es laut, dann Auflösung":"Frage rein, du antwortest laut, dann Auflösung"}</small></span><span class="chev">›</span></button>
   ${Object.keys(MISSIONS).length?`<button class="tile" onclick="go('mission')"><span class="ic">🎭</span><span>Mission spielen<small>Ich bin das Gegenüber, du musst durchkommen</small></span><span class="chev">›</span></button>`:""}
   <button class="tile" onclick="hoerMenu()"><span class="ic">🎧</span><span>Hören & Nachsprechen<small>Ohne Hinsehen: hören, nachsprechen, Lösung hören — läuft von allein weiter</small></span><span class="chev">›</span></button>
@@ -2933,7 +2932,6 @@ function settings(){
   <hr class="sep">
   <p class="shead">Wie du lernst<small>Einmal eingestellt, bleibt es so — auch wenn du die Rubrik wechselst</small></p>
   <button class="tile" onclick="setup(2)"><span class="ic">⏱️</span><span>Länge<small>${planObj().t}</small></span><span class="chev">›</span></button>
-  <button class="tile" onclick="blockMenu()"><span class="ic">🔁</span><span>Lernblock<small>${S.blockMin||3} ${(S.blockMin||3)===1?"Minute":"Minuten"} pro Block</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="modeMenu()"><span class="ic">🧭</span><span>Lernmodus<small>${S.mode==="streng"?"Geführt":"Frei"}</small></span><span class="chev">›</span></button>
   <button class="tile" onclick="dirMenu()"><span class="ic">↔️</span><span>Richtung<small>${dirLbl(S.dir||"de")}</small></span><span class="chev">›</span></button>
   <hr class="sep">
@@ -3434,7 +3432,7 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="20261120130245";
+const APPV="20261120130832";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>
