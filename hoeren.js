@@ -48,7 +48,8 @@ function hoerMenu(){
       '<span class="chev">'+(h.src===id?'<b class="done">gewählt</b>':"›")+'</span></button>';
   };
   var pill=function(k,val,txt){
-    return '<button class="btn ghost sm" style="margin:0;'+(h[k]===val?"border-color:var(--accent);color:var(--accent)":"")+'" onclick="hoerSet(\''+k+'\',\''+val+'\')">'+txt+'</button>';
+    var cur=h[k]===true?"1":h[k]===false?"0":String(h[k]);
+    return '<button class="btn ghost sm" style="margin:0;flex:1 1 auto;'+(cur===val?"border-color:var(--accent);color:var(--accent);background:rgba(143,214,169,.10)":"")+'" onclick="hoerSet(\''+k+'\',\''+val+'\')">'+txt+'</button>';
   };
   render('<button class="back" onclick="home()">‹ zurück</button><h2>Hören & Nachsprechen</h2>'+
   '<p class="note" style="margin-bottom:14px">Du hörst, sagst nach, hörst die Lösung. Ohne Hinsehen — beim Laufen, Kochen, Fahrradfahren. Läuft von allein weiter.</p>'+
@@ -57,16 +58,16 @@ function hoerMenu(){
   src("offen","im Fokus, noch nicht dreimal richtig")+
   src("fokus","der ganze aktuelle Fokus")+
   src("alles","alle Einträge dieser Rubrik")+
-  '<div class="card" style="margin-top:14px"><p class="sub">Richtung</p><div class="row" style="margin-top:8px">'+
+  '<div class="card" style="margin-top:14px"><p class="sub">Richtung</p><div class="row" style="margin-top:8px;flex-wrap:wrap;gap:8px">'+
     pill("dir","mix","gemischt")+(window.istSpr&&!istSpr()? pill("dir","de","Frage zuerst")+pill("dir","ziel","Antwort zuerst") : pill("dir","de","Deutsch zuerst")+pill("dir","ziel",(cfg().name==="Brasilianisches Portugiesisch"?"Portugiesisch":cfg().name.split(" ")[0])+" zuerst"))+
   '</div>'+
-  '<p class="sub" style="margin-top:14px">Denkpause</p><div class="row" style="margin-top:8px">'+
+  '<p class="sub" style="margin-top:14px">Denkpause</p><div class="row" style="margin-top:8px;flex-wrap:wrap;gap:8px">'+
     pill("pause","3","3 Sek")+pill("pause","4","4 Sek")+pill("pause","6","6 Sek")+pill("pause","8","8 Sek")+
   '</div>'+
-  '<p class="sub" style="margin-top:14px">Lösung zweimal</p><div class="row" style="margin-top:8px">'+
+  '<p class="sub" style="margin-top:14px">Lösung zweimal</p><div class="row" style="margin-top:8px;flex-wrap:wrap;gap:8px">'+
     pill("echo","1","ja — zum Nachsprechen")+pill("echo","0","nein")+
   '</div>'+
-  '<p class="sub" style="margin-top:14px">Nach der Lösung</p><div class="row" style="margin-top:8px">'+
+  '<p class="sub" style="margin-top:14px">Nach der Lösung</p><div class="row" style="margin-top:8px;flex-wrap:wrap;gap:8px">'+
     pill("warten","1","auf dich warten")+pill("warten","0","durchlaufen")+
   '</div></div>'+
   (hPool(h.src).length

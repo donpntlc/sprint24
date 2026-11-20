@@ -2862,6 +2862,7 @@ function home(){
     <div><b>${myErr().length}</b><span>Fehlerliste</span></div>
   </div>
   ${S.mode==="streng" ? strictView() : `
+  ${window.gramDa&&gramDa()?`<button class="tile" onclick="gramMenu()" style="${gramOffen()?"border-color:var(--accent)":""}"><span class="ic">📘</span><span>Grammatik — die Basics<small>${gramOffen()?gramOffen()+" Lektionen offen · am besten zuerst":"alle Lektionen verstanden ✓"}</small></span><span class="chev">›</span></button>`:""}
   ${!preR()?`<button class="tile" onclick="levelTest('pre')" style="border-color:var(--accent)"><span class="ic">📐</span><span>Zuerst: Startpunkt messen<small>20 ${einh()} ohne Hilfe · zeigt, wo du heute stehst</small></span><span class="chev">›</span></button>`
    :`<div class="card" style="padding:14px 16px"><p class="sub">Startpunkt</p><p style="margin:6px 0 0;font-weight:700">${preR().score}/${preR().of} vorher${postR()?` · ${postR().score}/${postR().of} jetzt`:""}</p>${postR()?`<p class="note">Unterschied: <b style="color:var(--accent)">+${postR().score-preR().score}</b> Sätze</p>`:`<p class="note">Am Ende machst du genau denselben Test nochmal.</p>`}</div>`}
   <h2>Üben</h2>
@@ -3423,6 +3424,7 @@ home();
 <script src="stimmen.js"></script>
 <script src="monolog.js"></script>
 <script src="bild.js"></script>
+<script src="grammatik.js"></script>
 <script src="gen.js"></script>
 </body>
 </html>
