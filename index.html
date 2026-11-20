@@ -2211,7 +2211,11 @@ const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v
 const el = (h)=>{ const d=document.createElement("div"); d.innerHTML=h.trim(); return d.firstChild; };
 const app = document.getElementById("app");
 function render(h){ app.innerHTML = h; window.scrollTo(0,0); }
-document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest(".answer"); if(a && !e.target.closest("button")){ try{ speak(a.innerText.replace(/🔊/g,"").trim()); }catch(x){} } });
+document.addEventListener("click",e=>{ const a=e.target.closest&&e.target.closest(".answer"); if(a && !e.target.closest("button")){ try{
+  const t=a.innerText.replace(/🔊/g,"").trim();
+  const c=istSpr() && (CHUNKS||[]).find(x=>x.de && x.de.trim()===t && x.scn!=="w");
+  speak(c ? c.pt : t);
+}catch(x){} } });
 function logError(id, de, pt){
   if(!S.errors.find(e=>e.id===id)) S.errors.push({id,de,pt});
   save();
@@ -3432,7 +3436,7 @@ applyTheme();
 home();
 </script>
 <script>
-const APPV="20261120131023";
+const APPV="20261120131150";
 function updCheck(){ try{ fetch("version.txt?"+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{ t=(t||"").trim(); if(t && t!==APPV){ const k="upd-"+t; if(!sessionStorage.getItem(k)){ sessionStorage.setItem(k,"1"); location.reload(); } } }).catch(()=>{}); }catch(e){} }
 updCheck(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) updCheck(); });
 </script>
